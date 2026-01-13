@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  return tools.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const categoryColors: Record<string, string> = {
+  data: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+  ai: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+  automation: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+  productivity: 'bg-sky-500/10 text-sky-600 dark:text-sky-400',
+};
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <article class="py-12">
+    <a href="/tools" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] mb-8 inline-block">
+      &larr; Back to tools
+    </a>
+
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <h1 class="text-3xl font-bold text-[var(--color-text)]">
+        {entry.data.title}
+      </h1>
+      <span class:list={[
+        'px-3 py-1 text-sm font-medium rounded capitalize shrink-0',
+        categoryColors[entry.data.category] || 'bg-[var(--color-bg-subtle)] text-[var(--color-text-muted)]'
+      ]}>
+        {entry.data.category}
+      </span>
+    </div>
+
+    <p class="text-lg text-[var(--color-text-muted)] mb-6">
+      {entry.data.description}
+    </p>
+
+    <div class="p-4 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-subtle)] mb-8">
+      <p class="text-[var(--color-text)] italic">"{entry.data.verdict}"</p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2 mb-8">
+      <div class="p-4 border border-[var(--color-border)] rounded-lg">
+        <h3 class="text-sm font-semibold text-[var(--color-text)] mb-2">Use when</h3>
+        <p class="text-sm text-[var(--color-text-muted)]">{entry.data.use_when}</p>
+      </div>
+      <div class="p-4 border border-[var(--color-border)] rounded-lg">
+        <h3 class="text-sm font-semibold text-[var(--color-text)] mb-2">Skip when</h3>
+        <p class="text-sm text-[var(--color-text-muted)]">{entry.data.skip_when}</p>
+      </div>
+    </div>
+
+    <div class="prose prose-neutral dark:prose-invert max-w-none
+      prose-headings:text-[var(--color-text)] prose-headings:font-semibold
+      prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+      prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-[var(--color-text)]
+      prose-code:text-[var(--color-text)] prose-code:bg-[var(--color-bg-subtle)]
+      prose-pre:bg-[#18181b] prose-pre:text-[#fafafa]
+      prose-li:text-[var(--color-text-muted)]
+      prose-ul:text-[var(--color-text-muted)]
+      prose-ol:text-[var(--color-text-muted)]">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

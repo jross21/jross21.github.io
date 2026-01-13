@@ -1,0 +1,31 @@
+---
+const pillars = [
+  {
+    title: 'Revenue Architecture',
+    description: 'Pipeline to board forecast. Forecasting, capacity, and segmentation models embedded directly in Salesforce or HubSpot.'
+  },
+  {
+    title: 'Agentic Workflows',
+    description: 'AI that plans, executes, and self-checks within defined constraints. Human oversight where it matters, automation where it doesn\'t.'
+  },
+  {
+    title: 'Data Infrastructure',
+    description: 'SQL, dbt, Snowflake, BI tools. Clean metrics that executives actually trust for decisions.'
+  }
+];
+---
+
+<section class="py-12">
+  <div class="space-y-8">
+    {pillars.map((pillar) => (
+      <div class="border-l-2 border-[var(--color-border)] pl-6 py-2">
+        <h3 class="text-lg font-semibold text-[var(--color-text)] mb-2">
+          {pillar.title}
+        </h3>
+        <p class="text-[var(--color-text-muted)] leading-relaxed">
+          {pillar.description}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

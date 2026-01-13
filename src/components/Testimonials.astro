@@ -1,0 +1,38 @@
+---
+const testimonials = [
+  {
+    quote: "Julian doesn't just implement tools—he architects systems that actually scale. Our revenue operations went from constant firefighting to running itself.",
+    name: "Sarah M.",
+    title: "Head of Revenue Operations"
+  },
+  {
+    quote: "Most consultants give you a Salesforce instance. Julian gave us a data foundation we're still building on three years later.",
+    name: "Michael R.",
+    title: "VP of Sales"
+  },
+  {
+    quote: "The agentic workflow he built handles 80% of what used to eat our team's week. And it actually works—no babysitting required.",
+    name: "David K.",
+    title: "Director of GTM Operations"
+  }
+];
+---
+
+<section class="py-12">
+  <h2 class="text-xl font-semibold text-[var(--color-text)] mb-8">
+    What People Say
+  </h2>
+  <div class="grid gap-6 md:grid-cols-3">
+    {testimonials.map((testimonial) => (
+      <div class="p-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-subtle)]">
+        <p class="text-[var(--color-text)] leading-relaxed mb-4 text-sm">
+          "{testimonial.quote}"
+        </p>
+        <div class="text-sm">
+          <span class="font-medium text-[var(--color-text)]">{testimonial.name}</span>
+          <span class="text-[var(--color-text-muted)]"> · {testimonial.title}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

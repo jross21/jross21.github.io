@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const playbooks = [
+  {
+    title: 'AI Use-Case Prioritization Matrix',
+    description: 'Framework for evaluating AI opportunities by impact, feasibility, and data readiness. Helps teams focus on high-value, achievable projects.',
+    category: 'Strategy',
+  },
+  {
+    title: 'Discovery Questionnaire',
+    description: 'Structured interview guide for understanding stakeholder needs, system constraints, and success criteria at project kickoff.',
+    category: 'Discovery',
+  },
+  {
+    title: 'AI Governance Checklist',
+    description: 'Pre-deployment review covering human oversight, testing requirements, monitoring setup, and rollback procedures.',
+    category: 'Governance',
+  },
+  {
+    title: 'Eval Plan Template',
+    description: 'Structure for defining AI evaluation criteria, test cases, success thresholds, and review cadence.',
+    category: 'Evaluation',
+  },
+  {
+    title: 'Data Contract Template',
+    description: 'Agreement format for defining data schemas, quality expectations, SLAs, and ownership between systems.',
+    category: 'Data',
+  },
+  {
+    title: 'RevOps Health Scorecard',
+    description: 'Assessment framework for evaluating CRM data quality, process efficiency, and system integration health.',
+    category: 'RevOps',
+  },
+];
+
+const categories = [...new Set(playbooks.map(p => p.category))];
+---
+
+<BaseLayout title="Playbooks" description="Reusable frameworks, templates, and checklists for AI and RevOps projects.">
+  <article class="py-12">
+    <a href="/resources" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] mb-8 inline-block">
+      &larr; Back to resources
+    </a>
+
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">Playbooks</h1>
+    <p class="text-[var(--color-text-muted)] mb-8">
+      Reusable assets from client engagements. These frameworks and templates accelerate delivery and ensure nothing falls through the cracks.
+    </p>
+
+    <div class="flex flex-wrap gap-2 mb-8">
+      {categories.map((cat) => (
+        <span class="px-3 py-1 text-sm border border-[var(--color-border)] rounded-full text-[var(--color-text-muted)]">
+          {cat}
+        </span>
+      ))}
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {playbooks.map((playbook) => (
+        <div class="p-6 border border-[var(--color-border)] rounded-lg">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <h2 class="font-semibold text-[var(--color-text)]">{playbook.title}</h2>
+            <span class="px-2 py-0.5 text-xs bg-[var(--color-bg-subtle)] text-[var(--color-text-muted)] rounded shrink-0">
+              {playbook.category}
+            </span>
+          </div>
+          <p class="text-sm text-[var(--color-text-muted)]">{playbook.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <section class="mt-12 p-6 border border-[var(--color-border)] rounded-lg bg-[var(--color-bg-subtle)]">
+      <h2 class="text-lg font-semibold text-[var(--color-text)] mb-2">Need a Playbook?</h2>
+      <p class="text-[var(--color-text-muted)] mb-4">
+        These templates are typically shared during engagements or upon request. If there's something specific that would help your team, reach out.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center text-sm text-[var(--color-accent)] hover:underline"
+      >
+        Get in touch &rarr;
+      </a>
+    </section>
+  </article>
+</BaseLayout>

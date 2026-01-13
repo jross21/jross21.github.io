@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const resources = [
+  {
+    title: 'Methods',
+    description: 'My delivery playbook: discovery through deployment, with governance built in.',
+    href: '/resources/methods',
+  },
+  {
+    title: 'Playbooks',
+    description: 'Reusable frameworks, templates, and checklists I use on projects.',
+    href: '/resources/playbooks',
+  },
+];
+---
+
+<BaseLayout title="Resources" description="Methods and playbooks for building systems that work.">
+  <article class="py-12">
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">Resources</h1>
+    <p class="text-[var(--color-text-muted)] mb-8">
+      How I approach projects and the frameworks I use.
+    </p>
+
+    <div class="grid gap-4">
+      {resources.map((resource) => (
+        <a
+          href={resource.href}
+          class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-text-muted)] transition-colors hover:no-underline group"
+        >
+          <h2 class="text-lg font-semibold text-[var(--color-text)] mb-2 group-hover:text-[var(--color-accent)]">
+            {resource.title}
+          </h2>
+          <p class="text-[var(--color-text-muted)] text-sm">
+            {resource.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  </article>
+</BaseLayout>

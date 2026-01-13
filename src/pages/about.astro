@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="Background on how I got here and what I'm focused on now.">
+  <article class="py-12">
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-8">About</h1>
+
+    <div class="space-y-6 text-[var(--color-text-muted)] max-w-2xl mb-12">
+      <p class="text-lg text-[var(--color-text)]">
+        I spent years in enterprise GTM learning how AI and automation projects actually succeed or fail.
+      </p>
+
+      <p>
+        Started in technical support at UMass, moved through sales engineering at a few companies, then enterprise GTM at DataRobot and Benchling. Selling AI to enterprises taught me what the gap between "this demo is impressive" and "the team actually uses it" looks like up close.
+      </p>
+
+      <p>
+        The pattern was consistent: the technology worked, but adoption didn't. The problem was never the AI itself. It was everything around it—the workflows, the data foundations, the human processes that had to change for any of it to matter.
+      </p>
+
+      <p>
+        I stepped back to go deeper. Now I focus on the tooling layer that connects AI capabilities to business workflows: dbt for data transformation, Claude Code for agentic workflows, the infrastructure that makes AI actually useful in practice.
+      </p>
+
+      <p class="text-[var(--color-text)]">
+        The gap I work in is the last mile—the part most vendors skip.
+      </p>
+    </div>
+
+    <!-- Values -->
+    <section class="mb-12 p-6 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-subtle)]">
+      <p class="text-[var(--color-text)] italic">
+        "I read widely, build carefully, and prefer systems that work without constant intervention."
+      </p>
+    </section>
+
+    <!-- Resume -->
+    <section>
+      <p class="text-sm text-[var(--color-text-muted)] mb-4">
+        Full career history on LinkedIn. Or download the one-pager:
+      </p>
+      <a
+        href="/julian-ross-resume.pdf"
+        class="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-border)] text-[var(--color-text)] font-medium rounded-lg hover:bg-[var(--color-bg-subtle)] transition-colors hover:no-underline"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Download Resume (PDF)
+      </a>
+    </section>
+  </article>
+</BaseLayout>

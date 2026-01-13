@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://julianross.io/sitemap-index.xml

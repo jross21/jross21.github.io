@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work');
+const allWriting = await getCollection('writing');
+
+const featuredProjects = allWork.slice(0, 3);
+const featuredEssays = allWriting.slice(0, 3);
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="py-16 md:py-24 animate-in">
+    <h1 class="text-4xl md:text-6xl font-bold text-[var(--color-text)] mb-6 tracking-tight">
+      Julian Ross
+    </h1>
+    <p class="text-xl md:text-2xl text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
+      I help companies close the gap between "this AI demo works" and "the team actually uses it."
+    </p>
+  </section>
+
+  <!-- The Arc -->
+  <section class="py-12 border-t border-[var(--color-border)] animate-in animate-delay-1">
+    <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">The Arc</h2>
+    <div class="space-y-4 text-[var(--color-text-muted)] max-w-2xl">
+      <p>
+        I spent years in enterprise GTM—first at DataRobot selling AI to enterprises, then at Benchling watching automation projects succeed or fail at scale. The pattern was always the same: the technology worked, but adoption didn't.
+      </p>
+      <p>
+        The problem was never the AI. It was the connective tissue—the workflows, the data foundations, the human processes that had to change for any of it to matter.
+      </p>
+      <p>
+        So I stepped back to go deeper. I've been building fluency in the tooling layer: dbt for data transformation, Claude Code for agentic workflows, the infrastructure that connects AI capabilities to actual business processes.
+      </p>
+      <p class="text-[var(--color-text)] font-medium">
+        Now I focus on that gap. The last mile. The part most vendors skip.
+      </p>
+    </div>
+  </section>
+
+  <!-- How I Think -->
+  {featuredEssays.length > 0 && (
+    <section class="py-12 border-t border-[var(--color-border)] animate-in animate-delay-2">
+      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">
+        How I Think
+      </h2>
+      <div>
+        {featuredEssays.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            slug={post.slug}
+          />
+        ))}
+      </div>
+      <a href="/thinking" class="inline-block mt-6 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)]">
+        View all essays &rarr;
+      </a>
+    </section>
+  )}
+
+  <!-- What I Build -->
+  {featuredProjects.length > 0 && (
+    <section class="py-12 border-t border-[var(--color-border)] animate-in animate-delay-3">
+      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">
+        What I Build
+      </h2>
+      <div class="grid gap-4">
+        {featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            slug={project.slug}
+          />
+        ))}
+      </div>
+      <a href="/projects" class="inline-block mt-6 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)]">
+        View all projects &rarr;
+      </a>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-16 border-t border-[var(--color-border)] animate-in animate-delay-4">
+    <h2 class="text-2xl font-semibold text-[var(--color-text)] mb-4">
+      Get in touch
+    </h2>
+    <p class="text-[var(--color-text-muted)] mb-6 max-w-xl">
+      If you're working on something where this matters—closing the gap between AI capability and actual adoption—I'd like to hear about it.
+    </p>
+    <a
+      href="/contact"
+      class="btn-primary inline-flex items-center px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded-lg hover:no-underline"
+    >
+      Start a conversation
+    </a>
+  </section>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work');
+---
+
+<BaseLayout title="Projects" description="Approaches and patterns from implementations I've led.">
+  <article class="py-12">
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">Projects</h1>
+    <p class="text-[var(--color-text-muted)] mb-8">
+      Approaches and patterns from implementations I've led. Not case studies with client logos—just the thinking and architecture behind systems that actually shipped.
+    </p>
+
+    <div class="grid gap-4">
+      {allWork.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          slug={project.slug}
+        />
+      ))}
+    </div>
+  </article>
+</BaseLayout>

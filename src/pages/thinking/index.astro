@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allWriting = await getCollection('writing');
+---
+
+<BaseLayout title="How I Think" description="Essays on RevOps, AI adoption, and why most automation projects fail.">
+  <article class="py-12">
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">How I Think</h1>
+    <p class="text-[var(--color-text-muted)] mb-8">
+      Essays on RevOps, AI adoption, and why most automation projects fail. These represent how I approach problems—start with the process, not the tool.
+    </p>
+
+    <div>
+      {allWriting.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          slug={post.slug}
+        />
+      ))}
+    </div>
+  </article>
+</BaseLayout>

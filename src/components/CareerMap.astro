@@ -1,0 +1,374 @@
+---
+// Career Subway Map - Transit Authority Style
+// Inspired by Massimo Vignelli's NYC subway map
+
+interface Station {
+  id: string;
+  x: number;
+  y: number;
+  label: string;
+  sublabel?: string;
+  year: string;
+  line: string;
+  isJunction?: boolean;
+}
+
+interface Line {
+  id: string;
+  name: string;
+  color: string;
+  path: string;
+  dashArray?: string;
+}
+
+// Station positions (x: 0-900, y: 0-280)
+const stations: Station[] = [
+  // Technical line
+  { id: 'umass-it', x: 60, y: 50, label: 'UMass IT', sublabel: 'Software Support', year: '2009', line: 'tech' },
+  { id: 'network', x: 140, y: 50, label: 'Network Eng', sublabel: '1,200+ access points', year: '2011', line: 'tech' },
+
+  // Sales line
+  { id: 'american', x: 240, y: 140, label: 'American Installations', sublabel: 'Sales Engineer', year: '2014', line: 'sales' },
+  { id: 'smartsheet', x: 380, y: 140, label: 'Smartsheet', sublabel: 'SDR', year: '2018', line: 'sales' },
+  { id: 'datarobot', x: 480, y: 140, label: 'DataRobot', sublabel: 'AI Solutions', year: '2019', line: 'sales', isJunction: true },
+  { id: 'benchling', x: 640, y: 140, label: 'Benchling', sublabel: 'Enterprise GTM Lead', year: '2021', line: 'sales' },
+
+  // AI line (branches from DataRobot)
+  { id: 'ai-branch', x: 520, y: 200, label: '', year: '', line: 'ai' },
+
+  // Cloud line (branches after DataRobot)
+  { id: 'cloudzero', x: 560, y: 220, label: 'CloudZero', sublabel: 'Solutions Enablement', year: '2020', line: 'cloud' },
+
+  // Terminus
+  { id: 'revops', x: 820, y: 140, label: 'RevOps', sublabel: 'Revenue Systems Architect', year: '2022–Present', line: 'terminus' },
+];
+
+const lines: Line[] = [
+  {
+    id: 'tech',
+    name: 'Technical',
+    color: '#475569',
+    // Solid from start to 2013, then dashed underground, curves up to terminus
+    path: 'M 60 50 L 140 50'
+  },
+  {
+    id: 'tech-underground',
+    name: 'Technical (Underground)',
+    color: '#475569',
+    path: 'M 140 50 L 200 50 Q 220 50 220 70 L 220 100 Q 220 120 240 120 L 700 120 Q 740 120 760 140 L 820 140',
+    dashArray: '8 6'
+  },
+  {
+    id: 'sales',
+    name: 'Sales & GTM',
+    color: '#059669',
+    path: 'M 240 140 L 820 140'
+  },
+  {
+    id: 'ai',
+    name: 'AI & Data',
+    color: '#7c3aed',
+    path: 'M 480 140 L 480 180 Q 480 200 500 200 L 700 200 Q 740 200 760 180 L 780 160 Q 800 140 820 140'
+  },
+  {
+    id: 'cloud',
+    name: 'Cloud',
+    color: '#d97706',
+    path: 'M 480 140 L 480 200 Q 480 220 500 220 L 560 220 L 700 220 Q 740 220 770 190 L 800 160 Q 810 150 820 140'
+  },
+];
+
+const lineColors = {
+  tech: '#475569',
+  sales: '#059669',
+  ai: '#7c3aed',
+  cloud: '#d97706',
+  terminus: 'var(--color-accent)'
+};
+---
+
+<section class="career-map mb-16">
+  <h2 class="text-xl font-semibold text-[var(--color-text)] mb-8" style="font-family: 'Outfit', sans-serif;">
+    Career Path
+  </h2>
+
+  <!-- Desktop: SVG Subway Map -->
+  <div class="hidden md:block relative">
+    <svg
+      viewBox="0 0 900 280"
+      class="w-full"
+      role="img"
+      aria-label="Career timeline as a subway map showing Technical, Sales, AI, and Cloud tracks converging at RevOps"
+    >
+      <defs>
+        <!-- Glow filter for terminus -->
+        <filter id="terminus-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <!-- Subtle glow for lines -->
+        <filter id="line-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Timeline axis -->
+      <line x1="40" y1="260" x2="860" y2="260" stroke="var(--color-border)" stroke-width="1"/>
+      <text x="60" y="275" class="year-label">Then</text>
+      <text x="820" y="275" class="year-label" text-anchor="middle">Now</text>
+
+      <!-- LINE GLOWS (wide, transparent) -->
+      {lines.map((line) => (
+        <path
+          d={line.path}
+          fill="none"
+          stroke={line.color}
+          stroke-width="16"
+          stroke-opacity="0.12"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-dasharray={line.dashArray}
+        />
+      ))}
+
+      <!-- LINE CORES (thin, solid) -->
+      {lines.map((line) => (
+        <path
+          d={line.path}
+          fill="none"
+          stroke={line.color}
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-dasharray={line.dashArray}
+          class="line-path"
+        />
+      ))}
+
+      <!-- STATIONS -->
+      {stations.filter(s => s.label).map((station) => (
+        <g class="station-group" data-station={station.id}>
+          {/* Station outer ring */}
+          <circle
+            cx={station.x}
+            cy={station.y}
+            r={station.isJunction ? 10 : station.id === 'revops' ? 14 : 7}
+            fill={station.id === 'revops' ? 'var(--color-accent)' : lineColors[station.line as keyof typeof lineColors] || '#475569'}
+            class={station.id === 'revops' ? 'terminus-marker' : ''}
+            filter={station.id === 'revops' ? 'url(#terminus-glow)' : undefined}
+          />
+          {/* Station inner circle (hollow effect) */}
+          <circle
+            cx={station.x}
+            cy={station.y}
+            r={station.isJunction ? 5 : station.id === 'revops' ? 8 : 3}
+            fill="var(--color-bg)"
+          />
+          {station.id === 'revops' && (
+            <circle
+              cx={station.x}
+              cy={station.y}
+              r={4}
+              fill="var(--color-accent)"
+            />
+          )}
+        </g>
+      ))}
+
+      <!-- STATION LABELS -->
+      {/* Tech line labels - above */}
+      <text x="60" y="32" class="station-label" text-anchor="middle">UMass IT</text>
+      <text x="140" y="32" class="station-label" text-anchor="middle">Network Eng</text>
+
+      {/* Sales line labels - below */}
+      <text x="240" y="165" class="station-label" text-anchor="middle">American Inst.</text>
+      <text x="380" y="165" class="station-label" text-anchor="middle">Smartsheet</text>
+      <text x="480" y="165" class="station-label" text-anchor="middle">DataRobot</text>
+      <text x="640" y="165" class="station-label" text-anchor="middle">Benchling</text>
+
+      {/* Cloud line label */}
+      <text x="560" y="245" class="station-label" text-anchor="middle">CloudZero</text>
+
+      {/* Terminus label */}
+      <text x="820" y="110" class="terminus-label" text-anchor="middle">RevOps</text>
+      <text x="820" y="124" class="terminus-sublabel" text-anchor="middle">Architect</text>
+    </svg>
+
+    <!-- Legend -->
+    <div class="mt-8 flex flex-wrap justify-center gap-6" style="font-family: 'Outfit', sans-serif;">
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-1 rounded-full" style="background-color: #475569;"></span>
+        <span class="text-sm text-[var(--color-text-muted)]">Technical</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-1 rounded-full" style="background-color: #059669;"></span>
+        <span class="text-sm text-[var(--color-text-muted)]">Sales & GTM</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-1 rounded-full" style="background-color: #7c3aed;"></span>
+        <span class="text-sm text-[var(--color-text-muted)]">AI & Data</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-1 rounded-full" style="background-color: #d97706;"></span>
+        <span class="text-sm text-[var(--color-text-muted)]">Cloud</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-[var(--color-accent)]"></span>
+        <span class="text-sm font-medium text-[var(--color-text)]">Convergence</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile: Vertical Timeline -->
+  <div class="md:hidden">
+    <div class="relative pl-8">
+      <!-- Vertical line -->
+      <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-[var(--color-border)]"></div>
+
+      <!-- Technical Foundation -->
+      <div class="mb-8 relative">
+        <div class="absolute left-[-22px] top-1 w-4 h-4 rounded-full border-2 border-[var(--color-bg)]" style="background-color: #475569;"></div>
+        <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #475569; font-family: 'Outfit', sans-serif;">Technical Foundation</div>
+        <div class="space-y-2">
+          <div>
+            <p class="text-sm font-medium text-[var(--color-text)]">UMass IT Support</p>
+            <p class="text-xs text-[var(--color-text-muted)]">2009–2013</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-[var(--color-text)]">Network Engineering</p>
+            <p class="text-xs text-[var(--color-text-muted)]">2011</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sales & GTM -->
+      <div class="mb-8 relative">
+        <div class="absolute left-[-22px] top-1 w-4 h-4 rounded-full border-2 border-[var(--color-bg)]" style="background-color: #059669;"></div>
+        <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #059669; font-family: 'Outfit', sans-serif;">Sales & GTM</div>
+        <div class="space-y-2">
+          <div>
+            <p class="text-sm font-medium text-[var(--color-text)]">American Installations</p>
+            <p class="text-xs text-[var(--color-text-muted)]">Sales Engineer · 2014–2017</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-[var(--color-text)]">Smartsheet</p>
+            <p class="text-xs text-[var(--color-text-muted)]">SDR · 2018–2019</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-[var(--color-text)]">Benchling</p>
+            <p class="text-xs text-[var(--color-text-muted)]">Enterprise GTM Lead · 2021–2022</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI & Data -->
+      <div class="mb-8 relative">
+        <div class="absolute left-[-22px] top-1 w-4 h-4 rounded-full border-2 border-[var(--color-bg)]" style="background-color: #7c3aed;"></div>
+        <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #7c3aed; font-family: 'Outfit', sans-serif;">AI & Data</div>
+        <div>
+          <p class="text-sm font-medium text-[var(--color-text)]">DataRobot</p>
+          <p class="text-xs text-[var(--color-text-muted)]">AI Solutions SDR · 2019–2020</p>
+        </div>
+      </div>
+
+      <!-- Cloud -->
+      <div class="mb-8 relative">
+        <div class="absolute left-[-22px] top-1 w-4 h-4 rounded-full border-2 border-[var(--color-bg)]" style="background-color: #d97706;"></div>
+        <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #d97706; font-family: 'Outfit', sans-serif;">Cloud</div>
+        <div>
+          <p class="text-sm font-medium text-[var(--color-text)]">CloudZero</p>
+          <p class="text-xs text-[var(--color-text-muted)]">Solutions Enablement · 2020–2021</p>
+        </div>
+      </div>
+
+      <!-- Convergence -->
+      <div class="relative">
+        <div class="absolute left-[-24px] top-0 w-5 h-5 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-accent)]/20"></div>
+        <div class="text-xs font-semibold uppercase tracking-wider mb-2 text-[var(--color-accent)]" style="font-family: 'Outfit', sans-serif;">Convergence</div>
+        <div>
+          <p class="text-base font-semibold text-[var(--color-text)]">RevOps Architect</p>
+          <p class="text-sm text-[var(--color-text-muted)]">2022–Present</p>
+          <p class="text-xs text-[var(--color-text-muted)] mt-1 italic">All paths converge: technical depth, business acumen, AI & cloud expertise</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .career-map {
+    --map-font: 'Outfit', sans-serif;
+  }
+
+  .year-label {
+    font-family: var(--map-font);
+    font-size: 10px;
+    font-weight: 400;
+    fill: var(--color-text-muted);
+  }
+
+  .station-label {
+    font-family: var(--map-font);
+    font-size: 11px;
+    font-weight: 500;
+    fill: var(--color-text);
+    letter-spacing: -0.02em;
+  }
+
+  .terminus-label {
+    font-family: var(--map-font);
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--color-accent);
+    letter-spacing: -0.02em;
+  }
+
+  .terminus-sublabel {
+    font-family: var(--map-font);
+    font-size: 10px;
+    font-weight: 500;
+    fill: var(--color-text-muted);
+  }
+
+  .line-path {
+    transition: stroke-opacity 0.2s ease;
+  }
+
+  .line-path:hover {
+    stroke-opacity: 0.8;
+  }
+
+  .station-group {
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .station-group:hover {
+    transform: scale(1.15);
+  }
+
+  .terminus-marker {
+    animation: terminus-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes terminus-pulse {
+    0%, 100% {
+      filter: url(#terminus-glow);
+      opacity: 1;
+    }
+    50% {
+      filter: url(#terminus-glow) brightness(1.2);
+      opacity: 0.9;
+    }
+  }
+
+  /* Hover tooltip styles would go here - keeping simple for now */
+</style>

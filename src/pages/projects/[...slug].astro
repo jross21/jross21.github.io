@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <article class="py-12">
+    <a href="/projects" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] mb-8 inline-block">
+      &larr; Back to projects
+    </a>
+
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">
+      {entry.data.title}
+    </h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      {entry.data.description}
+    </p>
+
+    <div class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-12">
+      <div class="prose prose-neutral dark:prose-invert max-w-none
+        prose-headings:text-[var(--color-text)] prose-headings:font-semibold
+        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
+        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-[var(--color-text)]
+        prose-code:text-[var(--color-text)] prose-code:bg-[var(--color-bg-subtle)]
+        prose-pre:bg-[#18181b] prose-pre:text-[#fafafa]
+        prose-li:text-[var(--color-text-muted)]
+        prose-ul:text-[var(--color-text-muted)]
+        prose-ol:text-[var(--color-text-muted)]">
+        <Content />
+      </div>
+
+      {headings.length > 0 && (
+        <aside class="hidden lg:block">
+          <TableOfContents headings={headings} />
+        </aside>
+      )}
+    </div>
+  </article>
+</BaseLayout>

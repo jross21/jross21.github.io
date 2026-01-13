@@ -1,0 +1,36 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="hidden md:block border-t border-[var(--color-border)] mt-auto">
+  <div class="max-w-[900px] mx-auto px-6 py-8">
+    <div class="flex items-center justify-between text-sm text-[var(--color-text-muted)]">
+      <span>&copy; {currentYear} Julian Ross</span>
+
+      <div class="flex items-center gap-4">
+        <a
+          href="https://github.com/jross21"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[var(--color-text)] transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/julianross21/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[var(--color-text)] transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="mailto:jross21@gmail.com"
+          class="hover:text-[var(--color-text)] transition-colors"
+        >
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolCard from '../../components/ToolCard.astro';
+import { getCollection } from 'astro:content';
+
+const allTools = await getCollection('tools');
+---
+
+<BaseLayout title="Tools" description="Opinionated takes on the tools I actually use.">
+  <article class="py-12">
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">Tools</h1>
+    <p class="text-[var(--color-text-muted)] mb-8">
+      Opinionated takes on the tools I actually use. Not comprehensive reviews—just what matters when you're building.
+    </p>
+
+    <div class="grid gap-4">
+      {allTools.map((tool) => (
+        <ToolCard
+          title={tool.data.title}
+          description={tool.data.description}
+          slug={tool.slug}
+          category={tool.data.category}
+          verdict={tool.data.verdict}
+        />
+      ))}
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const phases = [
+  {
+    name: 'Discovery',
+    description: 'Understand the problem space, stakeholders, constraints, and existing systems. Map data flows, identify pain points, and surface hidden requirements.',
+    deliverables: ['Stakeholder interviews', 'System audit', 'Data quality assessment', 'Requirements document'],
+  },
+  {
+    name: 'Design',
+    description: 'Architect the solution with clear boundaries, integration points, and success criteria. Balance ideal state with practical constraints.',
+    deliverables: ['Solution architecture', 'Data model', 'Integration spec', 'Success metrics'],
+  },
+  {
+    name: 'Build',
+    description: 'Implement incrementally with continuous validation. Prioritize working software over comprehensive documentation.',
+    deliverables: ['Working code', 'Configuration', 'Test coverage', 'Technical documentation'],
+  },
+  {
+    name: 'Evaluate',
+    description: 'Validate against success criteria. For AI systems: structured evals, edge case testing, and human review of outputs.',
+    deliverables: ['Eval harness', 'Test results', 'Performance benchmarks', 'Issue log'],
+  },
+  {
+    name: 'Deploy',
+    description: 'Roll out with appropriate guardrails. Enable the team to own and extend the solution.',
+    deliverables: ['Deployment runbook', 'Monitoring setup', 'Team training', 'Handoff documentation'],
+  },
+  {
+    name: 'Monitor',
+    description: 'Track performance, catch drift, and iterate. Systems need ongoing attention—especially AI systems.',
+    deliverables: ['Dashboards', 'Alerting rules', 'Review cadence', 'Improvement backlog'],
+  },
+];
+---
+
+<BaseLayout title="Methods" description="My consulting delivery playbook: discovery through deployment with governance built in.">
+  <article class="py-12">
+    <a href="/resources" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] mb-8 inline-block">
+      &larr; Back to resources
+    </a>
+
+    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">Methods</h1>
+    <p class="text-[var(--color-text-muted)] mb-8">
+      Consulting is sold as repeatable delivery. Here's my playbook—the phases, governance model, and deliverables that structure every engagement.
+    </p>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">Delivery Phases</h2>
+      <div class="space-y-6">
+        {phases.map((phase, index) => (
+          <div class="p-6 border border-[var(--color-border)] rounded-lg">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-accent)] text-[var(--color-bg)] text-sm font-semibold">
+                {index + 1}
+              </span>
+              <h3 class="text-lg font-semibold text-[var(--color-text)]">{phase.name}</h3>
+            </div>
+            <p class="text-[var(--color-text-muted)] mb-4">{phase.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {phase.deliverables.map((d) => (
+                <span class="px-2 py-1 text-xs bg-[var(--color-bg-subtle)] text-[var(--color-text-muted)] rounded">
+                  {d}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">Governance Model</h2>
+      <p class="text-[var(--color-text-muted)] mb-4">
+        For AI systems especially, governance isn't optional. It's how you build trust and catch problems before they compound.
+      </p>
+      <div class="grid gap-4 md:grid-cols-3">
+        <div class="p-4 border border-[var(--color-border)] rounded-lg">
+          <h3 class="font-semibold text-[var(--color-text)] mb-2">Human-in-the-Loop</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">
+            Critical decisions get human review. Automation handles volume; humans handle judgment.
+          </p>
+        </div>
+        <div class="p-4 border border-[var(--color-border)] rounded-lg">
+          <h3 class="font-semibold text-[var(--color-text)] mb-2">Structured Evals</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">
+            AI outputs are tested against known-good examples and edge cases before deployment.
+          </p>
+        </div>
+        <div class="p-4 border border-[var(--color-border)] rounded-lg">
+          <h3 class="font-semibold text-[var(--color-text)] mb-2">Auditability</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">
+            Every decision point is logged. You can always answer "why did the system do that?"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">Standard Deliverables</h2>
+      <p class="text-[var(--color-text-muted)] mb-4">
+        Every engagement produces artifacts you can build on:
+      </p>
+      <ul class="grid gap-2 md:grid-cols-2 text-[var(--color-text-muted)]">
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+          Metric layer definitions
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+          Data contracts
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+          Routing logic documentation
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+          Agent/workflow specifications
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+          Eval harness and test cases
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+          Runbooks and playbooks
+        </li>
+      </ul>
+    </section>
+  </article>
+</BaseLayout>
