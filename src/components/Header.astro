@@ -4,17 +4,15 @@ import ThemeToggle from './ThemeToggle.astro';
 const pathname = Astro.url.pathname;
 
 const navItems = [
-  { href: '/thinking', label: 'How I Think' },
   { href: '/projects', label: 'Projects' },
-  { href: '/tools', label: 'Tools' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/thinking', label: 'Writing' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 ---
 
 <header class="hidden md:block sticky top-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]">
-  <div class="max-w-[900px] mx-auto px-6 py-4">
+  <div class="max-w-[1000px] mx-auto px-6 py-4">
     <nav class="flex items-center justify-between">
       <a href="/" class="text-[var(--color-text)] font-semibold hover:no-underline hover:text-[var(--color-accent)] transition-colors">
         Julian Ross

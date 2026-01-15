@@ -18,5 +18,6 @@ export default defineConfig({
     '/writing': '/thinking',
     '/work': '/projects',
     '/services': '/',
+    '/tools': '/',
   }
 });

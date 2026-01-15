@@ -3,15 +3,18 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileNav from '../components/MobileNav.astro';
+import BackgroundEffect from '../components/BackgroundEffect.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  fullWidth?: boolean;
 }
 
 const {
   title = 'Julian Ross',
-  description = 'Revenue systems architect building scalable GTM infrastructure, agentic workflows, and analytics foundations. Helping companies scale from $1M to $50M+ ARR.'
+  description = 'Building the governance layer that makes AI actually work.',
+  fullWidth = false
 } = Astro.props;
 
 const pageTitle = title === 'Julian Ross' ? title : `${title} | Julian Ross`;
@@ -39,29 +42,38 @@ const pageTitle = title === 'Julian Ross' ? title : `${title} | Julian Ross`;
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Dark mode script - runs before page render to prevent flash -->
+    <!-- Theme script - dark by default, add 'light' class for light mode -->
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+          return 'light';
         }
-        return 'light';
+        return 'dark';
       })();
 
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
+      if (theme === 'light') {
+        document.documentElement.classList.add('light');
       }
     </script>
   </head>
   <body class="flex flex-col min-h-screen pb-16 md:pb-0">
-    <Header />
-    <main class="flex-1 w-full max-w-[900px] mx-auto px-6 py-12">
-      <slot />
-    </main>
-    <Footer />
+    <BackgroundEffect />
+    <div class="relative z-10 flex flex-col flex-1">
+      <Header />
+      {fullWidth ? (
+        <main class="flex-1 w-full">
+          <slot />
+        </main>
+      ) : (
+        <main class="flex-1 w-full max-w-[1000px] mx-auto px-6 py-12">
+          <slot />
+        </main>
+      )}
+      <Footer />
+    </div>
     <MobileNav />
   </body>
 </html>

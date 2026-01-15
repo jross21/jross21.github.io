@@ -1,101 +1,124 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import PostCard from '../components/PostCard.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Terminal from '../components/Terminal.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work');
 const allWriting = await getCollection('writing');
 
-const featuredProjects = allWork.slice(0, 3);
+const featuredProjects = allWork.filter(p => p.data.featured).slice(0, 2);
 const featuredEssays = allWriting.slice(0, 3);
 ---
 
-<BaseLayout>
-  <!-- Hero -->
-  <section class="py-16 md:py-24 animate-in">
-    <h1 class="text-4xl md:text-6xl font-bold text-[var(--color-text)] mb-6 tracking-tight">
-      Julian Ross
-    </h1>
-    <p class="text-xl md:text-2xl text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
-      I help companies close the gap between "this AI demo works" and "the team actually uses it."
-    </p>
-  </section>
-
-  <!-- The Arc -->
-  <section class="py-12 border-t border-[var(--color-border)] animate-in animate-delay-1">
-    <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">The Arc</h2>
-    <div class="space-y-4 text-[var(--color-text-muted)] max-w-2xl">
-      <p>
-        I spent years in enterprise GTM—first at DataRobot selling AI to enterprises, then at Benchling watching automation projects succeed or fail at scale. The pattern was always the same: the technology worked, but adoption didn't.
-      </p>
-      <p>
-        The problem was never the AI. It was the connective tissue—the workflows, the data foundations, the human processes that had to change for any of it to matter.
-      </p>
-      <p>
-        So I stepped back to go deeper. I've been building fluency in the tooling layer: dbt for data transformation, Claude Code for agentic workflows, the infrastructure that connects AI capabilities to actual business processes.
-      </p>
-      <p class="text-[var(--color-text)] font-medium">
-        Now I focus on that gap. The last mile. The part most vendors skip.
-      </p>
+<BaseLayout fullWidth={true}>
+  <!-- The Problem + Terminal (2-column) -->
+  <section class="section-immersive pt-8 md:pt-12">
+    <div class="section-immersive-content">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <!-- Left: Intro -->
+        <div class="animate-in">
+          <SectionTitle prefix="The" keyword="Problem" accentColor="warning" />
+          <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
+            [DRAFT: The core problem you've observed - 2-3 sentences, be concrete]
+          </p>
+        </div>
+        <!-- Right: Terminal -->
+        <div class="animate-in animate-delay-1">
+          <Terminal title="terminal">
+            <span class="text-[var(--color-text-muted)]">$ </span><span class="text-[var(--color-text)]">[command]</span>
+            <br /><span class="text-[var(--color-error)]">[error message]</span>
+            <br /><span class="text-[var(--color-text-muted)]">$ </span>
+          </Terminal>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- How I Think -->
-  {featuredEssays.length > 0 && (
-    <section class="py-12 border-t border-[var(--color-border)] animate-in animate-delay-2">
-      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">
-        How I Think
-      </h2>
-      <div>
-        {featuredEssays.map((post) => (
-          <PostCard
-            title={post.data.title}
-            description={post.data.description}
-            slug={post.slug}
-          />
-        ))}
+  <!-- The Approach -->
+  <section class="section-immersive section-alt">
+    <div class="section-immersive-content">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <div class="animate-in">
+          <SectionTitle prefix="My" keyword="Approach" accentColor="primary" />
+          <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
+            [DRAFT: Your unique angle - what do you do differently?]
+          </p>
+        </div>
+        <div class="animate-in animate-delay-1">
+          <Terminal title="example.py">
+            <span class="text-[var(--color-text-dim)]"># [DRAFT: Code example that illustrates your approach]</span>
+            <br />
+            <br /><span class="text-[var(--color-secondary)]">config</span> = {'{'}
+            <br />    <span class="text-[var(--color-accent)]">"key"</span>: <span class="text-[var(--color-warning)]">"value"</span>
+            <br />{'}'}
+          </Terminal>
+        </div>
       </div>
-      <a href="/thinking" class="inline-block mt-6 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)]">
-        View all essays &rarr;
-      </a>
-    </section>
-  )}
+    </div>
+  </section>
 
-  <!-- What I Build -->
-  {featuredProjects.length > 0 && (
-    <section class="py-12 border-t border-[var(--color-border)] animate-in animate-delay-3">
-      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-6">
-        What I Build
-      </h2>
-      <div class="grid gap-4">
-        {featuredProjects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            slug={project.slug}
-          />
-        ))}
+  <!-- Results -->
+  <section class="section-immersive">
+    <div class="section-immersive-content animate-in">
+      <SectionTitle prefix="Selected" keyword="Results" accentColor="primary" />
+      <div class="grid grid-cols-3 gap-4 md:gap-8 mt-6">
+        <div>
+          <p class="result-number">[XX%]</p>
+          <p class="result-label">[metric]</p>
+        </div>
+        <div>
+          <p class="result-number">[XX%]</p>
+          <p class="result-label">[metric]</p>
+        </div>
+        <div>
+          <p class="result-number">[X→Y]</p>
+          <p class="result-label">[metric]</p>
+        </div>
       </div>
-      <a href="/projects" class="inline-block mt-6 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)]">
-        View all projects &rarr;
+      <a href="/projects" class="inline-block mt-8 text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-mono transition-colors">
+        See the projects &rarr;
       </a>
-    </section>
-  )}
+    </div>
+  </section>
 
-  <!-- CTA -->
-  <section class="py-16 border-t border-[var(--color-border)] animate-in animate-delay-4">
-    <h2 class="text-2xl font-semibold text-[var(--color-text)] mb-4">
-      Get in touch
-    </h2>
-    <p class="text-[var(--color-text-muted)] mb-6 max-w-xl">
-      If you're working on something where this matters—closing the gap between AI capability and actual adoption—I'd like to hear about it.
-    </p>
-    <a
-      href="/contact"
-      class="btn-primary inline-flex items-center px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded-lg hover:no-underline"
-    >
-      Start a conversation
-    </a>
+  <!-- Writing + CTA (2-column) -->
+  <section class="section-immersive section-alt">
+    <div class="section-immersive-content">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+        <!-- Left: Writing -->
+        {featuredEssays.length > 0 && (
+          <div class="animate-in">
+            <SectionTitle prefix="Latest" keyword="Writing" accentColor="secondary" />
+            <div class="space-y-3">
+              {featuredEssays.map((post) => (
+                <a
+                  href={`/thinking/${post.slug}`}
+                  class="block text-[var(--color-text)] hover:text-[var(--color-accent)] hover:no-underline transition-colors font-mono"
+                >
+                  {post.data.title}
+                </a>
+              ))}
+            </div>
+            <a href="/thinking" class="inline-block mt-6 text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-mono transition-colors">
+              All essays &rarr;
+            </a>
+          </div>
+        )}
+        <!-- Right: CTA -->
+        <div class="animate-in animate-delay-1">
+          <SectionTitle prefix="Let's" keyword="Connect" accentColor="primary" />
+          <p class="text-[var(--color-text-muted)] mb-6">
+            [DRAFT: Who should reach out and why]
+          </p>
+          <a
+            href="/contact"
+            class="btn-primary inline-flex items-center px-6 py-3 rounded-lg hover:no-underline"
+          >
+            Start a conversation
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>

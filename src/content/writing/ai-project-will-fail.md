@@ -1,5 +1,5 @@
 ---
-title: "[Topic: RevOps Tech Debt]"
+title: "[Topic: AI Project Failure]"
 description: "[One-line hook]"
 ---
 
