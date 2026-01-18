@@ -1,0 +1,31 @@
+---
+interface Props {
+  status: 'active' | 'warning' | 'inactive';
+  label?: string;
+  showPulse?: boolean;
+}
+
+const { status, label, showPulse = true } = Astro.props;
+
+const statusClass = `status-dot--${status}`;
+---
+
+<div class:list={['status-dot', statusClass]}>
+  <span class="status-dot__circle" class:list={{ 'animate-pulse': showPulse && status === 'active' }}></span>
+  {label && <span class="text-[var(--color-text-muted)]">{label}</span>}
+</div>
+
+<style>
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

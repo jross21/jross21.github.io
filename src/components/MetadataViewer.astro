@@ -1,0 +1,31 @@
+---
+interface MetaItem {
+  key: string;
+  value: string;
+  type?: 'string' | 'number' | 'boolean' | 'array';
+}
+
+interface Props {
+  items: MetaItem[];
+  title?: string;
+}
+
+const { items, title } = Astro.props;
+---
+
+<div class="terminal-panel">
+  {title && (
+    <div class="terminal-panel__header">
+      <span class="terminal-panel__title">{title}</span>
+    </div>
+  )}
+  <div class={title ? 'terminal-panel__body' : 'p-4'}>
+    <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+      {items.map((item) => (
+        <li>
+          <span class="text-[var(--color-text)]">{item.key}:</span> {item.value}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

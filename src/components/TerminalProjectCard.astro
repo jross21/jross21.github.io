@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  date?: string;
+}
+
+const { title, description, slug, date } = Astro.props;
+---
+
+<a
+  href={`/projects/${slug}`}
+  class="project-card terminal-panel block hover:no-underline group transition-all duration-200"
+>
+  <div class="terminal-panel__body space-y-2">
+    <h3 class="project-card__title text-lg font-semibold text-[var(--color-text)] transition-colors">
+      {title}
+    </h3>
+    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+      {description}
+    </p>
+    {date && (
+      <div class="text-xs text-[var(--color-text-dim)] pt-1">
+        {date}
+      </div>
+    )}
+  </div>
+</a>
+
+<style>
+  .project-card:hover {
+    border-color: var(--color-section-projects);
+  }
+
+  .project-card:hover .project-card__title {
+    color: var(--color-section-projects);
+  }
+</style>

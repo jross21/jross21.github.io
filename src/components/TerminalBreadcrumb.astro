@@ -1,0 +1,64 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  section?: 'projects' | 'writing' | 'about' | 'contact';
+}
+
+const { items, section } = Astro.props;
+
+function getSectionColor(section: string | undefined): string {
+  if (!section) return 'var(--color-text)';
+  return `var(--color-section-${section})`;
+}
+---
+
+<nav class="breadcrumb mb-6" aria-label="Breadcrumb" data-section={section}>
+  <a href="/" class="breadcrumb__segment hover:no-underline">Home</a>
+  {items.map((item, index) => (
+    <>
+      <span class="breadcrumb__separator">/</span>
+      {item.href ? (
+        <a
+          href={item.href}
+          class:list={[
+            'breadcrumb__segment hover:no-underline',
+            section && `breadcrumb__segment--${section}`
+          ]}
+        >
+          {item.label}
+        </a>
+      ) : (
+        <span
+          class="breadcrumb__segment breadcrumb__segment--current"
+          style={section ? `color: ${getSectionColor(section)}` : undefined}
+        >
+          {item.label}
+        </span>
+      )}
+    </>
+  ))}
+</nav>
+
+<style>
+  /* Section-specific breadcrumb link colors */
+  .breadcrumb__segment--projects:hover {
+    color: var(--color-section-projects) !important;
+  }
+
+  .breadcrumb__segment--writing:hover {
+    color: var(--color-section-writing) !important;
+  }
+
+  .breadcrumb__segment--about:hover {
+    color: var(--color-section-about) !important;
+  }
+
+  .breadcrumb__segment--contact:hover {
+    color: var(--color-section-contact) !important;
+  }
+</style>

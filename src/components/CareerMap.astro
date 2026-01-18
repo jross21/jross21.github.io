@@ -25,19 +25,19 @@ interface Line {
 const stations: Station[] = [
   // Technical line
   { id: 'umass-it', x: 60, y: 50, label: 'UMass IT', sublabel: 'Software Support', year: '2009', line: 'tech' },
-  { id: 'network', x: 140, y: 50, label: 'Network Eng', sublabel: '1,200+ access points', year: '2011', line: 'tech' },
+  { id: 'network', x: 140, y: 50, label: 'Network Eng', sublabel: '1,500+ access points', year: '2011', line: 'tech' },
 
   // Sales line
   { id: 'american', x: 240, y: 140, label: 'American Installations', sublabel: 'Sales Engineer', year: '2014', line: 'sales' },
   { id: 'smartsheet', x: 380, y: 140, label: 'Smartsheet', sublabel: 'SDR', year: '2018', line: 'sales' },
-  { id: 'datarobot', x: 480, y: 140, label: 'DataRobot', sublabel: 'AI Solutions', year: '2019', line: 'sales', isJunction: true },
-  { id: 'benchling', x: 640, y: 140, label: 'Benchling', sublabel: 'Enterprise GTM Lead', year: '2021', line: 'sales' },
+  { id: 'datarobot', x: 480, y: 140, label: 'DataRobot', sublabel: 'AI Solutions Specialist', year: '2019', line: 'sales', isJunction: true },
+  { id: 'benchling', x: 640, y: 140, label: 'Benchling', sublabel: 'Enterprise SDR Lead', year: '2021', line: 'sales' },
 
   // AI line (branches from DataRobot)
   { id: 'ai-branch', x: 520, y: 200, label: '', year: '', line: 'ai' },
 
   // Cloud line (branches after DataRobot)
-  { id: 'cloudzero', x: 560, y: 220, label: 'CloudZero', sublabel: 'Solutions Enablement', year: '2020', line: 'cloud' },
+  { id: 'cloudzero', x: 560, y: 220, label: 'CloudZero', sublabel: 'Cloud Cost Enablement', year: '2020', line: 'cloud' },
 
   // Terminus
   { id: 'revops', x: 820, y: 140, label: 'RevOps', sublabel: 'Revenue Systems Architect', year: '2022–Present', line: 'terminus' },
@@ -199,7 +199,7 @@ const lineColors = {
 
       {/* Terminus label */}
       <text x="820" y="110" class="terminus-label" text-anchor="middle">RevOps</text>
-      <text x="820" y="124" class="terminus-sublabel" text-anchor="middle">Architect</text>
+      <text x="820" y="124" class="terminus-sublabel" text-anchor="middle">Systems</text>
     </svg>
 
     <!-- Legend -->
@@ -239,13 +239,13 @@ const lineColors = {
         <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #475569; font-family: 'Outfit', sans-serif;">Technical Foundation</div>
         <div class="space-y-2">
           <div>
-            <p class="text-sm font-medium text-[var(--color-text)]">UMass IT Support</p>
-            <p class="text-xs text-[var(--color-text-muted)]">2009–2013</p>
-          </div>
-          <div>
-            <p class="text-sm font-medium text-[var(--color-text)]">Network Engineering</p>
-            <p class="text-xs text-[var(--color-text-muted)]">2011</p>
-          </div>
+          <p class="text-sm font-medium text-[var(--color-text)]">UMass IT Support</p>
+          <p class="text-xs text-[var(--color-text-muted)]">2009–2013</p>
+        </div>
+        <div>
+          <p class="text-sm font-medium text-[var(--color-text)]">Network Engineering</p>
+          <p class="text-xs text-[var(--color-text-muted)]">2011 · 1,500+ access points</p>
+        </div>
         </div>
       </div>
 
@@ -264,7 +264,7 @@ const lineColors = {
           </div>
           <div>
             <p class="text-sm font-medium text-[var(--color-text)]">Benchling</p>
-            <p class="text-xs text-[var(--color-text-muted)]">Enterprise GTM Lead · 2021–2022</p>
+            <p class="text-xs text-[var(--color-text-muted)]">Enterprise SDR Lead · 2021–2022</p>
           </div>
         </div>
       </div>
@@ -275,7 +275,7 @@ const lineColors = {
         <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #7c3aed; font-family: 'Outfit', sans-serif;">AI & Data</div>
         <div>
           <p class="text-sm font-medium text-[var(--color-text)]">DataRobot</p>
-          <p class="text-xs text-[var(--color-text-muted)]">AI Solutions SDR · 2019–2020</p>
+          <p class="text-xs text-[var(--color-text-muted)]">AI Solutions Specialist · 2019–2020</p>
         </div>
       </div>
 
@@ -285,7 +285,7 @@ const lineColors = {
         <div class="text-xs font-medium uppercase tracking-wider mb-2" style="color: #d97706; font-family: 'Outfit', sans-serif;">Cloud</div>
         <div>
           <p class="text-sm font-medium text-[var(--color-text)]">CloudZero</p>
-          <p class="text-xs text-[var(--color-text-muted)]">Solutions Enablement · 2020–2021</p>
+          <p class="text-xs text-[var(--color-text-muted)]">Cloud Cost Enablement · 2020–2021</p>
         </div>
       </div>
 
@@ -294,7 +294,7 @@ const lineColors = {
         <div class="absolute left-[-24px] top-0 w-5 h-5 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-accent)]/20"></div>
         <div class="text-xs font-semibold uppercase tracking-wider mb-2 text-[var(--color-accent)]" style="font-family: 'Outfit', sans-serif;">Convergence</div>
         <div>
-          <p class="text-base font-semibold text-[var(--color-text)]">RevOps Architect</p>
+          <p class="text-base font-semibold text-[var(--color-text)]">Revenue Systems Architect</p>
           <p class="text-sm text-[var(--color-text-muted)]">2022–Present</p>
           <p class="text-xs text-[var(--color-text-muted)] mt-1 italic">All paths converge: technical depth, business acumen, AI & cloud expertise</p>
         </div>

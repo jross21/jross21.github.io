@@ -1,0 +1,94 @@
+---
+interface Props {
+  href?: string;
+  command: string;
+  active?: boolean;
+  primary?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  type?: 'button' | 'submit';
+  section?: 'projects' | 'writing' | 'about' | 'contact';
+}
+
+const {
+  href,
+  command,
+  active = false,
+  primary = false,
+  size = 'md',
+  class: className = '',
+  type = 'button',
+  section
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'text-xs py-1.5 px-2.5',
+  md: 'text-sm py-2 px-4',
+  lg: 'text-base py-3 px-6'
+};
+
+const Element = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a
+    href={href}
+    class:list={[
+      'cmd-button',
+      sizeClasses[size],
+      { 'cmd-button--active': active },
+      { 'cmd-button--primary': primary },
+      section && `cmd-button--section-${section}`,
+      className
+    ]}
+    data-section={section}
+  >
+    {command}
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={[
+      'cmd-button',
+      sizeClasses[size],
+      { 'cmd-button--active': active },
+      { 'cmd-button--primary': primary },
+      section && `cmd-button--section-${section}`,
+      className
+    ]}
+    data-section={section}
+  >
+    {command}
+  </button>
+)}
+
+<style>
+  /* Section-specific button styles */
+  .cmd-button--section-projects:hover,
+  .cmd-button--section-projects.cmd-button--active {
+    color: var(--color-section-projects);
+    border-color: var(--color-section-projects);
+    background-color: rgba(212, 162, 76, 0.05);
+  }
+
+  .cmd-button--section-writing:hover,
+  .cmd-button--section-writing.cmd-button--active {
+    color: var(--color-section-writing);
+    border-color: var(--color-section-writing);
+    background-color: rgba(196, 123, 140, 0.05);
+  }
+
+  .cmd-button--section-about:hover,
+  .cmd-button--section-about.cmd-button--active {
+    color: var(--color-section-about);
+    border-color: var(--color-section-about);
+    background-color: rgba(91, 168, 157, 0.05);
+  }
+
+  .cmd-button--section-contact:hover,
+  .cmd-button--section-contact.cmd-button--active {
+    color: var(--color-section-contact);
+    border-color: var(--color-section-contact);
+    background-color: rgba(232, 107, 44, 0.05);
+  }
+</style>

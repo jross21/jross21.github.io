@@ -1,0 +1,72 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  title?: string;
+}
+
+const { headings, title = 'Contents' } = Astro.props;
+
+// Convert flat headings to nested structure
+interface TreeItem {
+  heading: Heading;
+  children: TreeItem[];
+}
+
+function buildTree(headings: Heading[]): TreeItem[] {
+  const result: TreeItem[] = [];
+  const stack: { item: TreeItem; depth: number }[] = [];
+
+  for (const heading of headings) {
+    const item: TreeItem = { heading, children: [] };
+
+    // Pop items from stack that are at same or deeper level
+    while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop();
+    }
+
+    if (stack.length === 0) {
+      result.push(item);
+    } else {
+      stack[stack.length - 1].item.children.push(item);
+    }
+
+    stack.push({ item, depth: heading.depth });
+  }
+
+  return result;
+}
+
+const tree = buildTree(headings);
+---
+
+<div class="toc">
+  <div class="toc__title">{title}</div>
+  {tree.map((item) => (
+    <div>
+      <a
+        href={`#${item.heading.slug}`}
+        class="toc__link toc__link--parent hover:no-underline"
+      >
+        {item.heading.text}
+      </a>
+      {item.children.length > 0 && (
+        <div class="toc__children">
+          {item.children.map((child) => (
+            <a
+              href={`#${child.heading.slug}`}
+              class="toc__link hover:no-underline"
+            >
+              {child.heading.text}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+</div>

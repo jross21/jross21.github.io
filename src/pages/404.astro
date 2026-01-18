@@ -1,32 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalPanel from '../components/TerminalPanel.astro';
+import CommandButton from '../components/CommandButton.astro';
 ---
 
-<BaseLayout title="Page Not Found">
-  <article class="py-24 text-center">
-    <h1 class="text-6xl font-bold text-[var(--color-text)] mb-4">404</h1>
-    <p class="text-xl text-[var(--color-text-muted)] mb-8">
-      This page doesn't exist.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a
-        href="/"
-        class="inline-flex items-center px-5 py-2.5 bg-[var(--color-text)] text-[var(--color-bg)] font-medium rounded-lg hover:opacity-90 transition-opacity hover:no-underline"
-      >
-        Go home
-      </a>
-      <a
-        href="/work"
-        class="inline-flex items-center px-5 py-2.5 border border-[var(--color-border)] text-[var(--color-text)] font-medium rounded-lg hover:bg-[var(--color-bg-subtle)] transition-colors hover:no-underline"
-      >
-        View work
-      </a>
-      <a
-        href="/contact"
-        class="inline-flex items-center px-5 py-2.5 border border-[var(--color-border)] text-[var(--color-text)] font-medium rounded-lg hover:bg-[var(--color-bg-subtle)] transition-colors hover:no-underline"
-      >
-        Contact
-      </a>
+<BaseLayout title="404 - Not Found">
+  <article class="py-16 md:py-24">
+    <div class="max-w-xl mx-auto">
+      <TerminalPanel title="Page not found">
+        <div class="text-center py-8">
+          <div class="text-6xl font-bold text-[var(--color-error)] mb-4">404</div>
+
+          <div class="text-[var(--color-text-muted)] mb-8">
+            The page you’re looking for doesn’t exist.
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-3">
+            <CommandButton
+              href="/"
+              command="Home"
+              primary={true}
+            />
+            <CommandButton
+              href="/projects"
+              command="Projects"
+            />
+            <CommandButton
+              href="/contact"
+              command="Contact"
+            />
+          </div>
+        </div>
+      </TerminalPanel>
     </div>
   </article>
 </BaseLayout>

@@ -1,0 +1,78 @@
+---
+interface Props {
+  title?: string;
+  collapsible?: boolean;
+  defaultOpen?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  collapsible = false,
+  defaultOpen = true,
+  class: className = ''
+} = Astro.props;
+
+const panelId = `panel-${Math.random().toString(36).substring(7)}`;
+---
+
+<div class:list={['terminal-panel', className]}>
+  {title && (
+    <div
+      class="terminal-panel__header"
+      role={collapsible ? 'button' : undefined}
+      aria-expanded={collapsible ? defaultOpen : undefined}
+      aria-controls={collapsible ? panelId : undefined}
+      tabindex={collapsible ? 0 : undefined}
+      data-collapsible={collapsible ? 'true' : undefined}
+    >
+      <span class="terminal-panel__title">{title}</span>
+      {collapsible && (
+        <svg
+          class="w-4 h-4 text-[var(--color-text-muted)] transition-transform panel-chevron"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          style={defaultOpen ? '' : 'transform: rotate(-90deg)'}
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      )}
+    </div>
+  )}
+  <div
+    id={panelId}
+    class="terminal-panel__body"
+    style={collapsible && !defaultOpen ? 'display: none;' : ''}
+  >
+    <slot />
+  </div>
+</div>
+
+{collapsible && (
+  <script>
+    document.querySelectorAll('[data-collapsible="true"]').forEach(header => {
+      header.addEventListener('click', () => {
+        const expanded = header.getAttribute('aria-expanded') === 'true';
+        const panelId = header.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId!);
+        const chevron = header.querySelector('.panel-chevron');
+
+        header.setAttribute('aria-expanded', String(!expanded));
+        if (panel) {
+          panel.style.display = expanded ? 'none' : 'block';
+        }
+        if (chevron) {
+          (chevron as HTMLElement).style.transform = expanded ? 'rotate(-90deg)' : '';
+        }
+      });
+
+      header.addEventListener('keydown', (e) => {
+        if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+          e.preventDefault();
+          (header as HTMLElement).click();
+        }
+      });
+    });
+  </script>
+)}

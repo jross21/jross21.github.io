@@ -1,0 +1,38 @@
+---
+interface Props {
+  showCta?: boolean;
+}
+
+const { showCta = true } = Astro.props;
+---
+
+<div class="terminal-panel">
+  <div class="terminal-panel__body space-y-3">
+    <div>
+      <p class="text-base font-semibold text-[var(--color-text)]">Julian Ross</p>
+      <p class="text-sm text-[var(--color-text-muted)]">Revenue Systems Architect</p>
+    </div>
+    <div class="text-sm text-[var(--color-text-muted)]">
+      Focus areas: agentic workflows, GTM automation, data architecture.
+    </div>
+    <a
+      href="https://www.linkedin.com/in/julianross21/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+    >
+      LinkedIn profile
+    </a>
+
+    {showCta && (
+      <div class="pt-3 border-t border-[var(--color-border)]">
+        <a
+          href="/contact"
+          class="cmd-button cmd-button--primary w-full justify-center"
+        >
+          Get in touch
+        </a>
+      </div>
+    )}
+  </div>
+</div>

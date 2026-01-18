@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  category?: string;
+}
+
+const { title, description, slug, category } = Astro.props;
+---
+
+<a
+  href={`/thinking/${slug}`}
+  class="post-card block py-4 border-b border-[var(--color-border)] hover:no-underline group last:border-b-0 transition-all duration-200"
+>
+  {category && (
+    <div class="text-xs text-[var(--color-text-dim)] mb-2 uppercase tracking-wide">
+      {category}
+    </div>
+  )}
+  <h3 class="post-card__title text-[var(--color-text)] transition-colors text-base font-semibold leading-snug mb-2">
+    {title}
+  </h3>
+  <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+    {description}
+  </p>
+</a>
+
+<style>
+  .post-card:hover {
+    border-color: var(--color-section-writing);
+  }
+
+  .post-card:hover .post-card__title {
+    color: var(--color-section-writing);
+  }
+</style>

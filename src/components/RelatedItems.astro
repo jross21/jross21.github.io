@@ -1,0 +1,32 @@
+---
+interface RelatedItem {
+  title: string;
+  slug: string;
+  type: 'project' | 'writing';
+}
+
+interface Props {
+  items: RelatedItem[];
+  title?: string;
+}
+
+const { items, title = 'Related' } = Astro.props;
+
+const getPath = (item: RelatedItem) => {
+  return item.type === 'project' ? `/projects/${item.slug}` : `/thinking/${item.slug}`;
+};
+---
+
+{items.length > 0 && (
+  <div>
+    <div class="related-title">{title}</div>
+    <div class="related-list">
+      {items.map((item) => (
+        <a href={getPath(item)} class="related-item hover:no-underline group">
+          <span class="related-item__title group-hover:text-[var(--color-accent)] transition-colors">{item.title}</span>
+          <span class="related-item__type">{item.type === 'project' ? 'Project' : 'Writing'}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+)}

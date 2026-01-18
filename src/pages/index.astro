@@ -1,122 +1,148 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionTitle from '../components/SectionTitle.astro';
-import Terminal from '../components/Terminal.astro';
+import TerminalPanel from '../components/TerminalPanel.astro';
+import TerminalProjectCard from '../components/TerminalProjectCard.astro';
+import TerminalPostCard from '../components/TerminalPostCard.astro';
+import CommandButton from '../components/CommandButton.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work');
 const allWriting = await getCollection('writing');
 
-const featuredProjects = allWork.filter(p => p.data.featured).slice(0, 2);
-const featuredEssays = allWriting.slice(0, 3);
+const featuredProjects = allWork.filter(p => p.data.featured).slice(0, 3);
+const curatedWritingSlugs = [
+  'ai-project-will-fail',
+  'governance-stack',
+  'gtm-knowledge-system',
+];
+const writingBySlug = new Map(allWriting.map((post) => [post.slug, post]));
+const featuredEssays = curatedWritingSlugs
+  .map((slug) => writingBySlug.get(slug))
+  .filter((post): post is typeof allWriting[number] => Boolean(post));
 ---
 
-<BaseLayout fullWidth={true}>
-  <!-- The Problem + Terminal (2-column) -->
-  <section class="section-immersive pt-8 md:pt-12">
+<BaseLayout
+  fullWidth={true}
+  title="Julian Ross"
+  description="Revenue Systems Architect focused on AI-native RevOps, GTM automation, and data infrastructure."
+>
+  <!-- Hero -->
+  <section class="section-immersive pt-12 md:pt-20">
     <div class="section-immersive-content">
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-        <!-- Left: Intro -->
-        <div class="animate-in">
-          <SectionTitle prefix="The" keyword="Problem" accentColor="warning" />
-          <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
-            [DRAFT: The core problem you've observed - 2-3 sentences, be concrete]
-          </p>
+      <div class="animate-in max-w-3xl">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-6 leading-tight">
+          Revenue Systems Architect for AI-native GTM teams.
+        </h1>
+
+        <div class="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-2xl mb-8">
+          Data integrity and governance that make automation reliable and adopted.
         </div>
-        <!-- Right: Terminal -->
-        <div class="animate-in animate-delay-1">
-          <Terminal title="terminal">
-            <span class="text-[var(--color-text-muted)]">$ </span><span class="text-[var(--color-text)]">[command]</span>
-            <br /><span class="text-[var(--color-error)]">[error message]</span>
-            <br /><span class="text-[var(--color-text-muted)]">$ </span>
-          </Terminal>
+
+        <div class="flex flex-wrap gap-3">
+          <CommandButton
+            href="/contact"
+            command="Start a conversation"
+            size="lg"
+            primary={true}
+            section="contact"
+          />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- The Approach -->
-  <section class="section-immersive section-alt">
-    <div class="section-immersive-content">
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-        <div class="animate-in">
-          <SectionTitle prefix="My" keyword="Approach" accentColor="primary" />
-          <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
-            [DRAFT: Your unique angle - what do you do differently?]
-          </p>
+  <!-- Results + Projects -->
+  {featuredProjects.length > 0 && (
+    <section class="section-immersive section-alt">
+      <div class="section-immersive-content animate-in">
+        <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
+          Results <span class="text-[var(--color-section-projects)]">and Projects</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center mb-8">
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[var(--color-accent)]">$8M+</p>
+            <p class="text-sm text-[var(--color-text-muted)] mt-2">Qualified pipeline led</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[var(--color-accent)]">~40%</p>
+            <p class="text-sm text-[var(--color-text-muted)] mt-2">Pipeline growth</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[var(--color-accent)]">$350K/mo</p>
+            <p class="text-sm text-[var(--color-text-muted)] mt-2">Pipeline produced</p>
+          </div>
         </div>
-        <div class="animate-in animate-delay-1">
-          <Terminal title="example.py">
-            <span class="text-[var(--color-text-dim)]"># [DRAFT: Code example that illustrates your approach]</span>
-            <br />
-            <br /><span class="text-[var(--color-secondary)]">config</span> = {'{'}
-            <br />    <span class="text-[var(--color-accent)]">"key"</span>: <span class="text-[var(--color-warning)]">"value"</span>
-            <br />{'}'}
-          </Terminal>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4 md:pl-6 border-l border-[var(--color-border)]">
+          {featuredProjects.map((project) => (
+            <TerminalProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              slug={project.slug}
+              date={project.data.date}
+            />
+          ))}
+        </div>
+
+        <div class="mt-8">
+          <CommandButton href="/projects" command="View all projects" section="projects" />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <!-- Results -->
-  <section class="section-immersive">
-    <div class="section-immersive-content animate-in">
-      <SectionTitle prefix="Selected" keyword="Results" accentColor="primary" />
-      <div class="grid grid-cols-3 gap-4 md:gap-8 mt-6">
-        <div>
-          <p class="result-number">[XX%]</p>
-          <p class="result-label">[metric]</p>
-        </div>
-        <div>
-          <p class="result-number">[XX%]</p>
-          <p class="result-label">[metric]</p>
-        </div>
-        <div>
-          <p class="result-number">[X→Y]</p>
-          <p class="result-label">[metric]</p>
-        </div>
-      </div>
-      <a href="/projects" class="inline-block mt-8 text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-mono transition-colors">
-        See the projects &rarr;
-      </a>
-    </div>
-  </section>
-
-  <!-- Writing + CTA (2-column) -->
+  <!-- Writing + CTA -->
   <section class="section-immersive section-alt">
     <div class="section-immersive-content">
       <div class="grid md:grid-cols-2 gap-8 md:gap-12">
-        <!-- Left: Writing -->
+        <!-- Writing -->
         {featuredEssays.length > 0 && (
           <div class="animate-in">
-            <SectionTitle prefix="Latest" keyword="Writing" accentColor="secondary" />
-            <div class="space-y-3">
+            <h2 class="text-2xl font-bold text-[var(--color-text)] mb-6">
+              Selected <span class="text-[var(--color-section-writing)]">Writing</span>
+            </h2>
+
+            <div class="pl-4 md:pl-6 border-l border-[var(--color-border)]">
               {featuredEssays.map((post) => (
-                <a
-                  href={`/thinking/${post.slug}`}
-                  class="block text-[var(--color-text)] hover:text-[var(--color-accent)] hover:no-underline transition-colors font-mono"
-                >
-                  {post.data.title}
-                </a>
+                <TerminalPostCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  slug={post.slug}
+                  category={post.data.category}
+                />
               ))}
             </div>
-            <a href="/thinking" class="inline-block mt-6 text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-mono transition-colors">
-              All essays &rarr;
-            </a>
+
+            <div class="mt-6">
+              <CommandButton href="/thinking" command="View all writing" section="writing" />
+            </div>
           </div>
         )}
-        <!-- Right: CTA -->
+
+        <!-- CTA -->
         <div class="animate-in animate-delay-1">
-          <SectionTitle prefix="Let's" keyword="Connect" accentColor="primary" />
+          <h2 class="text-2xl font-bold text-[var(--color-text)] mb-4">
+            Let's <span class="text-[var(--color-section-contact)]">Connect</span>
+          </h2>
+
           <p class="text-[var(--color-text-muted)] mb-6">
-            [DRAFT: Who should reach out and why]
+            Leading RevOps or revenue systems? I bring a track record across GTM, data, and AI to ship workflows that teams actually use.
           </p>
-          <a
-            href="/contact"
-            class="btn-primary inline-flex items-center px-6 py-3 rounded-lg hover:no-underline"
-          >
-            Start a conversation
-          </a>
+
+          <TerminalPanel title="Get in touch">
+            <div class="text-sm text-[var(--color-text-muted)]">
+              Share the context you're working with and I'll follow up with ideas and next steps.
+            </div>
+            <div class="mt-4">
+              <CommandButton
+                href="/contact"
+                command="Start a conversation"
+                primary={true}
+                section="contact"
+              />
+            </div>
+          </TerminalPanel>
         </div>
       </div>
     </div>

@@ -1,0 +1,37 @@
+---
+interface Stat {
+  icon: string;
+  value: string;
+  label: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+
+// Map icon names to unicode/emoji
+const iconMap: Record<string, string> = {
+  star: '★',
+  lightning: '⚡',
+  clock: '⏱',
+  check: '✓',
+  arrow: '→',
+  chart: '📊',
+  target: '🎯',
+  rocket: '🚀',
+  calendar: '📅',
+  users: '👥',
+};
+---
+
+<div class="git-stats">
+  {stats.map((stat) => (
+    <div class="git-stat">
+      <span class="git-stat__icon">{iconMap[stat.icon] || stat.icon}</span>
+      <span class="git-stat__value">{stat.value}</span>
+      <span>{stat.label}</span>
+    </div>
+  ))}
+</div>

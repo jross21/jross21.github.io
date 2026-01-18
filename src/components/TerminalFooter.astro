@@ -1,0 +1,39 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { href: 'https://github.com/jross21', label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/julianross21/', label: 'LinkedIn' },
+  { href: 'mailto:jross21@gmail.com', label: 'Email' },
+];
+---
+
+<footer class="hidden md:block border-t border-[var(--color-border)] mt-auto bg-[var(--color-bg)]/95 backdrop-blur-sm">
+  <div class="max-w-[1200px] mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Left: Copyright as comment -->
+      <div class="text-sm text-[var(--color-text-dim)]">
+        &copy; {currentYear} Julian Ross
+      </div>
+
+      <!-- Center: Commands -->
+      <div class="flex items-center gap-6 text-sm">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith('mailto') ? undefined : '_blank'}
+            rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+            class="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Right: Status -->
+      <div class="text-xs text-[var(--color-text-dim)]">
+        Based in Boston · Remote
+      </div>
+    </div>
+  </div>
+</footer>

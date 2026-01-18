@@ -1,6 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TableOfContents from '../../components/TableOfContents.astro';
+import TerminalBreadcrumb from '../../components/TerminalBreadcrumb.astro';
+import TerminalPanel from '../../components/TerminalPanel.astro';
+import FileExplorer from '../../components/FileExplorer.astro';
+import AuthorCard from '../../components/AuthorCard.astro';
+import DownloadSection from '../../components/DownloadSection.astro';
+import RelatedItems from '../../components/RelatedItems.astro';
+import GitStats from '../../components/GitStats.astro';
+import StatusIndicator from '../../components/StatusIndicator.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,39 +20,155 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
+const summary = entry.data.summary;
+
+// Get all projects for related items
+const allWork = await getCollection('work');
+const relatedProjects = allWork
+  .filter(p => p.slug !== entry.slug)
+  .slice(0, 3)
+  .map(p => ({ title: p.data.title, slug: p.slug, type: 'project' as const }));
+
+// Default stats if not provided
+const defaultStats = [
+  { icon: 'rocket', value: 'shipped', label: 'status' },
+];
+const stats = entry.data.stats || defaultStats;
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
-  <article class="py-12">
-    <a href="/projects" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] mb-8 inline-block">
-      &larr; Back to projects
-    </a>
+  <article class="py-8">
+    <!-- Breadcrumb -->
+    <TerminalBreadcrumb items={[
+      { label: 'projects', href: '/projects' },
+      { label: entry.slug }
+    ]} section="projects" />
 
-    <h1 class="text-3xl font-bold text-[var(--color-text)] mb-4">
-      {entry.data.title}
-    </h1>
-    <p class="text-lg text-[var(--color-text-muted)] mb-8">
-      {entry.data.description}
-    </p>
+    <!-- Two-column layout -->
+    <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-8">
+      <!-- Main content column -->
+      <div>
+        <!-- Header panel -->
+        <TerminalPanel title="Overview" class="mb-6">
+          <div class="space-y-4">
+            <!-- Title -->
+            <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)]">
+              {entry.data.title}
+            </h1>
 
-    <div class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-12">
-      <div class="prose prose-neutral dark:prose-invert max-w-none
-        prose-headings:text-[var(--color-text)] prose-headings:font-semibold
-        prose-p:text-[var(--color-text-muted)] prose-p:leading-relaxed
-        prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
-        prose-strong:text-[var(--color-text)]
-        prose-code:text-[var(--color-text)] prose-code:bg-[var(--color-bg-subtle)]
-        prose-pre:bg-[#18181b] prose-pre:text-[#fafafa]
-        prose-li:text-[var(--color-text-muted)]
-        prose-ul:text-[var(--color-text-muted)]
-        prose-ol:text-[var(--color-text-muted)]">
-        <Content />
+            <!-- Description -->
+            <p class="text-[var(--color-text-muted)] leading-relaxed">
+              {entry.data.description}
+            </p>
+
+            <!-- Stats row -->
+            <div class="flex items-center gap-6 pt-2">
+              <StatusIndicator
+                status={entry.data.status === 'archived' ? 'inactive' : entry.data.status === 'active' ? 'warning' : 'active'}
+                label={entry.data.status || 'deployed'}
+              />
+              {entry.data.date && (
+                <span class="text-sm text-[var(--color-text-muted)]">
+                  {entry.data.date}
+                </span>
+              )}
+            </div>
+
+            {stats && stats.length > 0 && (
+              <div class="pt-2 border-t border-[var(--color-border)]">
+                <GitStats stats={stats} />
+              </div>
+            )}
+          </div>
+        </TerminalPanel>
+
+        {summary && (
+          <TerminalPanel title="Outcome / Context / Change" class="mb-6">
+            <dl class="space-y-4 text-sm text-[var(--color-text-muted)]">
+              <div>
+                <dt class="text-[var(--color-text)]">Outcome</dt>
+                <dd>{summary.outcome}</dd>
+              </div>
+              <div>
+                <dt class="text-[var(--color-text)]">Context</dt>
+                <dd>{summary.context}</dd>
+              </div>
+              <div>
+                <dt class="text-[var(--color-text)]">Change</dt>
+                <dd>{summary.change}</dd>
+              </div>
+            </dl>
+          </TerminalPanel>
+        )}
+
+        <!-- Table of Contents as File Explorer (mobile) -->
+        {headings.length > 0 && (
+          <div class="lg:hidden mb-6">
+            <TerminalPanel title="Contents" collapsible={true} defaultOpen={false}>
+              <FileExplorer headings={headings} />
+            </TerminalPanel>
+          </div>
+        )}
+
+        <!-- Content -->
+        <div class="prose prose-neutral dark:prose-invert max-w-[70ch]
+          prose-headings:text-[var(--color-text)] prose-headings:font-semibold
+          prose-p:text-[var(--color-text)] prose-p:leading-relaxed
+          prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-[var(--color-text)] prose-strong:font-semibold
+          prose-code:text-[var(--color-text)] prose-code:bg-[var(--color-bg-subtle)]
+          prose-pre:bg-[var(--color-bg-subtle)] prose-pre:border prose-pre:border-[var(--color-border)]
+          prose-li:text-[var(--color-text-muted)]
+          prose-ul:text-[var(--color-text-muted)]
+          prose-ol:text-[var(--color-text-muted)]
+          prose-td:text-[var(--color-text-muted)]
+          prose-th:text-[var(--color-text)]">
+          <Content />
+        </div>
       </div>
 
-      {headings.length > 0 && (
-        <aside class="hidden lg:block">
-          <TableOfContents headings={headings} />
-        </aside>
+      <!-- Sidebar -->
+      <aside class="hidden lg:block space-y-6">
+        <!-- File Explorer TOC -->
+        {headings.length > 0 && (
+          <TerminalPanel title="Contents">
+            <FileExplorer headings={headings} />
+          </TerminalPanel>
+        )}
+
+        <!-- Author Card -->
+        <AuthorCard />
+
+        <!-- Download/CTA -->
+        <DownloadSection
+          title="Questions?"
+          description="Want to walk through the system design or outcomes?"
+          ctaText="Start a conversation"
+          ctaHref="/contact"
+        />
+
+        <!-- Related Projects -->
+        {relatedProjects.length > 0 && (
+          <TerminalPanel title="Related">
+            <RelatedItems items={relatedProjects} title="See also" />
+          </TerminalPanel>
+        )}
+      </aside>
+    </div>
+
+    <!-- Mobile sidebar content -->
+    <div class="lg:hidden mt-8 space-y-6">
+      <AuthorCard />
+      <DownloadSection
+        title="Questions?"
+        description="Want to walk through the system design or outcomes?"
+        ctaText="Start a conversation"
+        ctaHref="/contact"
+      />
+      {relatedProjects.length > 0 && (
+        <TerminalPanel title="Related">
+          <RelatedItems items={relatedProjects} title="See also" />
+        </TerminalPanel>
       )}
     </div>
   </article>

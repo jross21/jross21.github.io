@@ -1,14 +1,10 @@
 ---
-// Abstract background with organic gradient shapes, parallax effect
-// Uses CSS gradients for better performance and visibility
+// Subtle noise texture for material depth
 ---
 
 <div class="background-effect" aria-hidden="true">
-  <div class="bg-layer bg-layer-1" data-speed="0.05"></div>
-  <div class="bg-layer bg-layer-2" data-speed="0.08"></div>
-  <div class="bg-layer bg-layer-3" data-speed="0.12"></div>
-  <div class="bg-layer bg-layer-4" data-speed="0.16"></div>
-  <div class="bg-layer bg-layer-5" data-speed="0.20"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-vignette"></div>
 </div>
 
 <style>
@@ -20,131 +16,27 @@
     overflow: hidden;
   }
 
-  .bg-layer {
+  /* SVG noise texture for paper/material feel */
+  .bg-noise {
     position: absolute;
-    border-radius: 50%;
-    will-change: transform;
-    transform: translateZ(0);
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
 
-  /* Layer 1: Large blue glow, top-right */
-  .bg-layer-1 {
-    width: 800px;
-    height: 600px;
-    top: -200px;
-    right: -200px;
-    background: radial-gradient(ellipse at center, var(--color-bg-effect-1) 0%, var(--color-bg-effect-2) 40%, transparent 70%);
+  /* Subtle vignette for depth */
+  .bg-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, var(--color-bg) 100%);
     opacity: 0.4;
-    filter: blur(40px);
   }
 
-  /* Layer 2: Coral/orange glow, bottom-left */
-  .bg-layer-2 {
-    width: 700px;
-    height: 500px;
-    bottom: -150px;
-    left: -200px;
-    background: radial-gradient(ellipse at center, var(--color-bg-effect-5) 0%, var(--color-bg-effect-6) 40%, transparent 70%);
-    opacity: 0.35;
-    filter: blur(35px);
+  html.light .bg-noise {
+    opacity: 0.015;
   }
 
-  /* Layer 3: Purple/pink glow, center-right */
-  .bg-layer-3 {
-    width: 600px;
-    height: 450px;
-    top: 30%;
-    right: -100px;
-    background: radial-gradient(ellipse at center, var(--color-bg-effect-3) 0%, var(--color-bg-effect-4) 40%, transparent 70%);
-    opacity: 0.3;
-    filter: blur(30px);
-  }
-
-  /* Layer 4: Teal accent, top-left */
-  .bg-layer-4 {
-    width: 500px;
-    height: 400px;
-    top: -100px;
-    left: -100px;
-    background: radial-gradient(ellipse at center, var(--color-bg-effect-2) 0%, var(--color-bg-effect-1) 50%, transparent 70%);
-    opacity: 0.25;
-    filter: blur(25px);
-  }
-
-  /* Layer 5: Pink accent, bottom-right */
-  .bg-layer-5 {
-    width: 450px;
-    height: 350px;
-    bottom: 10%;
-    right: 10%;
-    background: radial-gradient(ellipse at center, var(--color-bg-effect-4) 0%, var(--color-bg-effect-5) 50%, transparent 70%);
+  html.light .bg-vignette {
     opacity: 0.2;
-    filter: blur(20px);
-  }
-
-  /* Smooth transitions on theme change */
-  .bg-layer {
-    transition: background 0.5s ease, opacity 0.5s ease;
-  }
-
-  /* Respect reduced motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    .bg-layer {
-      transform: none !important;
-      transition: none !important;
-    }
   }
 </style>
-
-<script>
-  function initBackgroundEffect() {
-    const layers = document.querySelectorAll('.bg-layer');
-
-    if (!layers.length) return;
-
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    let ticking = false;
-
-    function updateParallax() {
-      const scrollY = window.scrollY;
-
-      layers.forEach((layer) => {
-        const speed = parseFloat(layer.getAttribute('data-speed') || '0.1');
-        const yOffset = scrollY * speed;
-        // Subtle horizontal drift based on scroll for organic feel
-        const xOffset = Math.sin(scrollY * 0.002 + speed * 50) * 15;
-
-        (layer as HTMLElement).style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
-      });
-
-      ticking = false;
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }
-
-    // Attach scroll listener with passive flag for performance
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Initial position
-    updateParallax();
-
-    // Cleanup function for Astro view transitions
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }
-
-  // Initialize on load
-  initBackgroundEffect();
-
-  // Re-initialize after Astro view transitions
-  document.addEventListener('astro:after-swap', initBackgroundEffect);
-</script>
