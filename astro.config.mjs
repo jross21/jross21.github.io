@@ -6,7 +6,17 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://julianross.io',
+  site: 'https://jross21.github.io',
+
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light-default',
+        dark: 'github-dark-default',
+      },
+      wrap: true,
+    },
+  },
 
   vite: {
     plugins: [tailwindcss()]
