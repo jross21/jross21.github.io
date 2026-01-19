@@ -5,6 +5,23 @@ import TerminalProjectCard from '../../components/TerminalProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work');
+const curatedGroups = [
+  {
+    title: 'AI & Automation',
+    slugs: ['agentic-workflow-revops', 'ai-routing-sla'],
+  },
+  {
+    title: 'Systems & Operations',
+    slugs: ['data-governance-automation', 'forecast-integrity-cadence', 'scaling-revenue-stack', 'self-serve-analytics'],
+  },
+];
+const workBySlug = new Map(allWork.map((project) => [project.slug, project]));
+const groupedWork = curatedGroups.map((group) => ({
+  title: group.title,
+  projects: group.slugs
+    .map((slug) => workBySlug.get(slug))
+    .filter((project): project is typeof allWork[number] => Boolean(project)),
+}));
 ---
 
 <BaseLayout title="Implementation" description="Approaches and patterns from implementations I've led.">
@@ -19,19 +36,30 @@ const allWork = await getCollection('work');
       </h1>
 
       <p class="text-[var(--color-text-muted)] max-w-2xl">
-        Approaches and patterns from systems I've led across RevOps and GTM. Not case studies with logos—just the thinking and architecture behind what shipped.
+        Approaches and patterns from systems I've led across RevOps and GTM.
       </p>
     </div>
 
-    <!-- Project grid -->
-    <div class="grid md:grid-cols-2 gap-4 pl-4 md:pl-6 border-l border-[var(--color-border)]">
-      {allWork.map((project) => (
-        <TerminalProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          slug={project.slug}
-          date={project.data.date}
-        />
+    <!-- Projects list -->
+    <div class="space-y-10">
+      {groupedWork.map((group) => (
+        group.projects.length > 0 && (
+          <section class="space-y-4">
+            <h2 class="text-xl md:text-2xl font-semibold text-[var(--color-text)]">
+              {group.title}
+            </h2>
+            <div class="max-w-3xl pl-4 md:pl-6 border-l border-[var(--color-border)]">
+              {group.projects.map((project) => (
+                <TerminalProjectCard
+                  title={project.data.title}
+                  description={project.data.description}
+                  slug={project.slug}
+                  date={project.data.date}
+                />
+              ))}
+            </div>
+          </section>
+        )
       ))}
     </div>
 

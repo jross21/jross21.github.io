@@ -16,7 +16,7 @@ The old bottleneck was build. Now it's distribute. And most companies haven't ad
 
 ## Build Velocity ≠ Revenue Velocity
 
-Companies are shipping 3x faster but pipeline is growing at 1x. I've watched teams celebrate feature launches that move no meaningful needle on conversion rates or deal velocity.
+Companies are shipping 3x faster but pipeline is growing at 1x. Feature launches that move no meaningful needle on conversion rates or deal velocity.
 
 The math is simple but uncomfortable: if everyone can build faster, building faster isn't a competitive advantage anymore. Your AI-accelerated product roadmap just got you to parity, not ahead.
 

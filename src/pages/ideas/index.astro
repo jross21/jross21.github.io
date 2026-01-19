@@ -7,20 +7,12 @@ import { getCollection } from 'astro:content';
 const allWriting = await getCollection('writing');
 const curatedGroups = [
   {
-    title: 'AI Adoption',
-    slugs: ['ai-project-will-fail', 'what-agentic-means', 'distribution-bottleneck'],
+    title: 'AI & GTM',
+    slugs: ['ai-project-will-fail', 'what-agentic-means', 'distribution-bottleneck', 'machine-customers'],
   },
   {
-    title: 'Data and Governance',
-    slugs: ['governance-stack', 'revops-tech-debt'],
-  },
-  {
-    title: 'GTM Systems',
-    slugs: ['gtm-knowledge-system', '2026-revops'],
-  },
-  {
-    title: 'Future of GTM',
-    slugs: ['machine-customers'],
+    title: 'Operations',
+    slugs: ['revops-tech-debt', '2026-revops'],
   },
 ];
 const writingBySlug = new Map(allWriting.map((post) => [post.slug, post]));
@@ -44,7 +36,7 @@ const groupedWriting = curatedGroups.map((group) => ({
       </h1>
 
       <p class="text-[var(--color-text-muted)] max-w-2xl">
-        Curated essays grouped by theme. Each entry is a one-line thesis.
+        Curated essays grouped by theme.
       </p>
     </div>
 
