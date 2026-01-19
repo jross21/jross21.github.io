@@ -10,22 +10,20 @@ const { title, description, slug, date } = Astro.props;
 ---
 
 <a
-  href={`/projects/${slug}`}
-  class="project-card terminal-panel block hover:no-underline group transition-all duration-200"
+  href={`/implementation/${slug}`}
+  class="project-card block py-4 border-b border-[var(--color-border)] hover:no-underline group last:border-b-0 transition-all duration-200"
 >
-  <div class="terminal-panel__body space-y-2">
-    <h3 class="project-card__title text-lg font-semibold text-[var(--color-text)] transition-colors">
-      {title}
-    </h3>
-    <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-      {description}
-    </p>
-    {date && (
-      <div class="text-xs text-[var(--color-text-dim)] pt-1">
-        {date}
-      </div>
-    )}
-  </div>
+  <h3 class="project-card__title text-[var(--color-text)] transition-colors text-base font-semibold leading-snug mb-2">
+    {title}
+  </h3>
+  <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+    {description}
+  </p>
+  {date && (
+    <div class="text-xs text-[var(--color-text-dim)] mt-2">
+      {date}
+    </div>
+  )}
 </a>
 
 <style>

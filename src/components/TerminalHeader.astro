@@ -1,13 +1,12 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-import StatusIndicator from './StatusIndicator.astro';
 import CommandButton from './CommandButton.astro';
 
 const pathname = Astro.url.pathname;
 
 const navItems = [
-  { href: '/projects', label: 'Projects', section: 'projects' as const },
-  { href: '/thinking', label: 'Writing', section: 'writing' as const },
+  { href: '/implementation', label: 'Projects', section: 'implementation' as const },
+  { href: '/ideas', label: 'Ideas', section: 'ideas' as const },
   { href: '/about', label: 'About', section: 'about' as const },
   { href: '/contact', label: 'Contact', section: 'contact' as const },
 ];
@@ -28,11 +27,6 @@ function isActive(href: string) {
       >
         Julian Ross
       </a>
-
-      <!-- Center: Status -->
-      <div class="hidden lg:flex items-center">
-        <StatusIndicator status="active" label="Boston, MA · Remote" showPulse={false} />
-      </div>
 
       <!-- Right: Nav + Theme -->
       <div class="flex items-center gap-3">

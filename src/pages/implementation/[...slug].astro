@@ -40,9 +40,9 @@ const stats = entry.data.stats || defaultStats;
   <article class="py-8">
     <!-- Breadcrumb -->
     <TerminalBreadcrumb items={[
-      { label: 'projects', href: '/projects' },
+      { label: 'implementation', href: '/implementation' },
       { label: entry.slug }
-    ]} section="projects" />
+    ]} section="implementation" />
 
     <!-- Two-column layout -->
     <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-8">
@@ -83,7 +83,7 @@ const stats = entry.data.stats || defaultStats;
         </TerminalPanel>
 
         {summary && (
-          <TerminalPanel title="Outcome / Context / Change" class="mb-6">
+          <TerminalPanel title="Transformation" class="mb-6">
             <dl class="space-y-4 text-sm text-[var(--color-text-muted)]">
               <div>
                 <dt class="text-[var(--color-text)]">Outcome</dt>

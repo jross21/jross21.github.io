@@ -25,8 +25,12 @@ export default defineConfig({
   integrations: [sitemap()],
 
   redirects: {
-    '/writing': '/thinking',
-    '/work': '/projects',
+    '/writing': '/ideas',
+    '/thinking': '/ideas',
+    '/thinking/*': '/ideas/*',
+    '/work': '/implementation',
+    '/projects': '/implementation',
+    '/projects/*': '/implementation/*',
     '/services': '/',
     '/tools': '/',
   }

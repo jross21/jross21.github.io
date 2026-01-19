@@ -3,8 +3,8 @@ const pathname = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: 'Home', section: null },
-  { href: '/projects', label: 'Projects', section: 'projects' as const },
-  { href: '/thinking', label: 'Writing', section: 'writing' as const },
+  { href: '/implementation', label: 'Projects', section: 'implementation' as const },
+  { href: '/ideas', label: 'Ideas', section: 'ideas' as const },
   { href: '/about', label: 'About', section: 'about' as const },
   { href: '/contact', label: 'Contact', section: 'contact' as const },
 ];
@@ -55,11 +55,11 @@ function getActiveColor(section: string | null): string {
   }
 
   /* Section-specific hover colors */
-  .mobile-nav-item--projects:hover {
+  .mobile-nav-item--implementation:hover {
     color: var(--color-section-projects);
   }
 
-  .mobile-nav-item--writing:hover {
+  .mobile-nav-item--ideas:hover {
     color: var(--color-section-writing);
   }
 
