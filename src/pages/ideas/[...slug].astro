@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TerminalBreadcrumb from '../../components/TerminalBreadcrumb.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
+import CoreClaimsBox from '../../components/CoreClaimsBox.astro';
 import FileExplorer from '../../components/FileExplorer.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
 import RelatedItems from '../../components/RelatedItems.astro';
@@ -55,6 +56,11 @@ const relatedPosts = allWriting
             {entry.data.description}
           </p>
         </div>
+
+        <!-- Core Claims -->
+        {entry.data.coreClaims && entry.data.coreClaims.length > 0 && (
+          <CoreClaimsBox claims={entry.data.coreClaims} />
+        )}
 
         <!-- Table of Contents (mobile) -->
         {headings.length > 0 && (

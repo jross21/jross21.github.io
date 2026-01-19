@@ -2,6 +2,11 @@
 title: "The New Bottleneck"
 description: "AI made building easy. Now the hard part is selling."
 category: "AI Strategy"
+coreClaims:
+  - "Engineering velocity is up. Revenue velocity is flat. The constraint has moved."
+  - "If everyone can build faster, building faster isn't a competitive advantage."
+  - "95% of buyers choose from vendors already on their Day One shortlist."
+  - "Your competitive advantage is no longer your product—it's your pipeline."
 ---
 
 Your product team is shipping faster than ever. Features that took quarters now take weeks. AI coding tools have collapsed development timelines—41% of all code written in 2025 is AI-generated, and teams report 30% productivity gains across the board.

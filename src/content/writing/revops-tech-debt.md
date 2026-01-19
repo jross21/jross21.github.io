@@ -2,6 +2,11 @@
 title: "RevOps Tech Debt Is Killing Your Margins"
 description: "Your revenue stack grew organically. Now it's strangling growth."
 category: "Operations"
+coreClaims:
+  - "Your revenue stack grew like kudzu—eight systems that sort of talk to each other."
+  - "Someone on your team spends a third of their time babysitting broken integrations."
+  - "Tech debt creates data debt. Systems that don't talk produce data that can't be trusted together."
+  - "'Best of breed' rarely makes sense—the integration tax almost never justifies it."
 ---
 
 There's a Slack channel at your company. It might be called #ops-fires or #data-help. Every day, someone posts "this broke" or "why doesn't this match?"

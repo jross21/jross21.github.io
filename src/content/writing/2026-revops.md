@@ -2,6 +2,11 @@
 title: "The Death of the Annual Plan"
 description: "By March, your December plan is fiction. The winners plan differently."
 category: "Strategy"
+coreClaims:
+  - "Annual planning assumes predictability that no longer exists."
+  - "Organizations execute wrong plans well instead of right plans imperfectly."
+  - "Rolling quarterly planning beats rigid 12-month forecasts."
+  - "The question isn't whether your plan will be wrong—it will. The question is whether you'll notice."
 ---
 
 The December planning ritual is organizational theater. Executives retreat into spreadsheets. Assumptions get encoded as certainty. By March, reality has diverged—but the plan stays fixed, because changing it would mean admitting the exercise was performance.

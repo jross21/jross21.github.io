@@ -1,0 +1,53 @@
+---
+interface Props {
+  claims: string[];
+}
+
+const { claims } = Astro.props;
+---
+
+<div class="terminal-panel core-claims-box">
+  <div class="terminal-panel__header">
+    <span class="terminal-panel__title">Core Claims</span>
+  </div>
+  <div class="terminal-panel__body">
+    <ul class="core-claims-list">
+      {claims.map((claim) => (
+        <li>{claim}</li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .core-claims-box {
+    margin-bottom: 2rem;
+  }
+
+  .core-claims-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .core-claims-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .core-claims-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+</style>

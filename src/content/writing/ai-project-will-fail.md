@@ -2,6 +2,11 @@
 title: "Why Your Ambitious RevOps AI Initiative Won't Deliver"
 description: "Two things separate the 10% that work from the 90% that don't."
 category: "AI Strategy"
+coreClaims:
+  - "Most RevOps AI optimizes for impressive demos, not durable architecture."
+  - "Your data has two audiences now: humans and machines. Most data was designed for humans only."
+  - "AI that requires new habits will fail regardless of how good the technology is."
+  - "Build abstraction layers so swapping models is a configuration change, not a rewrite."
 ---
 
 Most RevOps AI projects optimize for impressive demos instead of durable architecture. Teams bolt AI onto fragmented systems, then watch it degrade as models evolve and the underlying mess reasserts itself.

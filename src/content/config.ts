@@ -30,6 +30,7 @@ const writing = defineCollection({
     title: z.string(),
     description: z.string(),
     category: z.string().optional(),
+    coreClaims: z.array(z.string()).optional(),
   }),
 });
 

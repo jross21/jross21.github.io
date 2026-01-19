@@ -2,6 +2,11 @@
 title: "Selling to the Buyer's AI"
 description: "AI is changing how companies sell. The deeper shift: it's changing how companies buy."
 category: "Future of GTM"
+coreClaims:
+  - "The deal was dead before your SDR knew it existed."
+  - "AI is a compression engine—if differentiation requires a long narrative, you're at risk."
+  - "Marketing-speak doesn't survive algorithmic compression. Vague claims get dropped."
+  - "Every vendor now sells to two audiences: the human buying committee and the systems that pre-process information."
 ---
 
 The deal was dead before your SDR knew it existed.

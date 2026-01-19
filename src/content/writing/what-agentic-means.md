@@ -2,6 +2,11 @@
 title: "What 'Agentic' Actually Means for RevOps"
 description: "Every vendor is 'agentic' now. Here's a taxonomy that cuts through the noise."
 category: "AI Strategy"
+coreClaims:
+  - "When every feature is 'agentic,' the word means nothing."
+  - "The hype creates two failures: over-trust (chaos) and under-deployment (missed opportunity)."
+  - "Autonomy exists on a ladder from L0 (rules) to L4 (full independence)—match the right level to each function."
+  - "'Agentic' isn't binary. The winners match autonomy levels to blast radius."
 ---
 
 Vendors now call Zapier integrations "agentic." SDR email sequencers. Lead scoring models that haven't been updated since 2022.
