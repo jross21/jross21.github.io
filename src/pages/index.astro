@@ -12,8 +12,8 @@ const allWriting = await getCollection('writing');
 const featuredProjects = allWork.filter(p => p.data.featured).slice(0, 3);
 const curatedWritingSlugs = [
   'ai-project-will-fail',
-  'governance-stack',
-  'gtm-knowledge-system',
+  'what-agentic-means',
+  'distribution-bottleneck',
 ];
 const writingBySlug = new Map(allWriting.map((post) => [post.slug, post]));
 const featuredEssays = curatedWritingSlugs
@@ -46,6 +46,62 @@ const featuredEssays = curatedWritingSlugs
             primary={true}
             section="contact"
           />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing + CTA -->
+  <section class="section-immersive section-alt">
+    <div class="section-immersive-content">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+        <!-- Writing -->
+        {featuredEssays.length > 0 && (
+          <div class="animate-in">
+            <h2 class="text-2xl font-bold text-[var(--color-text)] mb-6">
+              Selected <span class="text-[var(--color-section-writing)]">Writing</span>
+            </h2>
+
+            <div class="pl-4 md:pl-6 border-l border-[var(--color-border)]">
+              {featuredEssays.map((post) => (
+                <TerminalPostCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  slug={post.slug}
+                  category={post.data.category}
+                />
+              ))}
+            </div>
+
+            <div class="mt-6">
+              <CommandButton href="/ideas" command="View all writing" section="writing" />
+            </div>
+          </div>
+        )}
+
+        <!-- CTA -->
+        <div class="animate-in animate-delay-1">
+          <h2 class="text-2xl font-bold text-[var(--color-text)] mb-4">
+            Let's <span class="text-[var(--color-section-contact)]">Connect</span>
+          </h2>
+
+          <p class="text-[var(--color-text-muted)] mb-6">
+            Leading RevOps or revenue systems? I bring a track record across GTM, data, and AI to ship workflows that teams actually use.
+          </p>
+
+          <TerminalPanel title="Get in touch">
+            <div class="text-sm text-[var(--color-text-muted)]">
+              Share the context you're working with and I'll follow up with ideas and next steps.
+            </div>
+            <div class="mt-4">
+              <CommandButton
+                href="/contact"
+                command="Start a conversation"
+                primary={true}
+                section="contact"
+              />
+            </div>
+          </TerminalPanel>
         </div>
       </div>
     </div>
@@ -91,60 +147,4 @@ const featuredEssays = curatedWritingSlugs
       </div>
     </section>
   )}
-
-  <!-- Writing + CTA -->
-  <section class="section-immersive section-alt">
-    <div class="section-immersive-content">
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
-        <!-- Writing -->
-        {featuredEssays.length > 0 && (
-          <div class="animate-in">
-            <h2 class="text-2xl font-bold text-[var(--color-text)] mb-6">
-              Selected <span class="text-[var(--color-section-writing)]">Writing</span>
-            </h2>
-
-            <div class="pl-4 md:pl-6 border-l border-[var(--color-border)]">
-              {featuredEssays.map((post) => (
-                <TerminalPostCard
-                  title={post.data.title}
-                  description={post.data.description}
-                  slug={post.slug}
-                  category={post.data.category}
-                />
-              ))}
-            </div>
-
-            <div class="mt-6">
-              <CommandButton href="/thinking" command="View all writing" section="writing" />
-            </div>
-          </div>
-        )}
-
-        <!-- CTA -->
-        <div class="animate-in animate-delay-1">
-          <h2 class="text-2xl font-bold text-[var(--color-text)] mb-4">
-            Let's <span class="text-[var(--color-section-contact)]">Connect</span>
-          </h2>
-
-          <p class="text-[var(--color-text-muted)] mb-6">
-            Leading RevOps or revenue systems? I bring a track record across GTM, data, and AI to ship workflows that teams actually use.
-          </p>
-
-          <TerminalPanel title="Get in touch">
-            <div class="text-sm text-[var(--color-text-muted)]">
-              Share the context you're working with and I'll follow up with ideas and next steps.
-            </div>
-            <div class="mt-4">
-              <CommandButton
-                href="/contact"
-                command="Start a conversation"
-                primary={true}
-                section="contact"
-              />
-            </div>
-          </TerminalPanel>
-        </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>

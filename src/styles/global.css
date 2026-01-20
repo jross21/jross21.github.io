@@ -161,23 +161,6 @@ code:not(pre code) {
 }
 
 /* ============================================
-   SECTION LABELS - code comment style
-   ============================================ */
-
-.section-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--color-highlight);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-}
-
-.section-label::before {
-  content: '';
-}
-
-/* ============================================
    ANIMATIONS
    ============================================ */
 
@@ -232,47 +215,7 @@ code:not(pre code) {
 }
 
 /* ============================================
-   BUTTON STYLES
-   ============================================ */
-
-.btn-primary {
-  background-color: var(--color-accent);
-  color: #1A0F0A;
-  font-weight: 600;
-  font-family: var(--font-sans);
-  transition: background-color 0.15s ease, transform 0.1s ease;
-}
-
-.btn-primary:hover {
-  background-color: var(--color-accent-hover);
-  color: #1A0F0A;
-}
-
-.btn-primary:active {
-  transform: scale(0.98);
-}
-
-/* ============================================
-   RESULT NUMBERS - large, prominent
-   ============================================ */
-
-.result-number {
-  font-family: var(--font-sans);
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1;
-}
-
-.result-label {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin-top: 0.5rem;
-}
-
-/* ============================================
-   BLOCKQUOTES & PULL QUOTES
+   BLOCKQUOTES
    ============================================ */
 
 blockquote {
@@ -286,16 +229,6 @@ blockquote {
 
 blockquote p {
   margin: 0;
-}
-
-.pull-quote {
-  font-family: var(--font-sans);
-  font-style: italic;
-  font-size: 1.125rem;
-  color: var(--color-text-muted);
-  border-left: 3px solid var(--color-accent);
-  padding-left: 1.5rem;
-  margin: 2rem 0;
 }
 
 /* ============================================
@@ -427,18 +360,6 @@ blockquote p {
   .prose th {
     font-size: 0.6875rem;
   }
-}
-
-/* ============================================
-   SUBTLE GRID BACKGROUND (optional)
-   ============================================ */
-
-.grid-bg {
-  background-image:
-    linear-gradient(var(--color-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
-  background-size: 64px 64px;
-  background-position: -1px -1px;
 }
 
 /* ============================================
@@ -769,36 +690,7 @@ html.light .terminal-panel__header {
   margin-left: 0.25rem;
 }
 
-/* JSON/metadata display */
-/* Metadata display (legacy) */
-.meta-json {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
-.meta-json__key {
-  color: var(--color-secondary);
-}
-
-.meta-json__value {
-  color: var(--color-text);
-}
-
-.meta-json__value--string {
-  color: var(--color-warning);
-}
-
-.meta-json__value--number {
-  color: var(--color-accent);
-}
-
-.meta-json__bracket {
-  color: var(--color-text-dim);
-}
-
 /* Git-style stats row */
-/* Stats row (legacy) */
 .git-stats {
   display: flex;
   flex-wrap: wrap;
@@ -821,37 +713,4 @@ html.light .terminal-panel__header {
 .git-stat__value {
   color: var(--color-accent);
   font-weight: 500;
-}
-
-/* Comment-style labels */
-/* Small label (legacy) */
-.comment-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--color-text-dim);
-}
-
-/* Import-style related items */
-/* Related items (legacy) */
-.import-item {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.import-item:last-child {
-  border-bottom: none;
-}
-
-.import-item__keyword {
-  color: var(--color-secondary);
-}
-
-.import-item__name {
-  color: var(--color-text);
-}
-
-.import-item__path {
-  color: var(--color-warning);
 }

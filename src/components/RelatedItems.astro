@@ -13,7 +13,7 @@ interface Props {
 const { items, title = 'Related' } = Astro.props;
 
 const getPath = (item: RelatedItem) => {
-  return item.type === 'project' ? `/implementation/${item.slug}` : `/ideas/${item.slug}`;
+  return item.type === 'project' ? `/projects/${item.slug}` : `/ideas/${item.slug}`;
 };
 ---
 

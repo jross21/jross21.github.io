@@ -28,9 +28,9 @@ export default defineConfig({
     '/writing': '/ideas',
     '/thinking': '/ideas',
     '/thinking/*': '/ideas/*',
-    '/work': '/implementation',
-    '/projects': '/implementation',
-    '/projects/*': '/implementation/*',
+    '/work': '/projects',
+    '/implementation': '/projects',
+    '/implementation/*': '/projects/*',
     '/services': '/',
     '/tools': '/',
   }
