@@ -374,7 +374,7 @@ blockquote p {
 
 .section-immersive {
   width: 100%;
-  padding: 6rem 1.5rem;
+  padding: 4rem 1.5rem;
 }
 
 .section-immersive-content {
@@ -388,7 +388,7 @@ blockquote p {
 
 @media (min-width: 768px) {
   .section-immersive {
-    padding: 9rem 2rem;
+    padding: 6rem 2rem;
   }
 }
 
