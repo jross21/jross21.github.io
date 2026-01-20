@@ -32,6 +32,9 @@
   --color-section-writing: var(--color-accent);
   --color-section-writing-hover: var(--color-accent-hover);
   --color-section-writing-dim: var(--color-accent-dim);
+  --color-section-ideas: var(--color-accent);
+  --color-section-ideas-hover: var(--color-accent-hover);
+  --color-section-ideas-dim: var(--color-accent-dim);
   --color-section-about: var(--color-accent);
   --color-section-about-hover: var(--color-accent-hover);
   --color-section-about-dim: var(--color-accent-dim);
@@ -91,6 +94,9 @@ html.light {
   --color-section-writing: var(--color-accent);
   --color-section-writing-hover: var(--color-accent-hover);
   --color-section-writing-dim: var(--color-accent-dim);
+  --color-section-ideas: var(--color-accent);
+  --color-section-ideas-hover: var(--color-accent-hover);
+  --color-section-ideas-dim: var(--color-accent-dim);
   --color-section-about: var(--color-accent);
   --color-section-about-hover: var(--color-accent-hover);
   --color-section-about-dim: var(--color-accent-dim);

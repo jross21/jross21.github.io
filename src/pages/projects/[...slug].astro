@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TerminalBreadcrumb from '../../components/TerminalBreadcrumb.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
 import FileExplorer from '../../components/FileExplorer.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
@@ -38,12 +37,6 @@ const stats = entry.data.stats || defaultStats;
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
   <article class="py-8">
-    <!-- Breadcrumb -->
-    <TerminalBreadcrumb items={[
-      { label: 'projects', href: '/projects' },
-      { label: entry.slug }
-    ]} section="projects" />
-
     <!-- Two-column layout -->
     <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-8">
       <!-- Main content column -->

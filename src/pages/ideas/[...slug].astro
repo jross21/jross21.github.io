@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TerminalBreadcrumb from '../../components/TerminalBreadcrumb.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
 import CoreClaimsBox from '../../components/CoreClaimsBox.astro';
 import FileExplorer from '../../components/FileExplorer.astro';
@@ -29,12 +28,6 @@ const relatedPosts = allWriting
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
   <article class="py-8">
-    <!-- Breadcrumb -->
-    <TerminalBreadcrumb items={[
-      { label: 'ideas', href: '/ideas' },
-      { label: entry.slug }
-    ]} section="ideas" />
-
     <!-- Two-column layout -->
     <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-8">
       <!-- Main content column -->

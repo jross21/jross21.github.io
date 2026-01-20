@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TerminalBreadcrumb from '../../components/TerminalBreadcrumb.astro';
 import TerminalProjectCard from '../../components/TerminalProjectCard.astro';
 import { getCollection } from 'astro:content';
 
@@ -26,9 +25,6 @@ const groupedWork = curatedGroups.map((group) => ({
 
 <BaseLayout title="Projects" description="Approaches and patterns from implementations I've led.">
   <article class="py-8">
-    <!-- Breadcrumb -->
-    <TerminalBreadcrumb items={[{ label: 'projects' }]} section="projects" />
-
     <!-- Header -->
     <div class="mb-8">
       <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">
