@@ -13,6 +13,7 @@
   --color-text: #ECEFF4;         /* nord6 - Snow Storm primary */
   --color-text-muted: #D8DEE9;   /* nord4 - Snow Storm muted */
   --color-text-dim: #4C566A;     /* nord3 - Polar Night dim */
+  --color-label: #A3BE8C;        /* nord14 - Aurora green for category labels */
 
   /* Primary accent - Frost cyan (CTAs, links) */
   --color-accent: #88C0D0;       /* nord8 - Cyan */
@@ -74,6 +75,7 @@ html.light {
   --color-text: #2E3440;         /* nord0 - Polar Night */
   --color-text-muted: #4C566A;   /* nord3 */
   --color-text-dim: #81A1C1;     /* nord9 - Blue accent */
+  --color-label: #5E81AC;        /* nord10 - Deep blue for light mode labels */
   --color-accent: #5E81AC;       /* nord10 - Deep blue */
   --color-accent-hover: #81A1C1; /* nord9 - Blue */
   --color-accent-dim: #D8DEE9;   /* nord4 */
