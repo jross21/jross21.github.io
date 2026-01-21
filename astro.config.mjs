@@ -31,7 +31,6 @@ export default defineConfig({
     '/work': '/projects',
     '/implementation': '/projects',
     '/implementation/*': '/projects/*',
-    '/services': '/',
     '/tools': '/',
   }
 });
