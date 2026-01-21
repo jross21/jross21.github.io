@@ -3,6 +3,7 @@ import '../styles/global.css';
 import TerminalHeader from '../components/TerminalHeader.astro';
 import TerminalFooter from '../components/TerminalFooter.astro';
 import TerminalMobileNav from '../components/TerminalMobileNav.astro';
+import MermaidRenderer from '../components/MermaidRenderer.astro';
 
 interface Props {
   title?: string;
@@ -73,5 +74,6 @@ const pageTitle = title === 'Julian Ross' ? title : `${title} | Julian Ross`;
       <TerminalFooter />
     </div>
     <TerminalMobileNav />
+    <MermaidRenderer />
   </body>
 </html>

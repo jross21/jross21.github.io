@@ -242,11 +242,25 @@ blockquote p {
    ============================================ */
 
 .prose {
-  max-width: 65ch;
+  max-width: 70ch;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 640px) {
+  .prose {
+    font-size: 1rem;
+  }
 }
 
 .prose p {
   margin-bottom: 1.5rem;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  scroll-margin-top: 6rem;
 }
 
 .prose h2 {
@@ -260,6 +274,7 @@ blockquote p {
 }
 
 .prose ul, .prose ol {
+  list-style: revert;
   margin-bottom: 1.5rem;
   padding-left: 1.5rem;
 }
@@ -747,6 +762,28 @@ html.light .terminal-panel__header {
 
 .callout--note {
   border-left-color: var(--color-accent);
+}
+
+/* ============================================
+   DIAGRAMS (MERMAID)
+   ============================================ */
+
+.mermaid {
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose pre,
+.prose .mermaid {
+  margin: 2rem 0;
 }
 
 /* ============================================
