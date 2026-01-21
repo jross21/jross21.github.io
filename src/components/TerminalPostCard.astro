@@ -11,27 +11,66 @@ const { title, description, slug, category } = Astro.props;
 
 <a
   href={`/ideas/${slug}`}
-  class="post-card block py-4 border-b border-[var(--color-border)] hover:no-underline group last:border-b-0 transition-all duration-200"
+  class="post-card block hover:no-underline group transition-all duration-200"
 >
   {category && (
-    <div class="text-xs text-[var(--color-text-dim)] mb-2 uppercase tracking-wide">
+    <div class="post-card__category">
       {category}
     </div>
   )}
-  <h3 class="post-card__title text-[var(--color-text)] transition-colors text-base font-semibold leading-snug mb-2">
+  <h3 class="post-card__title">
     {title}
   </h3>
-  <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+  <p class="post-card__description">
     {description}
   </p>
 </a>
 
 <style>
+  .post-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    position: relative;
+  }
+
   .post-card:hover {
-    border-color: var(--color-section-writing);
+    background-color: var(--color-bg-elevated);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(html.light) .post-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .post-card__category {
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .post-card__title {
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    transition: color 0.15s ease;
   }
 
   .post-card:hover .post-card__title {
-    color: var(--color-section-writing);
+    color: var(--color-accent);
+  }
+
+  .post-card__description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
   }
 </style>
