@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TerminalPanel from '../../components/TerminalPanel.astro';
-import ContentMap from '../../components/ContentMap.astro';
 import FileExplorer from '../../components/FileExplorer.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
 import DownloadSection from '../../components/DownloadSection.astro';
@@ -95,12 +94,6 @@ const stats = entry.data.stats || defaultStats;
           </TerminalPanel>
         )}
 
-        {headings.length > 0 && (
-          <div class="mb-6">
-            <ContentMap headings={headings} />
-          </div>
-        )}
-
         <!-- Table of Contents as File Explorer (mobile) -->
         {headings.length > 0 && (
           <div class="lg:hidden mb-6">
@@ -111,7 +104,18 @@ const stats = entry.data.stats || defaultStats;
         )}
 
         <!-- Content -->
-        <div class="prose">
+        <div class="prose prose-neutral dark:prose-invert max-w-[70ch]
+          prose-headings:text-[var(--color-text)] prose-headings:font-semibold
+          prose-p:text-[var(--color-text)] prose-p:leading-relaxed
+          prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-[var(--color-text)] prose-strong:font-semibold
+          prose-code:text-[var(--color-text)] prose-code:bg-[var(--color-bg-subtle)]
+          prose-pre:bg-[var(--color-bg-subtle)] prose-pre:border prose-pre:border-[var(--color-border)]
+          prose-li:text-[var(--color-text-muted)]
+          prose-ul:text-[var(--color-text-muted)]
+          prose-ol:text-[var(--color-text-muted)]
+          prose-td:text-[var(--color-text-muted)]
+          prose-th:text-[var(--color-text)]">
           <Content />
         </div>
       </div>
