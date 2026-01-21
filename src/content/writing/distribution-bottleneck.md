@@ -5,31 +5,28 @@ category: "AI Strategy"
 coreClaims:
   - "Engineering velocity is up. Revenue velocity is flat. The constraint has moved."
   - "If everyone can build faster, building faster isn't a competitive advantage."
-  - "95% of buyers choose from vendors already on their Day One shortlist."
+  - "90% of buyers purchase from their Day One shortlist—if you're not in consideration before evaluation begins, you've lost."
   - "Your competitive advantage is no longer your product—it's your pipeline."
 ---
 
-Your product team is shipping faster than ever. Features that took quarters now take weeks. AI coding tools have collapsed development timelines—41% of all code written in 2025 is AI-generated, and teams report 30% productivity gains across the board.
+Your product team is shipping faster than ever. Features that took quarters now take weeks. AI coding tools have collapsed development timelines—[over 40% of code now includes AI assistance](https://survey.stackoverflow.co/2025/ai), and studies show [20-30% productivity gains](https://arxiv.org/abs/2302.06590) across the board.
 
-But here's the disconnect RevOps leaders are noticing: pipeline isn't growing at the same rate.
-
-Engineering velocity is up. Revenue velocity is flat. The constraint has moved.
 
 ## The Constraint Has Moved
 
-The old bottleneck was build. Now it's distribute. And most companies haven't adjusted.
+Previously, the bottleneck was product engineering. Now it's go-to-market distribution. And most teams haven't adjusted.
 
 ## Build Velocity ≠ Revenue Velocity
 
-Companies are shipping 3x faster but pipeline is growing at 1x. Feature launches that move no meaningful needle on conversion rates or deal velocity.
+Companies are shipping features faster than every before but pipeline is growing at 1x. Feature launches that move no meaningful needle on conversion rates or deal velocity.
 
-The math is simple but uncomfortable: if everyone can build faster, building faster isn't a competitive advantage anymore. Your AI-accelerated product roadmap just got you to parity, not ahead.
+The math has flipped the yesterday's paradigm on its head: if everyone can build faster, building faster isn't a competitive advantage anymore. Your AI-accelerated product roadmap just got you to parity, not ahead.
 
 ## The Attention Collapse
 
-B2B buyers now evaluate an average of 5.1 vendors per purchase—up from 4.5 just last year. The average buying committee has grown from 5 people to 11 over the past decade. Sales cycles are 25% longer than they were five years ago.
+The average buying committee has grown from 5 people to 11 over the past decade ([Gartner](https://www.gartner.com/en/sales/insights/b2b-buying-journey)). Sales cycles are 25% longer than they were five years ago.
 
-But here's the brutal part: 95% of buyers choose from vendors already on their Day One shortlist. If you're not in consideration before they start evaluating, you've already lost.
+But here's the brutal part: 80% of buyers have a shortlist before they start researching, and 90% of them buy from that initial list ([Bain & Co.](https://hbr.org/2022/09/what-b2bs-need-to-know-about-their-buyers)). If you're not in consideration before evaluation begins, you've already lost.
 
 More products exist than ever. Customer attention hasn't scaled to match. The winners aren't the ones who build the best product—they're the ones who reach the buyer first.
 
@@ -37,7 +34,7 @@ More products exist than ever. Customer attention hasn't scaled to match. The wi
 
 When everyone can build "good enough" quickly, product differentiation windows shrink to nothing. Your unique feature becomes table stakes in months, not years.
 
-RevOps teams are seeing this in win rates. Despite better products and more features, competitive deals are getting harder. 75% of B2B buyers report taking longer to make purchase decisions than they did in 2023. CFO involvement in software purchases has increased 40%.
+RevOps teams are seeing this in win rates. Despite better products and more features, competitive deals are getting harder. 75% of B2B buyers report taking longer to make purchase decisions than they did in 2023 (Forrester). [79% of CFOs now hold final decision-making power](https://www.gartner.com/en/digital-markets/insights/5-key-insights-about-the-software-buying-team) in software purchases.
 
 The product isn't the differentiator anymore. Getting to the right buyer first is.
 

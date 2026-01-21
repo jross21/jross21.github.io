@@ -1,6 +1,6 @@
 ---
 title: "Why Your Ambitious RevOps AI Initiative Won't Deliver"
-description: "Two things separate the 10% that work from the 90% that don't."
+description: "Two things separate the projects that work from the 80% that don't."
 category: "AI Strategy"
 coreClaims:
   - "Most RevOps AI optimizes for impressive demos, not durable architecture."
@@ -12,7 +12,7 @@ coreClaims:
 
 Most RevOps AI projects optimize for impressive demos instead of durable architecture. Teams bolt AI onto fragmented systems, then watch it degrade as models evolve and the underlying mess reasserts itself.
 
-The 10% that succeed design for two primary goals: a data layer that serves everything downstream, and an experience that fits how people already work.
+The [20% that succeed](https://www.rand.org/pubs/research_reports/RRA2680-1.html) design for two primary goals: a data layer that serves everything downstream, and an experience that fits how people already work.
 
 ## The Data Layer Is the Foundation
 
@@ -26,13 +26,13 @@ The companies getting value from AI rebuilt their data layer with both audiences
 
 Stop guessing whether your data is ready. Measure it.
 
-**Duplicate rate.** Query your leads and contacts. What percentage are duplicates? Industry benchmark for "ready": under 5%. Most CRMs I audit are north of 15%. AI trained on duplicates learns the wrong patterns.
+**Duplicate rate.** Query your leads and contacts. What percentage are duplicates? Industry benchmark for "ready": [under 5%](https://databar.ai/blog/article/the-complete-guide-to-crm-data-quality-metrics-standards-best-practices). Most CRMs I audit are north of 15%. AI trained on duplicates learns the wrong patterns.
 
 **Field consistency.** Pick a critical field—Industry, or Lead Source, or Stage. What percentage of records have valid, consistent values? Check for blank fields, "Other," legacy values nobody uses anymore. If more than 20% of records have garbage data in a field you plan to use for AI, fix the field first.
 
 **Identity resolution.** Can you match a lead to an account reliably? Pull a sample of 100 leads that should have matched to existing accounts. How many did? Lead-to-account matching is table stakes for AI that understands your customers. Fuzzy matching on company name isn't optional.
 
-**Contact completeness.** What percentage of your contacts have email AND phone AND title? AI can work around missing data, but it works better with complete data. Below 70% completeness on key fields means your AI is guessing more than reasoning.
+**Contact completeness.** What percentage of your contacts have email AND phone AND title? AI can work around missing data, but it works better with complete data. Industry benchmarks target 90%+ completeness on key fields—below 70% means your AI is guessing more than reasoning.
 
 **Event instrumentation.** What percentage of relevant customer actions are logged in a queryable format? Email opens, page visits, feature usage, support tickets. AI can't learn from activities that aren't recorded. If you're missing major signal sources, your AI is partially blind.
 
