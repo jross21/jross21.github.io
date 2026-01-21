@@ -5,6 +5,7 @@ category: "AI Strategy"
 coreClaims:
   - "Most RevOps AI optimizes for impressive demos, not durable architecture."
   - "Your data has two audiences now: humans and machines. Most data was designed for humans only."
+  - "Stop guessing whether your data is ready. Measure duplicate rates, field consistency, and identity resolution."
   - "AI that requires new habits will fail regardless of how good the technology is."
   - "Build abstraction layers so swapping models is a configuration change, not a rewrite."
 ---
@@ -20,6 +21,32 @@ Your data has two audiences now: humans and machines. Humans are forgiving reade
 Most RevOps data was designed for human consumption only. The fields made sense to whoever created them. The values are "close enough" for a manager reviewing pipeline. But LLMs and predictive models need precision, consistency, and completeness that human-readable data rarely provides.
 
 The companies getting value from AI rebuilt their data layer with both audiences in mind. Everyone else is feeding well-dressed noise into expensive machinery.
+
+## The AI Readiness Diagnostic
+
+Stop guessing whether your data is ready. Measure it.
+
+**Duplicate rate.** Query your leads and contacts. What percentage are duplicates? Industry benchmark for "ready": under 5%. Most CRMs I audit are north of 15%. AI trained on duplicates learns the wrong patterns.
+
+**Field consistency.** Pick a critical field—Industry, or Lead Source, or Stage. What percentage of records have valid, consistent values? Check for blank fields, "Other," legacy values nobody uses anymore. If more than 20% of records have garbage data in a field you plan to use for AI, fix the field first.
+
+**Identity resolution.** Can you match a lead to an account reliably? Pull a sample of 100 leads that should have matched to existing accounts. How many did? Lead-to-account matching is table stakes for AI that understands your customers. Fuzzy matching on company name isn't optional.
+
+**Contact completeness.** What percentage of your contacts have email AND phone AND title? AI can work around missing data, but it works better with complete data. Below 70% completeness on key fields means your AI is guessing more than reasoning.
+
+**Event instrumentation.** What percentage of relevant customer actions are logged in a queryable format? Email opens, page visits, feature usage, support tickets. AI can't learn from activities that aren't recorded. If you're missing major signal sources, your AI is partially blind.
+
+## Minimum Viable Readiness
+
+You don't need perfect data. You need minimum viable data:
+
+**Identity resolution basics.** Lead-to-account matching that works. Contact deduplication that runs regularly. Fuzzy matching on company names and email domains. If you can't answer "which accounts is this person associated with?" reliably, you're not ready.
+
+**Controlled vocabularies.** Critical fields should use picklists, not free text. Lead Source, Industry, Stage, Persona—these need controlled values that AI can interpret consistently. Free text fields are for human reading; picklist fields are for machine reasoning.
+
+**Event capture.** At minimum: email activity, website visits, key product events. You need a timestamped log of "what did this person/account do?" that AI can query. If your events are scattered across five systems with no unified view, consolidate first.
+
+This isn't about perfection. It's about knowing your data well enough to predict where AI will struggle—and fixing those gaps before you ship.
 
 ## Meet People Where They Work
 
