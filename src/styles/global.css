@@ -5,19 +5,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dark mode (DEFAULT) - PKMate warm brown aesthetic */
-  --color-bg: #1A0F0A;
-  --color-bg-subtle: #241612;
-  --color-bg-elevated: #2D1B14;
+  /* Dark mode (DEFAULT) - Nord arctic palette */
+  --color-bg: #2E3440;           /* nord0 - Polar Night */
+  --color-bg-subtle: #3B4252;    /* nord1 - Elevated surfaces */
+  --color-bg-elevated: #434C5E;  /* nord2 - Subtle backgrounds */
 
-  --color-text: #F5EDE5;
-  --color-text-muted: #A89080;
-  --color-text-dim: #6B5548;
+  --color-text: #ECEFF4;         /* nord6 - Snow Storm primary */
+  --color-text-muted: #D8DEE9;   /* nord4 - Snow Storm muted */
+  --color-text-dim: #4C566A;     /* nord3 - Polar Night dim */
 
-  /* Primary accent - Vibrant orange (CTAs, links) */
-  --color-accent: #E86B2C;
-  --color-accent-hover: #F4862B;
-  --color-accent-dim: #C4551F;
+  /* Primary accent - Frost cyan (CTAs, links) */
+  --color-accent: #88C0D0;       /* nord8 - Cyan */
+  --color-accent-hover: #8FBCBB; /* nord7 - Teal */
+  --color-accent-dim: #5E81AC;   /* nord10 - Deep blue */
 
   /* One accent color */
   --color-highlight: var(--color-accent);
@@ -42,15 +42,15 @@
   --color-section-contact-hover: var(--color-accent-hover);
   --color-section-contact-dim: var(--color-accent-dim);
   --color-warning: var(--color-accent);
-  --color-error: #DC2626;
+  --color-error: #BF616A;        /* nord11 - Aurora red */
 
   /* Terminal traffic lights - preserved macOS standard */
   --color-terminal-red: #ff5f56;
   --color-terminal-yellow: #ffbd2e;
   --color-terminal-green: #27c93f;
 
-  --color-border: #3A2419;
-  --color-border-hover: #5C3D2E;
+  --color-border: #3B4252;       /* nord1 */
+  --color-border-hover: #4C566A; /* nord3 */
 
   /* Typography */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -66,26 +66,26 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Light mode override - PKMate warm palette */
+/* Light mode override - Nord arctic palette */
 html.light {
-  --color-bg: #FAF7F2;
-  --color-bg-subtle: #F5EDE5;
-  --color-bg-elevated: #FFFFFF;
-  --color-text: #2D1B14;
-  --color-text-muted: #6B5548;
-  --color-text-dim: #8B7668;
-  --color-accent: #C4551F;
-  --color-accent-hover: #E86B2C;
-  --color-accent-dim: #F5D4C4;
+  --color-bg: #ECEFF4;           /* nord6 - Snow Storm */
+  --color-bg-subtle: #E5E9F0;    /* nord5 */
+  --color-bg-elevated: #FFFFFF;  /* Keep white for cards */
+  --color-text: #2E3440;         /* nord0 - Polar Night */
+  --color-text-muted: #4C566A;   /* nord3 */
+  --color-text-dim: #81A1C1;     /* nord9 - Blue accent */
+  --color-accent: #5E81AC;       /* nord10 - Deep blue */
+  --color-accent-hover: #81A1C1; /* nord9 - Blue */
+  --color-accent-dim: #D8DEE9;   /* nord4 */
   /* One accent color */
   --color-highlight: var(--color-accent);
   --color-highlight-hover: var(--color-accent-hover);
   --color-highlight-dim: var(--color-accent-dim);
   --color-secondary: var(--color-accent);
   --color-warning: var(--color-accent);
-  --color-error: #DC2626;
-  --color-border: #E5DDD5;
-  --color-border-hover: #D5C8BC;
+  --color-error: #BF616A;        /* nord11 - Aurora red */
+  --color-border: #D8DEE9;       /* nord4 */
+  --color-border-hover: #81A1C1; /* nord9 */
 
   /* Section colors */
   --color-section-projects: var(--color-accent);
@@ -157,7 +157,7 @@ code:not(pre code) {
 /* Selection */
 ::selection {
   background-color: var(--color-accent);
-  color: #1A0F0A;
+  color: #2E3440;
 }
 
 /* Focus styles */
@@ -209,7 +209,7 @@ code:not(pre code) {
 
 .card {
   border: 1px solid var(--color-border);
-  background-color: rgba(26, 15, 10, 0.7);
+  background-color: rgba(46, 52, 64, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: border-color 0.2s ease, transform 0.2s ease;
@@ -404,7 +404,7 @@ blockquote p {
 
 .card-simple--bordered {
   border: 1px solid var(--color-border);
-  background-color: rgba(26, 15, 10, 0.5);
+  background-color: rgba(46, 52, 64, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -485,7 +485,7 @@ html.light .shiki span {
 
 /* Terminal panel base styles */
 .terminal-panel {
-  background-color: rgba(26, 15, 10, 0.85);
+  background-color: rgba(46, 52, 64, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
@@ -544,26 +544,26 @@ html.light .terminal-panel__header {
 .cmd-button:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  background-color: rgba(232, 107, 44, 0.05);
+  background-color: rgba(136, 192, 208, 0.05);
   text-decoration: none;
 }
 
 .cmd-button--active {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  background-color: rgba(232, 107, 44, 0.1);
+  background-color: rgba(136, 192, 208, 0.1);
 }
 
 .cmd-button--primary {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
-  color: #1A0F0A;
+  color: #2E3440;
 }
 
 .cmd-button--primary:hover {
   background-color: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
-  color: #1A0F0A;
+  color: #2E3440;
 }
 
 /* Status indicator dot */
