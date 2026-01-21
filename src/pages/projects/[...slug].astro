@@ -6,7 +6,6 @@ import AuthorCard from '../../components/AuthorCard.astro';
 import DownloadSection from '../../components/DownloadSection.astro';
 import RelatedItems from '../../components/RelatedItems.astro';
 import GitStats from '../../components/GitStats.astro';
-import StatusIndicator from '../../components/StatusIndicator.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -28,11 +27,7 @@ const relatedProjects = allWork
   .slice(0, 3)
   .map(p => ({ title: p.data.title, slug: p.slug, type: 'project' as const }));
 
-// Default stats if not provided
-const defaultStats = [
-  { icon: 'rocket', value: 'shipped', label: 'status' },
-];
-const stats = entry.data.stats || defaultStats;
+const stats = entry.data.stats;
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
@@ -53,19 +48,6 @@ const stats = entry.data.stats || defaultStats;
             <p class="text-[var(--color-text-muted)] leading-relaxed">
               {entry.data.description}
             </p>
-
-            <!-- Stats row -->
-            <div class="flex items-center gap-6 pt-2">
-              <StatusIndicator
-                status={entry.data.status === 'archived' ? 'inactive' : entry.data.status === 'active' ? 'warning' : 'active'}
-                label={entry.data.status || 'deployed'}
-              />
-              {entry.data.date && (
-                <span class="text-sm text-[var(--color-text-muted)]">
-                  {entry.data.date}
-                </span>
-              )}
-            </div>
 
             {stats && stats.length > 0 && (
               <div class="pt-2 border-t border-[var(--color-border)]">
