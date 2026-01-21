@@ -8,7 +8,7 @@ summary:
   change: "Tiered auto, assisted, and human qualification with enrichment, scoring, and feedback loops."
 ---
 
-A B2B SaaS company with a 12-person SDR team was drowning in inbound leads. Marketing had successfully scaled demand generation, but the team couldn't keep pace with qualification. Average response time had crept to 8 hours. Win rates on leads contacted after 24 hours were half those contacted within an hour.
+A B2B SaaS company with a 12-person SDR team was drowning in inbound leads. Marketing had successfully scaled demand generation, but the team couldn't keep pace with qualification. Average response time had crept to 8 hours. Research shows firms that contact leads within an hour are [nearly seven times as likely to qualify them](https://hbr.org/2011/03/the-short-life-of-online-sales-leads) as those that wait longer—and 60 times as likely compared to companies that wait 24 hours or more.
 
 The ask: implement AI-powered qualification without sacrificing lead quality or creating customer experience disasters.
 

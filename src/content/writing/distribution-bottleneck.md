@@ -24,7 +24,7 @@ The math has flipped the yesterday's paradigm on its head: if everyone can build
 
 ## The Attention Collapse
 
-The average buying committee has grown from 5 people to 11 over the past decade ([Gartner](https://www.gartner.com/en/sales/insights/b2b-buying-journey)). Sales cycles are 25% longer than they were five years ago.
+The average buying committee has grown from 5 people to 11 over the past decade ([Gartner](https://www.gartner.com/en/sales/insights/b2b-buying-journey)). Sales cycles have grown significantly longer—some estimates put the increase at 25% over the past five years.
 
 But here's the brutal part: 80% of buyers have a shortlist before they start researching, and 90% of them buy from that initial list ([Bain & Co.](https://hbr.org/2022/09/what-b2bs-need-to-know-about-their-buyers)). If you're not in consideration before evaluation begins, you've already lost.
 
@@ -34,7 +34,7 @@ More products exist than ever. Customer attention hasn't scaled to match. The wi
 
 When everyone can build "good enough" quickly, product differentiation windows shrink to nothing. Your unique feature becomes table stakes in months, not years.
 
-RevOps teams are seeing this in win rates. Despite better products and more features, competitive deals are getting harder. 75% of B2B buyers report taking longer to make purchase decisions than they did in 2023 (Forrester). [79% of CFOs now hold final decision-making power](https://www.gartner.com/en/digital-markets/insights/5-key-insights-about-the-software-buying-team) in software purchases.
+RevOps teams are seeing this in win rates. Despite better products and more features, competitive deals are getting harder. [Nearly 90% of global business buyers reported their purchase process stalled in 2023](https://www.forrester.com/press-newsroom/2023-forrester-b2b-buyers-journey/) due to budget constraints and decision complexity. [79% of CFOs now hold final decision-making power](https://www.gartner.com/en/digital-markets/insights/5-key-insights-about-the-software-buying-team) in software purchases.
 
 The product isn't the differentiator anymore. Getting to the right buyer first is.
 

@@ -23,7 +23,7 @@ The scariest words in RevOps: "That Zapier still runs? I thought we turned that 
 
 ## The 30% Tax
 
-Someone on your team spends a third of their time babysitting. Fixing sync errors. Answering "why doesn't this data match?" Manually reconciling reports.
+Someone on your team often spends a significant portion of their time babysitting. Fixing sync errors. Answering "why doesn't this data match?" Manually reconciling reports.
 
 The cause: no single source of truth. Data exists in multiple systems with no clear master. When they conflict, humans become the integration layer.
 
