@@ -6,7 +6,7 @@ import AnimatedStat from '../components/AnimatedStat.astro';
 import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
 ---
 
-<BaseLayout title="About" description="Revenue Systems Architect focused on AI-native RevOps and GTM automation.">
+<BaseLayout title="About" description="Revenue Operations leader with 10+ years across sales, GTM, data engineering, and AI-native automation.">
   <article class="py-8" data-section="about">
     <!-- Header -->
     <div class="mb-10">
@@ -42,42 +42,54 @@ import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
           </div>
         </div>
 
-        <!-- Guiding Principles as Cards -->
+        <!-- What I'm Looking For -->
         <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Guiding principles</div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">What I'm looking for</div>
+          <div class="terminal-panel">
+            <div class="terminal-panel__body">
+              <p class="text-[var(--color-text-muted)] leading-relaxed">
+                A RevOps or Sales/Marketing Ops role where I can own the full stack — CRM architecture, data pipelines, automation, and AI workflows. I'm at my best when I can bridge the gap between revenue leadership and technical execution, building systems that teams actually trust and use.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strengths as Cards -->
+        <div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">What I bring</div>
           <div class="grid sm:grid-cols-3 gap-4">
             <div class="terminal-panel">
               <div class="terminal-panel__body">
-                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Governed data beats clever automation.</p>
+                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Full-stack RevOps ownership.</p>
                 <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                  Unified lifecycle, stage, and attribution definitions across CRM and warehouse. Forecasts and pipeline reporting stay reliable.
+                  CRM architecture, data modeling, pipeline reporting, and automation — not just strategy decks, but production systems with monitoring.
                 </p>
               </div>
             </div>
             <div class="terminal-panel">
               <div class="terminal-panel__body">
-                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Automation should shorten response time without hiding errors.</p>
+                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Data engineering depth.</p>
                 <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                  Enrichment, routing, and SLA workflows with monitoring and human checkpoints. Teams spend time selling, not doing cleanup.
+                  Snowflake, dbt, Fivetran, reverse ETL. I build the reporting infrastructure, not just the dashboards on top.
                 </p>
               </div>
             </div>
             <div class="terminal-panel">
               <div class="terminal-panel__body">
-                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">RevOps systems need end-to-end ownership.</p>
+                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">AI workflows in production.</p>
                 <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                  10+ years across sales, GTM, and data. Led AI-enabled GTM ops since 2022. Faster launches with clear accountability.
+                  Building AI-enabled GTM ops since 2022 — lead qualification, enrichment, routing — with validation, monitoring, and human checkpoints.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Selected Roles -->
+        <!-- Career History -->
         <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Selected roles</div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Career history</div>
           <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
-            <li>2022 to Present - Revenue Systems Architect (Freelance) - AI-enabled GTM ops and automation.</li>
+            <li>2022 to Present - Revenue Systems Architect (Independent) - AI-enabled GTM ops, automation, and data infrastructure.</li>
             <li>2021 to 2022 - Benchling - Global Lead, Enterprise Development.</li>
             <li>2020 to 2021 - CloudZero - Cloud Cost Solutions Enablement.</li>
             <li>2019 to 2020 - DataRobot - AI Solutions Specialist.</li>
@@ -88,7 +100,7 @@ import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
 
         <!-- Systems Delivered -->
         <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Systems delivered</div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Systems I've built</div>
           <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
             <li>Lead routing and enrichment automations in Salesforce and HubSpot.</li>
             <li>Data models in Snowflake and dbt for pipeline and attribution.</li>
@@ -97,15 +109,19 @@ import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
           </ul>
         </div>
 
-        <!-- Resume section -->
+        <!-- Resume + Links -->
         <div class="pt-6 border-t border-[var(--color-border)]">
-          <p class="text-sm text-[var(--color-text-muted)] mb-4">
-            Full career history on <a href="https://www.linkedin.com/in/julianross21/" class="text-[var(--color-accent)] hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-          </p>
-          <CommandButton
-            href="/julian-ross-resume.pdf"
-            command="Download resume"
-          />
+          <div class="flex flex-wrap gap-4 items-center">
+            <CommandButton
+              href="/julian-ross-resume.pdf"
+              command="View resume"
+              primary={true}
+              section="about"
+            />
+            <a href="https://www.linkedin.com/in/julianross21/" class="text-sm text-[var(--color-accent)] hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/jross21" class="text-sm text-[var(--color-accent)] hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:jross21@gmail.com" class="text-sm text-[var(--color-accent)] hover:underline">jross21@gmail.com</a>
+          </div>
         </div>
       </div>
 
@@ -114,8 +130,9 @@ import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
         <TerminalPanel title="Snapshot">
           <ul class="space-y-3 text-sm text-[var(--color-text-muted)]">
             <li><span class="text-[var(--color-text)]">Experience:</span> 10+ years across GTM + RevOps</li>
-            <li><span class="text-[var(--color-text)]">Focus:</span> AI-native revenue systems</li>
-            <li><span class="text-[var(--color-text)]">Specialty:</span> RevOps, agentic workflows, GTM automation</li>
+            <li><span class="text-[var(--color-text)]">Focus:</span> Revenue Operations, Sales Ops, Marketing Ops</li>
+            <li><span class="text-[var(--color-text)]">Depth:</span> CRM architecture, data infrastructure, AI workflows</li>
+            <li><span class="text-[var(--color-text)]">Looking for:</span> Full-time RevOps / Ops leadership</li>
           </ul>
         </TerminalPanel>
       </aside>

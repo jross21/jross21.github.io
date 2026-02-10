@@ -18,7 +18,7 @@ const sitemapColumns = [
     title: 'Work',
     links: [
       { href: '/projects', label: 'Projects' },
-      { href: '/services', label: 'Services' },
+      { href: '/expertise', label: 'Expertise' },
     ],
   },
   {
@@ -32,9 +32,9 @@ const sitemapColumns = [
     title: 'Connect',
     links: [
       { href: '/contact', label: 'Contact' },
-      { href: 'https://cal.com/julianross', label: 'Book a call', external: true },
       { href: 'https://www.linkedin.com/in/julianross21/', label: 'LinkedIn', external: true },
       { href: 'https://github.com/jross21', label: 'GitHub', external: true },
+      { href: '/julian-ross-resume.pdf', label: 'Resume' },
     ],
   },
 ];
@@ -69,15 +69,9 @@ const sitemapColumns = [
         ))}
       </div>
 
-      <!-- Availability + Scheduling -->
+      <!-- Status -->
       <div class="flex flex-col items-end gap-3">
         <AvailabilityBadge />
-        <a
-          href="https://cal.com/julianross"
-          class="cmd-button cmd-button--section-contact text-xs py-1.5 px-3"
-        >
-          Book a call
-        </a>
       </div>
     </div>
 

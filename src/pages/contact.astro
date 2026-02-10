@@ -4,7 +4,7 @@ import TerminalPanel from '../components/TerminalPanel.astro';
 import CommandButton from '../components/CommandButton.astro';
 ---
 
-<BaseLayout title="Contact" description="Reach out to discuss RevOps systems and GTM automation.">
+<BaseLayout title="Contact" description="Get in touch — email, LinkedIn, or download my resume.">
   <article class="py-8">
     <!-- Header -->
     <div class="mb-8">
@@ -12,122 +12,72 @@ import CommandButton from '../components/CommandButton.astro';
         Contact
       </h1>
 
-      <p class="text-[var(--color-text-muted)]">
-        Leading a RevOps team or modernizing GTM operations? Let's connect.
+      <p class="text-[var(--color-text-muted)] max-w-lg">
+        Interested in connecting about RevOps, Sales Ops, or Marketing Ops roles? I'd love to hear from you.
       </p>
-
-      <div class="mt-4 flex flex-wrap items-center gap-4">
-        <CommandButton
-          href="https://cal.com/julianross"
-          command="Book a call"
-          primary={true}
-          section="contact"
-        />
-        <span class="text-sm text-[var(--color-text-muted)]">
-          or email <a href="mailto:jross21@gmail.com">jross21@gmail.com</a>
-        </span>
-      </div>
     </div>
 
-    <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-8">
-      <!-- Form -->
-      <TerminalPanel title="Message" class="mb-8 lg:mb-0">
-        <form
-          action="https://formsubmit.co/jross21@gmail.com"
-          method="POST"
-          class="space-y-5"
-        >
-          <input type="hidden" name="_subject" value="New message from jross21.github.io" />
-          <input type="hidden" name="_captcha" value="false" />
-          <div>
-            <label for="name" class="block text-sm text-[var(--color-text-muted)] mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder="Your name"
-              class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent placeholder:text-[var(--color-text-dim)]"
-            />
-          </div>
+    <div class="max-w-xl space-y-6">
 
-          <div>
-            <label for="email" class="block text-sm text-[var(--color-text-muted)] mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="you@example.com"
-              class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent placeholder:text-[var(--color-text-dim)]"
-            />
-          </div>
-
-          <div>
-            <label for="message" class="block text-sm text-[var(--color-text-muted)] mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              placeholder="Tell me about the team or system you're building..."
-              class="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent resize-none placeholder:text-[var(--color-text-dim)]"
-            ></textarea>
-          </div>
-
+      <!-- Resume -->
+      <TerminalPanel title="Resume">
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-[var(--color-text-muted)]">Full career history and skills</p>
           <CommandButton
-            command="Send message"
+            href="/julian-ross-resume.pdf"
+            command="View resume"
             primary={true}
-            type="submit"
+            section="about"
           />
-        </form>
+        </div>
       </TerminalPanel>
 
-      <!-- Sidebar -->
-      <aside class="space-y-6">
-        <TerminalPanel title="Direct">
-          <div class="text-sm space-y-3">
-            <div class="text-[var(--color-text-dim)]">Or reach out directly</div>
-            <div class="space-y-2">
-              <a
-                href="mailto:jross21@gmail.com"
-                class="flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline"
-              >
-                Email
-              </a>
-              <a
-                href="https://www.linkedin.com/in/julianross21/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/jross21"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline"
-              >
-                GitHub
-              </a>
+      <!-- Direct Contact -->
+      <TerminalPanel title="Get in touch">
+        <div class="space-y-4">
+          <a
+            href="mailto:jross21@gmail.com"
+            class="flex items-center justify-between py-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
+          >
+            <div>
+              <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">Email</div>
+              <div class="text-xs text-[var(--color-text-dim)]">jross21@gmail.com</div>
             </div>
-          </div>
-        </TerminalPanel>
+            <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
+          </a>
 
-        <TerminalPanel title="Response time">
-          <div class="text-sm">
-            <div class="text-[var(--color-text-dim)]">Typical response</div>
-            <div class="text-[var(--color-accent)]">&lt; 24 hours</div>
-          </div>
-        </TerminalPanel>
-      </aside>
+          <div class="border-t border-[var(--color-border)]"></div>
+
+          <a
+            href="https://www.linkedin.com/in/julianross21/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between py-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
+          >
+            <div>
+              <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">LinkedIn</div>
+              <div class="text-xs text-[var(--color-text-dim)]">linkedin.com/in/julianross21</div>
+            </div>
+            <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
+          </a>
+
+          <div class="border-t border-[var(--color-border)]"></div>
+
+          <a
+            href="https://github.com/jross21"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between py-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
+          >
+            <div>
+              <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">GitHub</div>
+              <div class="text-xs text-[var(--color-text-dim)]">github.com/jross21</div>
+            </div>
+            <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
+          </a>
+        </div>
+      </TerminalPanel>
+
     </div>
   </article>
 </BaseLayout>

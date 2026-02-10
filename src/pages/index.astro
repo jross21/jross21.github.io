@@ -28,7 +28,7 @@ const featuredEssays = curatedWritingSlugs
 <BaseLayout
   fullWidth={true}
   title="Julian Ross"
-  description="Revenue Systems Architect focused on AI-native RevOps, GTM automation, and data infrastructure."
+  description="Revenue Operations leader with 10+ years across GTM, data infrastructure, and AI-native automation."
 >
   <!-- 1. Hero -->
   <section class="section-immersive pt-12 md:pt-20">
@@ -37,25 +37,25 @@ const featuredEssays = curatedWritingSlugs
         <div class="mb-4">
           <AvailabilityBadge />
         </div>
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-6 leading-tight whitespace-nowrap">
-          Revenue Systems Architect for AI-native GTM
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-6 leading-tight">
+          Revenue Operations &amp; GTM Systems
         </h1>
 
         <div class="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-2xl mb-8">
-          Reliable data. Predictable automation. Measurable outcomes.
+          10+ years building the data infrastructure, automation, and AI workflows that make revenue teams predictable.
         </div>
 
         <div class="flex flex-wrap gap-3">
           <CommandButton
-            href="/contact"
-            command="Start a conversation"
+            href="/julian-ross-resume.pdf"
+            command="View resume"
             size="lg"
             primary={true}
-            section="contact"
+            section="about"
           />
           <CommandButton
-            href="https://cal.com/julianross"
-            command="Book a call"
+            href="https://www.linkedin.com/in/julianross21/"
+            command="LinkedIn"
             size="lg"
             section="contact"
           />
@@ -73,7 +73,7 @@ const featuredEssays = curatedWritingSlugs
   <section class="section-immersive section-alt">
     <div class="section-immersive-content animate-in">
       <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
-        Results
+        Impact
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
@@ -125,47 +125,43 @@ const featuredEssays = curatedWritingSlugs
     </section>
   )}
 
-  <!-- 4. Testimonials -->
-  <!-- TODO: Replace with real testimonials -->
+  <!-- 4. Core Skills & Tools -->
   <section class="section-immersive section-alt">
     <div class="section-immersive-content animate-in">
       <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
-        What People Say
+        Skills &amp; Tools
       </h2>
 
       <div class="grid md:grid-cols-3 gap-6">
         <div class="terminal-panel">
           <div class="terminal-panel__body">
-            <blockquote class="text-sm text-[var(--color-text-muted)] italic border-l-2 border-[var(--color-section-projects)] pl-4 mb-4" style="margin:0;">
-              "Julian rebuilt our entire lead routing and CRM architecture in weeks. Pipeline visibility went from guesswork to real-time, and our reps finally trusted the data they were working from."
-            </blockquote>
-            <div class="text-sm">
-              <span class="text-[var(--color-text)] font-medium">VP of Revenue Operations</span>
-              <span class="text-[var(--color-text-dim)]"> · Series B SaaS</span>
+            <p class="text-[var(--color-text)] font-semibold text-sm mb-3">CRM &amp; Sales Ops</p>
+            <div class="flex flex-wrap gap-2">
+              {['Salesforce', 'HubSpot', 'Outreach', 'Salesloft', 'Gong', 'Clari'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
             </div>
           </div>
         </div>
 
         <div class="terminal-panel">
           <div class="terminal-panel__body">
-            <blockquote class="text-sm text-[var(--color-text-muted)] italic border-l-2 border-[var(--color-section-writing)] pl-4 mb-4" style="margin:0;">
-              "Most consultants hand you a deck. Julian handed us a production system with monitoring, validation, and rollback. The AI workflows he built actually survived contact with real data."
-            </blockquote>
-            <div class="text-sm">
-              <span class="text-[var(--color-text)] font-medium">Head of Data</span>
-              <span class="text-[var(--color-text-dim)]"> · Growth-stage B2B</span>
+            <p class="text-[var(--color-text)] font-semibold text-sm mb-3">Data &amp; Analytics</p>
+            <div class="flex flex-wrap gap-2">
+              {['Snowflake', 'dbt', 'Looker', 'Tableau', 'Power BI', 'Fivetran'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
             </div>
           </div>
         </div>
 
         <div class="terminal-panel">
           <div class="terminal-panel__body">
-            <blockquote class="text-sm text-[var(--color-text-muted)] italic border-l-2 border-[var(--color-section-about)] pl-4 mb-4" style="margin:0;">
-              "What sets Julian apart is range. He can whiteboard the data model with engineering, then walk the CRO through the forecast logic in the same afternoon. That bridge is rare."
-            </blockquote>
-            <div class="text-sm">
-              <span class="text-[var(--color-text)] font-medium">CTO</span>
-              <span class="text-[var(--color-text-dim)]"> · AI Infrastructure Startup</span>
+            <p class="text-[var(--color-text)] font-semibold text-sm mb-3">Automation &amp; AI</p>
+            <div class="flex flex-wrap gap-2">
+              {['Python', 'SQL', 'Zapier', 'Workato', 'Census', 'Claude / GPT'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
             </div>
           </div>
         </div>
@@ -209,18 +205,18 @@ const featuredEssays = curatedWritingSlugs
           Let's <span class="text-[var(--color-section-contact)]">Connect</span>
         </h2>
         <p class="text-[var(--color-text-muted)] mb-6 max-w-lg mx-auto">
-          Leading RevOps or revenue systems? I bring a track record across GTM, data, and AI to ship workflows that teams actually use.
+          Looking for someone who can own RevOps end-to-end — from CRM architecture to AI workflows to executive reporting.
         </p>
         <div class="flex flex-wrap gap-3 justify-center">
           <CommandButton
-            href="/contact"
-            command="Start a conversation"
+            href="/julian-ross-resume.pdf"
+            command="View resume"
             primary={true}
-            section="contact"
+            section="about"
           />
           <CommandButton
-            href="https://cal.com/julianross"
-            command="Book a call"
+            href="mailto:jross21@gmail.com"
+            command="Get in touch"
             section="contact"
           />
         </div>
