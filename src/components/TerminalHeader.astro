@@ -7,7 +7,7 @@ const pathname = Astro.url.pathname;
 const navItems = [
   { href: '/projects', label: 'Projects', section: 'projects' as const },
   { href: '/ideas', label: 'Ideas', section: 'ideas' as const },
-  { href: '/services', label: 'Services', section: 'about' as const },
+  { href: '/services', label: 'Services', section: 'services' as const },
   { href: '/about', label: 'About', section: 'about' as const },
   { href: '/contact', label: 'Contact', section: 'contact' as const },
 ];
@@ -18,7 +18,7 @@ function isActive(href: string) {
 }
 ---
 
-<header class="hidden md:block sticky top-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]">
+<header class="hidden md:block sticky top-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]" style="view-transition-name: site-header;">
   <div class="max-w-[1200px] mx-auto px-6 py-3">
     <nav class="flex items-center justify-between">
       <!-- Logo with cursor -->

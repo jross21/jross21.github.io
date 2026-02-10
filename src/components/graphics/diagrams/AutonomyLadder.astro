@@ -1,0 +1,264 @@
+---
+/**
+ * AutonomyLadder.astro
+ *
+ * Visual representation of AI autonomy levels from L0 (rules) to L4 (full independence).
+ * Used in "What Agentic Actually Means" essay.
+ */
+interface Props {
+  class?: string;
+  highlightLevel?: number;
+}
+
+const { class: className = '', highlightLevel } = Astro.props;
+
+const levels = [
+  {
+    level: 4,
+    title: 'AI Owns It',
+    description: 'Operates independently',
+    example: 'Auto-enrichment, real-time scoring',
+    color: 'var(--color-terminal-green)'
+  },
+  {
+    level: 3,
+    title: 'AI Acts, You Supervise',
+    description: 'Acts within guardrails',
+    example: 'AI SDRs with parameters',
+    color: 'var(--color-accent)'
+  },
+  {
+    level: 2,
+    title: 'AI Proposes, You Approve',
+    description: 'Suggests actions for review',
+    example: 'Deal risk recommendations',
+    color: 'var(--color-accent)'
+  },
+  {
+    level: 1,
+    title: 'AI Assists, You Decide',
+    description: 'Human triggers, AI executes',
+    example: 'AI-drafted emails for review',
+    color: 'var(--color-terminal-yellow)'
+  },
+  {
+    level: 0,
+    title: 'Rules Without Intelligence',
+    description: 'Traditional if/then logic',
+    example: 'Form submission → notification',
+    color: 'var(--color-text-dim)'
+  }
+];
+---
+
+<div class:list={['autonomy-ladder', className]}>
+  <div class="ladder-header">
+    <span class="ladder-header__label">Autonomy Level</span>
+    <span class="ladder-header__arrow">↑ Higher = More AI Independence</span>
+  </div>
+
+  <div class="ladder-levels">
+    {levels.map((item) => (
+      <div
+        class:list={[
+          'ladder-level',
+          highlightLevel === item.level && 'ladder-level--highlighted'
+        ]}
+        style={`--level-color: ${item.color}`}
+      >
+        <div class="ladder-level__indicator">
+          <span class="ladder-level__number">L{item.level}</span>
+          <div class="ladder-level__bar"></div>
+        </div>
+
+        <div class="ladder-level__content">
+          <h4 class="ladder-level__title">{item.title}</h4>
+          <p class="ladder-level__description">{item.description}</p>
+          <p class="ladder-level__example">{item.example}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="ladder-footer">
+    <div class="ladder-footer__zones">
+      <span class="zone zone--auto">Full Auto OK</span>
+      <span class="zone zone--hitl">HITL Recommended</span>
+      <span class="zone zone--manual">Human Required</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .autonomy-ladder {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: var(--font-sans);
+  }
+
+  .ladder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ladder-header__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .ladder-header__arrow {
+    font-size: 0.75rem;
+    color: var(--color-accent);
+  }
+
+  .ladder-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ladder-level {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .ladder-level:hover {
+    border-color: var(--level-color, var(--color-border-hover));
+  }
+
+  .ladder-level--highlighted {
+    border-color: var(--level-color);
+    background-color: var(--color-bg-elevated);
+  }
+
+  .ladder-level__indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  .ladder-level__number {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--level-color);
+    background-color: var(--color-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--level-color);
+  }
+
+  .ladder-level__bar {
+    width: 4px;
+    flex: 1;
+    min-height: 20px;
+    background-color: var(--level-color);
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+
+  .ladder-level__content {
+    flex: 1;
+  }
+
+  .ladder-level__title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .ladder-level__description {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .ladder-level__example {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .ladder-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .ladder-footer__zones {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .zone {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .zone--auto {
+    background-color: rgba(163, 190, 140, 0.15);
+    color: var(--color-terminal-green);
+  }
+
+  .zone--hitl {
+    background-color: rgba(136, 192, 208, 0.15);
+    color: var(--color-accent);
+  }
+
+  .zone--manual {
+    background-color: rgba(235, 203, 139, 0.15);
+    color: var(--color-terminal-yellow);
+  }
+
+  /* Light mode */
+  :global(html.light) .ladder-level {
+    background-color: var(--color-bg-elevated);
+  }
+
+  :global(html.light) .ladder-level__number {
+    background-color: var(--color-bg-subtle);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .ladder-level {
+      padding: 0.75rem;
+    }
+
+    .ladder-level__title {
+      font-size: 0.875rem;
+    }
+
+    .ladder-level__description {
+      font-size: 0.75rem;
+    }
+
+    .ladder-footer__zones {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

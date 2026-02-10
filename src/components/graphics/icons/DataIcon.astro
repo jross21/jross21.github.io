@@ -1,0 +1,36 @@
+---
+/**
+ * DataIcon - Database/data storage icon
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 20, class: className = '' } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={['icon', className]}
+  aria-hidden="true"
+>
+  <!-- Database cylinder -->
+  <ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M4 6V18C4 19.657 7.582 21 12 21C16.418 21 20 19.657 20 18V6" stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- Middle ring -->
+  <ellipse cx="12" cy="12" rx="8" ry="3" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <!-- Top fill -->
+  <ellipse cx="12" cy="6" rx="8" ry="3" fill="currentColor" opacity="0.2"/>
+</svg>
+
+<style>
+  .icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+</style>

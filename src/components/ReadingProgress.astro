@@ -1,0 +1,56 @@
+---
+/**
+ * ReadingProgress.astro
+ *
+ * Fixed 3px bar at top of viewport that fills as user scrolls.
+ * Color matches the section (purple for ideas, yellow for projects).
+ */
+interface Props {
+  section?: 'ideas' | 'projects';
+}
+
+const { section = 'ideas' } = Astro.props;
+---
+
+<div
+  class:list={['reading-progress', `reading-progress--${section}`]}
+  id="reading-progress"
+  role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+  aria-label="Reading progress"
+  style="width: 0%"
+></div>
+
+<script>
+  function initReadingProgress() {
+    const bar = document.getElementById('reading-progress');
+    if (!bar) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      bar.style.display = 'none';
+      return;
+    }
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+      bar.style.width = `${progress}%`;
+      bar.setAttribute('aria-valuenow', Math.round(progress).toString());
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReadingProgress);
+  } else {
+    initReadingProgress();
+  }
+
+  document.addEventListener('astro:page-load', initReadingProgress);
+</script>

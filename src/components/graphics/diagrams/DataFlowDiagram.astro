@@ -1,0 +1,126 @@
+---
+/**
+ * DataFlowDiagram.astro
+ *
+ * Simple 4-stage linear flow:
+ * Sources → Transform → Semantic Layer → Dashboards
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['data-flow-diagram', className]}>
+  <svg
+    viewBox="0 0 600 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="data-flow-diagram__svg"
+    role="img"
+    aria-labelledby="dataflow-title"
+  >
+    <title id="dataflow-title">Data Flow: Sources to Dashboards</title>
+
+    <!-- Node 1: Sources -->
+    <g class="node">
+      <rect x="0" y="20" width="110" height="44" rx="6" class="node-box"/>
+      <text x="55" y="47" text-anchor="middle" class="node-label">Sources</text>
+    </g>
+
+    <!-- Arrow 1 -->
+    <g class="arrow">
+      <line x1="115" y1="42" x2="150" y2="42" class="arrow-line"/>
+      <polygon points="150,42 143,38 143,46" class="arrow-head"/>
+    </g>
+
+    <!-- Node 2: Transform -->
+    <g class="node">
+      <rect x="155" y="20" width="110" height="44" rx="6" class="node-box"/>
+      <text x="210" y="47" text-anchor="middle" class="node-label">Transform</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <g class="arrow">
+      <line x1="270" y1="42" x2="305" y2="42" class="arrow-line"/>
+      <polygon points="305,42 298,38 298,46" class="arrow-head"/>
+    </g>
+
+    <!-- Node 3: Semantic Layer -->
+    <g class="node">
+      <rect x="310" y="20" width="110" height="44" rx="6" class="node-box node-box--primary"/>
+      <text x="365" y="47" text-anchor="middle" class="node-label">Semantic Layer</text>
+    </g>
+
+    <!-- Arrow 3 -->
+    <g class="arrow">
+      <line x1="425" y1="42" x2="460" y2="42" class="arrow-line"/>
+      <polygon points="460,42 453,38 453,46" class="arrow-head"/>
+    </g>
+
+    <!-- Node 4: Dashboards -->
+    <g class="node">
+      <rect x="465" y="20" width="110" height="44" rx="6" class="node-box"/>
+      <text x="520" y="47" text-anchor="middle" class="node-label">Dashboards</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .data-flow-diagram {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .data-flow-diagram__svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .node-box {
+    fill: var(--color-bg-subtle);
+    stroke: var(--color-accent);
+    stroke-width: 1.5;
+  }
+
+  .node-box--primary {
+    stroke: var(--color-terminal-green);
+  }
+
+  .node-label {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--color-text);
+  }
+
+  .arrow-line {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    opacity: 0.6;
+  }
+
+  .arrow-head {
+    fill: var(--color-accent);
+    opacity: 0.6;
+  }
+
+  /* Light mode */
+  :global(html.light) .node-box {
+    fill: var(--color-bg-elevated);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .data-flow-diagram__svg {
+      min-width: 480px;
+    }
+
+    .data-flow-diagram {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+</style>

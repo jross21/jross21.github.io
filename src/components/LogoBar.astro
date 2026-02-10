@@ -1,0 +1,150 @@
+---
+/**
+ * LogoBar.astro
+ *
+ * Company name bar with logo-weight typography treatment.
+ * Monospace font, generous spacing, vertical separators.
+ * Mobile: horizontal auto-scroll marquee.
+ */
+interface Props {
+  title?: string;
+  class?: string;
+}
+
+const { title = 'Experience includes', class: className = '' } = Astro.props;
+
+const companies = ['Benchling', 'CloudZero', 'DataRobot', 'Smartsheet'];
+---
+
+<div class:list={['logo-bar', className]}>
+  {title && (
+    <p class="logo-bar__title">{title}</p>
+  )}
+
+  <div class="logo-bar__track">
+    <div class="logo-bar__companies">
+      {companies.map((company, index) => (
+        <>
+          <span class="logo-bar__company">{company}</span>
+          {index < companies.length - 1 && <span class="logo-bar__separator"></span>}
+        </>
+      ))}
+    </div>
+    <!-- Duplicate for seamless mobile marquee -->
+    <div class="logo-bar__companies logo-bar__companies--clone" aria-hidden="true">
+      {companies.map((company, index) => (
+        <>
+          <span class="logo-bar__company">{company}</span>
+          {index < companies.length - 1 && <span class="logo-bar__separator"></span>}
+        </>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .logo-bar {
+    padding: 1.5rem 0;
+  }
+
+  .logo-bar__title {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-dim);
+    text-align: center;
+    margin: 0 0 1rem 0;
+  }
+
+  .logo-bar__track {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .logo-bar__companies {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .logo-bar__companies--clone {
+    display: none;
+  }
+
+  .logo-bar__company {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    opacity: 0.55;
+    transition: opacity 0.25s ease, color 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .logo-bar__company:hover {
+    opacity: 0.85;
+    color: var(--color-text);
+  }
+
+  .logo-bar__separator {
+    width: 1px;
+    height: 1.25rem;
+    background-color: var(--color-text-dim);
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
+  /* Light mode */
+  :global(html.light) .logo-bar__company {
+    color: var(--color-text-muted);
+    opacity: 0.6;
+  }
+
+  :global(html.light) .logo-bar__company:hover {
+    opacity: 0.9;
+    color: var(--color-text);
+  }
+
+  /* Mobile: marquee scroll */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  @media (max-width: 640px) {
+    .logo-bar__track {
+      justify-content: flex-start;
+    }
+
+    .logo-bar__companies {
+      animation: marquee 20s linear infinite;
+      padding-right: 1.5rem;
+    }
+
+    .logo-bar__companies--clone {
+      display: flex;
+      animation: marquee 20s linear infinite;
+      padding-right: 1.5rem;
+    }
+
+    .logo-bar__company {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-bar__companies,
+    .logo-bar__companies--clone {
+      animation: none;
+    }
+
+    .logo-bar__companies--clone {
+      display: none;
+    }
+  }
+</style>

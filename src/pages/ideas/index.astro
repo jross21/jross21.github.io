@@ -15,9 +15,14 @@ const curatedGroups = [
   },
   {
     title: 'Operations',
-    slugs: ['frequency-pain-matrix', 'revops-tech-debt', 'crm-as-headless-cms'],
+    slugs: ['frequency-pain-matrix', 'revops-tech-debt', 'crm-as-headless-cms', 'cpq-governance'],
   },
 ];
+// Build read time map
+const readTimeBySlug = new Map(allWriting.map((post) => {
+  const wordCount = (post.body || '').split(/\s+/).length;
+  return [post.slug, Math.max(1, Math.round(wordCount / 230))];
+}));
 const writingBySlug = new Map(allWriting.map((post) => [post.slug, post]));
 const groupedWriting = curatedGroups.map((group) => ({
   title: group.title,
@@ -59,6 +64,7 @@ const groupedWriting = curatedGroups.map((group) => ({
                   title={post.data.title}
                   description={post.data.description}
                   slug={post.slug}
+                  readTime={readTimeBySlug.get(post.slug)}
                 />
               ))}
             </div>

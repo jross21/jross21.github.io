@@ -26,23 +26,26 @@
   --color-highlight-dim: var(--color-accent-dim);
   --color-secondary: var(--color-accent);
 
-  /* Section colors */
-  --color-section-projects: var(--color-accent);
-  --color-section-projects-hover: var(--color-accent-hover);
-  --color-section-projects-dim: var(--color-accent-dim);
-  --color-section-writing: var(--color-accent);
-  --color-section-writing-hover: var(--color-accent-hover);
-  --color-section-writing-dim: var(--color-accent-dim);
-  --color-section-ideas: var(--color-accent);
-  --color-section-ideas-hover: var(--color-accent-hover);
-  --color-section-ideas-dim: var(--color-accent-dim);
-  --color-section-about: var(--color-accent);
-  --color-section-about-hover: var(--color-accent-hover);
-  --color-section-about-dim: var(--color-accent-dim);
-  --color-section-contact: var(--color-accent);
-  --color-section-contact-hover: var(--color-accent-hover);
-  --color-section-contact-dim: var(--color-accent-dim);
-  --color-warning: var(--color-accent);
+  /* Section colors - Nord Aurora palette */
+  --color-section-projects: #EBCB8B;        /* nord13 - Aurora yellow */
+  --color-section-projects-hover: #D4B06A;  /* Deeper yellow */
+  --color-section-projects-dim: rgba(235, 203, 139, 0.15);
+  --color-section-writing: #B48EAD;         /* nord15 - Aurora purple */
+  --color-section-writing-hover: #9B6F94;   /* Deeper purple */
+  --color-section-writing-dim: rgba(180, 142, 173, 0.15);
+  --color-section-ideas: #B48EAD;           /* nord15 - Aurora purple (same as writing) */
+  --color-section-ideas-hover: #9B6F94;
+  --color-section-ideas-dim: rgba(180, 142, 173, 0.15);
+  --color-section-about: #A3BE8C;           /* nord14 - Aurora green */
+  --color-section-about-hover: #8FAA78;     /* Deeper green */
+  --color-section-about-dim: rgba(163, 190, 140, 0.15);
+  --color-section-contact: #D08770;         /* nord12 - Aurora orange */
+  --color-section-contact-hover: #B97060;   /* Deeper orange */
+  --color-section-contact-dim: rgba(208, 135, 112, 0.15);
+  --color-section-services: #88C0D0;        /* nord8 - Frost cyan */
+  --color-section-services-hover: #7EB0BF;
+  --color-section-services-dim: rgba(136, 192, 208, 0.15);
+  --color-warning: #EBCB8B;                 /* nord13 - Aurora yellow */
   --color-error: #BF616A;        /* nord11 - Aurora red */
 
   /* Terminal traffic lights - preserved macOS standard */
@@ -62,9 +65,18 @@
 html {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(180, 142, 173, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(136, 192, 208, 0.03) 0%, transparent 50%);
   color: var(--color-text);
   line-height: 1.7;
   scroll-behavior: smooth;
+}
+
+html.light {
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(155, 111, 148, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(94, 129, 172, 0.04) 0%, transparent 50%);
 }
 
 /* Light mode override - Nord arctic palette */
@@ -89,22 +101,25 @@ html.light {
   --color-border: #D8DEE9;       /* nord4 */
   --color-border-hover: #81A1C1; /* nord9 */
 
-  /* Section colors */
-  --color-section-projects: var(--color-accent);
-  --color-section-projects-hover: var(--color-accent-hover);
-  --color-section-projects-dim: var(--color-accent-dim);
-  --color-section-writing: var(--color-accent);
-  --color-section-writing-hover: var(--color-accent-hover);
-  --color-section-writing-dim: var(--color-accent-dim);
-  --color-section-ideas: var(--color-accent);
-  --color-section-ideas-hover: var(--color-accent-hover);
-  --color-section-ideas-dim: var(--color-accent-dim);
-  --color-section-about: var(--color-accent);
-  --color-section-about-hover: var(--color-accent-hover);
-  --color-section-about-dim: var(--color-accent-dim);
-  --color-section-contact: var(--color-accent);
-  --color-section-contact-hover: var(--color-accent-hover);
-  --color-section-contact-dim: var(--color-accent-dim);
+  /* Section colors - deeper shades for light mode contrast */
+  --color-section-projects: #C9A84C;        /* Deeper yellow for light bg */
+  --color-section-projects-hover: #B8943A;
+  --color-section-projects-dim: rgba(201, 168, 76, 0.12);
+  --color-section-writing: #9B6F94;         /* Deeper purple */
+  --color-section-writing-hover: #86607F;
+  --color-section-writing-dim: rgba(155, 111, 148, 0.12);
+  --color-section-ideas: #9B6F94;
+  --color-section-ideas-hover: #86607F;
+  --color-section-ideas-dim: rgba(155, 111, 148, 0.12);
+  --color-section-about: #7B9A65;           /* Deeper green */
+  --color-section-about-hover: #6B8755;
+  --color-section-about-dim: rgba(123, 154, 101, 0.12);
+  --color-section-contact: #B97060;         /* Deeper orange */
+  --color-section-contact-hover: #A46050;
+  --color-section-contact-dim: rgba(185, 112, 96, 0.12);
+  --color-section-services: #5E81AC;        /* Deeper frost */
+  --color-section-services-hover: #4C6D96;
+  --color-section-services-dim: rgba(94, 129, 172, 0.12);
 }
 
 body {
@@ -181,6 +196,33 @@ code:not(pre code) {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 .animate-in {
@@ -491,12 +533,16 @@ html.light .shiki span {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 0.75rem;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 html.light .terminal-panel {
   background-color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .terminal-panel__header {
@@ -808,4 +854,152 @@ html.light .terminal-panel__header {
   color: var(--color-text-dim);
   letter-spacing: 0.5em;
   font-size: 0.875rem;
+}
+
+/* ============================================
+   VIEW TRANSITIONS
+   ============================================ */
+
+/* Custom fade animation for page transitions */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(20px); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-to-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-20px); }
+}
+
+/* Default view transition */
+::view-transition-old(root) {
+  animation: 200ms ease-out fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 200ms ease-out fade-in;
+}
+
+/* Preserve header during page transitions */
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+/* Named transitions for main content */
+::view-transition-old(main-content) {
+  animation: 200ms ease-out both fade-out, 200ms ease-out both slide-to-left;
+}
+
+::view-transition-new(main-content) {
+  animation: 200ms ease-out both fade-in, 200ms ease-out both slide-from-right;
+}
+
+/* Respect reduced motion for view transitions */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    animation: none;
+  }
+}
+
+/* ============================================
+   ANIMATED LINK UNDERLINES
+   ============================================ */
+
+.prose a {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-size: 0% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.prose a:hover {
+  background-size: 100% 1px;
+}
+
+/* ============================================
+   PER-SECTION SELECTION COLORS
+   ============================================ */
+
+[data-section="projects"] ::selection {
+  background-color: rgba(235, 203, 139, 0.4);
+  color: #2E3440;
+}
+
+[data-section="writing"] ::selection,
+[data-section="ideas"] ::selection {
+  background-color: rgba(180, 142, 173, 0.4);
+  color: #2E3440;
+}
+
+[data-section="about"] ::selection {
+  background-color: rgba(163, 190, 140, 0.4);
+  color: #2E3440;
+}
+
+[data-section="contact"] ::selection {
+  background-color: rgba(208, 135, 112, 0.4);
+  color: #2E3440;
+}
+
+[data-section="services"] ::selection {
+  background-color: rgba(136, 192, 208, 0.4);
+  color: #2E3440;
+}
+
+/* ============================================
+   TOOL CHIPS
+   ============================================ */
+
+.tool-chip {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.tool-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ============================================
+   READING PROGRESS BAR
+   ============================================ */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 100;
+  transition: width 50ms linear;
+}
+
+.reading-progress--ideas {
+  background-color: var(--color-section-writing);
+}
+
+.reading-progress--projects {
+  background-color: var(--color-section-projects);
 }

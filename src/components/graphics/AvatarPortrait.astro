@@ -1,0 +1,222 @@
+---
+/**
+ * AvatarPortrait.astro
+ *
+ * Stylized geometric portrait illustration in Nord color palette.
+ * Matches the terminal aesthetic with clean lines and subtle depth.
+ * Theme-aware for dark/light modes.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 80, class: className = '' } = Astro.props;
+---
+
+<div class:list={['avatar-portrait', className]} style={`--avatar-size: ${size}px`}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="avatar-svg"
+    aria-label="Portrait illustration"
+    role="img"
+  >
+    <!-- Background circle -->
+    <circle
+      cx="50"
+      cy="50"
+      r="48"
+      class="avatar-bg"
+    />
+
+    <!-- Subtle geometric pattern in background -->
+    <g class="avatar-pattern" opacity="0.1">
+      <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="0.5"/>
+      <line x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="0.5" fill="none"/>
+    </g>
+
+    <!-- Head silhouette - geometric style -->
+    <g class="avatar-head">
+      <!-- Face shape - slightly angular/geometric -->
+      <path
+        d="M50 18
+           C35 18, 26 28, 26 42
+           L26 52
+           C26 62, 30 70, 38 75
+           L42 77
+           C45 78, 50 80, 50 80
+           C50 80, 55 78, 58 77
+           L62 75
+           C70 70, 74 62, 74 52
+           L74 42
+           C74 28, 65 18, 50 18Z"
+        class="avatar-face"
+      />
+
+      <!-- Hair - geometric angular style -->
+      <path
+        d="M28 42
+           C28 28, 36 16, 50 16
+           C64 16, 72 28, 72 42
+           L72 35
+           C72 24, 62 14, 50 14
+           C38 14, 28 24, 28 35
+           Z"
+        class="avatar-hair"
+      />
+
+      <!-- Side hair -->
+      <path
+        d="M26 42 L26 50 C24 48, 24 42, 26 38 Z"
+        class="avatar-hair"
+      />
+      <path
+        d="M74 42 L74 50 C76 48, 76 42, 74 38 Z"
+        class="avatar-hair"
+      />
+
+      <!-- Glasses - terminal/tech aesthetic -->
+      <g class="avatar-glasses">
+        <!-- Left lens -->
+        <rect x="32" y="42" width="14" height="10" rx="2" fill="none" stroke-width="2"/>
+        <!-- Right lens -->
+        <rect x="54" y="42" width="14" height="10" rx="2" fill="none" stroke-width="2"/>
+        <!-- Bridge -->
+        <path d="M46 47 L54 47" stroke-width="2" fill="none"/>
+        <!-- Temple hints -->
+        <path d="M32 47 L28 46" stroke-width="1.5" fill="none"/>
+        <path d="M68 47 L72 46" stroke-width="1.5" fill="none"/>
+      </g>
+
+      <!-- Eyes behind glasses -->
+      <g class="avatar-eyes" opacity="0.6">
+        <circle cx="39" cy="47" r="1.5"/>
+        <circle cx="61" cy="47" r="1.5"/>
+      </g>
+
+      <!-- Subtle nose line -->
+      <path
+        d="M50 50 L50 58 L48 60"
+        class="avatar-nose"
+        stroke-width="1.5"
+        fill="none"
+        opacity="0.4"
+      />
+
+      <!-- Subtle smile -->
+      <path
+        d="M43 65 Q50 70, 57 65"
+        class="avatar-mouth"
+        stroke-width="1.5"
+        fill="none"
+        opacity="0.5"
+      />
+    </g>
+
+    <!-- Collar/shoulders hint at bottom -->
+    <path
+      d="M25 92
+         C30 85, 40 82, 50 82
+         C60 82, 70 85, 75 92"
+      class="avatar-collar"
+      stroke-width="2"
+      fill="none"
+    />
+
+    <!-- Subtle accent ring -->
+    <circle
+      cx="50"
+      cy="50"
+      r="47"
+      class="avatar-ring"
+      stroke-width="1"
+      fill="none"
+      opacity="0.3"
+    />
+  </svg>
+</div>
+
+<style>
+  .avatar-portrait {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    flex-shrink: 0;
+  }
+
+  .avatar-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Dark mode (default) */
+  .avatar-bg {
+    fill: var(--color-bg-elevated);
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .avatar-pattern {
+    color: var(--color-accent);
+  }
+
+  .avatar-face {
+    fill: var(--color-text-muted);
+    opacity: 0.9;
+  }
+
+  .avatar-hair {
+    fill: var(--color-text-dim);
+  }
+
+  .avatar-glasses {
+    stroke: var(--color-accent);
+  }
+
+  .avatar-eyes {
+    fill: var(--color-bg);
+  }
+
+  .avatar-nose,
+  .avatar-mouth {
+    stroke: var(--color-bg-subtle);
+  }
+
+  .avatar-collar {
+    stroke: var(--color-accent);
+    opacity: 0.6;
+  }
+
+  .avatar-ring {
+    stroke: var(--color-accent);
+  }
+
+  /* Light mode */
+  :global(html.light) .avatar-bg {
+    fill: var(--color-bg-subtle);
+  }
+
+  :global(html.light) .avatar-face {
+    fill: var(--color-text-muted);
+    opacity: 0.85;
+  }
+
+  :global(html.light) .avatar-hair {
+    fill: var(--color-text);
+    opacity: 0.7;
+  }
+
+  :global(html.light) .avatar-eyes {
+    fill: var(--color-bg);
+  }
+
+  :global(html.light) .avatar-nose,
+  :global(html.light) .avatar-mouth {
+    stroke: var(--color-bg);
+  }
+</style>

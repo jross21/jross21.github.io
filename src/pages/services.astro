@@ -7,7 +7,7 @@ import CommandButton from '../components/CommandButton.astro';
 ---
 
 <BaseLayout title="Services" description="Revenue operations capabilities: Sales Ops, Marketing Ops, CS Ops, Data & Analytics, Systems & Integrations, Process Design.">
-  <article class="py-8">
+  <article class="py-8" data-section="services">
     <!-- Hero Section -->
     <div class="mb-12">
       <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-6">
@@ -42,9 +42,11 @@ import CommandButton from '../components/CommandButton.astro';
 
           <div class="space-y-2">
             <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Tools</div>
-            <p class="text-sm text-[var(--color-text-muted)]">
-              Salesforce, HubSpot CRM, Gong, Clari, Outreach, Salesloft
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {['Salesforce', 'HubSpot CRM', 'Gong', 'Clari', 'Outreach', 'Salesloft'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
+            </div>
           </div>
 
           <div class="space-y-2 pt-2">
@@ -91,9 +93,11 @@ import CommandButton from '../components/CommandButton.astro';
 
           <div class="space-y-2">
             <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Tools</div>
-            <p class="text-sm text-[var(--color-text-muted)]">
-              HubSpot, Marketo, Pardot, Segment, Google Analytics, 6sense
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {['HubSpot', 'Marketo', 'Pardot', 'Segment', 'Google Analytics', '6sense'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
+            </div>
           </div>
 
           <div class="space-y-2 pt-2">
@@ -137,9 +141,11 @@ import CommandButton from '../components/CommandButton.astro';
 
           <div class="space-y-2">
             <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Tools</div>
-            <p class="text-sm text-[var(--color-text-muted)]">
-              Gainsight, ChurnZero, Vitally, Totango, Planhat
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {['Gainsight', 'ChurnZero', 'Vitally', 'Totango', 'Planhat'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
+            </div>
           </div>
         </div>
       </TerminalPanel>
@@ -165,9 +171,11 @@ import CommandButton from '../components/CommandButton.astro';
 
           <div class="space-y-2">
             <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Tools</div>
-            <p class="text-sm text-[var(--color-text-muted)]">
-              dbt, Looker, Tableau, Snowflake, Fivetran, Census
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {['dbt', 'Looker', 'Tableau', 'Snowflake', 'Fivetran', 'Census'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
+            </div>
           </div>
 
           <div class="space-y-2 pt-2">
@@ -227,9 +235,11 @@ import CommandButton from '../components/CommandButton.astro';
 
           <div class="space-y-2">
             <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Tools</div>
-            <p class="text-sm text-[var(--color-text-muted)]">
-              Zapier, Workato, Tray.io, Census, Hightouch, Fivetran
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {['Zapier', 'Workato', 'Tray.io', 'Census', 'Hightouch', 'Fivetran'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
+            </div>
           </div>
 
           <div class="space-y-2 pt-2">
@@ -296,9 +306,11 @@ import CommandButton from '../components/CommandButton.astro';
 
           <div class="space-y-2">
             <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Tools</div>
-            <p class="text-sm text-[var(--color-text-muted)]">
-              Notion, Confluence, Lucidchart, Miro, Loom
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {['Notion', 'Confluence', 'Lucidchart', 'Miro', 'Loom'].map(tool => (
+                <span class="tool-chip">{tool}</span>
+              ))}
+            </div>
           </div>
 
           <div class="space-y-2 pt-2">

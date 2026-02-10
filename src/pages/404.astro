@@ -2,36 +2,216 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TerminalPanel from '../components/TerminalPanel.astro';
 import CommandButton from '../components/CommandButton.astro';
+
+// Get the current path for the error message
+const currentPath = Astro.url.pathname;
 ---
 
 <BaseLayout title="404 - Not Found">
   <article class="py-16 md:py-24">
     <div class="max-w-xl mx-auto">
-      <TerminalPanel title="Page not found">
-        <div class="text-center py-8">
-          <div class="text-6xl font-bold text-[var(--color-error)] mb-4">404</div>
-
-          <div class="text-[var(--color-text-muted)] mb-8">
-            The page you’re looking for doesn’t exist.
+      <TerminalPanel title="bash">
+        <div class="terminal-content">
+          <!-- Command prompt with error -->
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-command">cd {currentPath}</span>
           </div>
 
-          <div class="flex flex-wrap justify-center gap-3">
-            <CommandButton
-              href="/"
-              command="Home"
-              primary={true}
-            />
-            <CommandButton
-              href="/projects"
-              command="Projects"
-            />
-            <CommandButton
-              href="/contact"
-              command="Contact"
-            />
+          <div class="terminal-line terminal-line--error">
+            <span class="terminal-output">bash: cd: {currentPath}: No such file or directory</span>
           </div>
+
+          <!-- Error code display -->
+          <div class="error-display">
+            <span class="error-code">404</span>
+            <span class="error-label">Page Not Found</span>
+          </div>
+
+          <!-- Suggestion prompt -->
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-command">ls available-routes/</span>
+          </div>
+
+          <!-- Available routes -->
+          <div class="route-list">
+            <a href="/" class="route-item">
+              <span class="route-icon">📁</span>
+              <span class="route-name">home</span>
+            </a>
+            <a href="/projects" class="route-item">
+              <span class="route-icon">📁</span>
+              <span class="route-name">projects</span>
+            </a>
+            <a href="/ideas" class="route-item">
+              <span class="route-icon">📁</span>
+              <span class="route-name">ideas</span>
+            </a>
+            <a href="/about" class="route-item">
+              <span class="route-icon">📁</span>
+              <span class="route-name">about</span>
+            </a>
+            <a href="/services" class="route-item">
+              <span class="route-icon">📁</span>
+              <span class="route-name">services</span>
+            </a>
+            <a href="/contact" class="route-item">
+              <span class="route-icon">📁</span>
+              <span class="route-name">contact</span>
+            </a>
+          </div>
+
+          <!-- Help prompt -->
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-cursor"></span>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+          <CommandButton
+            href="/"
+            command="Go Home"
+            primary={true}
+          />
+          <CommandButton
+            href="/contact"
+            command="Get Help"
+          />
         </div>
       </TerminalPanel>
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .terminal-content {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .terminal-line {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .terminal-line--error {
+    margin-bottom: 1.5rem;
+  }
+
+  .terminal-prompt {
+    color: var(--color-terminal-green);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .terminal-command {
+    color: var(--color-text);
+  }
+
+  .terminal-output {
+    color: var(--color-error);
+  }
+
+  .error-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    margin: 1rem 0 2rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .error-code {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-error);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .error-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .route-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin: 0.75rem 0 1.5rem 1.25rem;
+  }
+
+  .route-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.15s ease;
+  }
+
+  .route-item:hover {
+    color: var(--color-accent-hover);
+    text-decoration: none;
+  }
+
+  .route-icon {
+    font-size: 0.875rem;
+  }
+
+  .route-name {
+    font-family: var(--font-mono);
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 1.1em;
+    background-color: var(--color-accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .route-list {
+      grid-template-columns: 1fr;
+    }
+
+    .error-code {
+      font-size: 3rem;
+    }
+  }
+</style>

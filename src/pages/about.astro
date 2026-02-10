@@ -2,63 +2,80 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TerminalPanel from '../components/TerminalPanel.astro';
 import CommandButton from '../components/CommandButton.astro';
+import AnimatedStat from '../components/AnimatedStat.astro';
+import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
 ---
 
 <BaseLayout title="About" description="Revenue Systems Architect focused on AI-native RevOps and GTM automation.">
-  <article class="py-8">
+  <article class="py-8" data-section="about">
     <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">
+    <div class="mb-10">
+      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-6">
         About
       </h1>
     </div>
 
     <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-8">
       <!-- Main content -->
-      <div class="space-y-8 text-[var(--color-text-muted)] max-w-2xl">
-        <p class="text-lg text-[var(--color-text)]">
-          Revenue Systems Architect building AI-native RevOps that stays reliable in production.
-        </p>
+      <div class="space-y-10 max-w-2xl">
 
-        <div class="space-y-6">
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Guiding principles</div>
-          <div class="space-y-4">
-            <div class="space-y-2">
-              <p class="text-[var(--color-text)]">Governed data beats clever automation.</p>
-              <ul class="list-disc pl-5 space-y-1 text-[var(--color-text-muted)]">
-                <li>Evidence: Unified lifecycle, stage, and attribution definitions across CRM and warehouse.</li>
-                <li>Implication: Forecasts and pipeline reporting stay reliable.</li>
-              </ul>
+        <!-- Opening Narrative -->
+        <div class="flex items-start gap-6">
+          <div class="flex-shrink-0 hidden sm:block">
+            <AvatarPortrait size={96} />
+          </div>
+          <div>
+            <p class="text-lg text-[var(--color-text)] leading-relaxed">
+              I started in sales, learned what breaks when data is bad, then spent the next decade fixing the infrastructure underneath. From SDR to data engineering to AI-native RevOps — the through-line is the same: build systems that give revenue teams reliable data and predictable automation so they can focus on selling, not debugging.
+            </p>
+          </div>
+        </div>
+
+        <!-- Key Outcomes -->
+        <div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Selected outcomes</div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <AnimatedStat value="8" prefix="$" suffix="M+" label="Qualified pipeline" />
+            <AnimatedStat value="40" prefix="~" suffix="%" label="Pipeline growth" />
+            <AnimatedStat value="350" prefix="$" suffix="K/mo" label="Pipeline produced" />
+            <AnimatedStat value="200" prefix="$" suffix="K+" label="Additional pipeline" />
+          </div>
+        </div>
+
+        <!-- Guiding Principles as Cards -->
+        <div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Guiding principles</div>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="terminal-panel">
+              <div class="terminal-panel__body">
+                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Governed data beats clever automation.</p>
+                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                  Unified lifecycle, stage, and attribution definitions across CRM and warehouse. Forecasts and pipeline reporting stay reliable.
+                </p>
+              </div>
             </div>
-            <div class="space-y-2">
-              <p class="text-[var(--color-text)]">Automation should shorten response time without hiding errors.</p>
-              <ul class="list-disc pl-5 space-y-1 text-[var(--color-text-muted)]">
-                <li>Evidence: Built enrichment, routing, and SLA workflows with monitoring and human checkpoints.</li>
-                <li>Implication: Teams spend time on selling and insight, not cleanup.</li>
-              </ul>
+            <div class="terminal-panel">
+              <div class="terminal-panel__body">
+                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Automation should shorten response time without hiding errors.</p>
+                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                  Enrichment, routing, and SLA workflows with monitoring and human checkpoints. Teams spend time selling, not doing cleanup.
+                </p>
+              </div>
             </div>
-            <div class="space-y-2">
-              <p class="text-[var(--color-text)]">RevOps systems need end-to-end ownership.</p>
-              <ul class="list-disc pl-5 space-y-1 text-[var(--color-text-muted)]">
-                <li>Evidence: 10+ years across sales, GTM, and data; led AI-enabled GTM ops since 2022.</li>
-                <li>Implication: Faster launches with clear accountability and adoption.</li>
-              </ul>
+            <div class="terminal-panel">
+              <div class="terminal-panel__body">
+                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">RevOps systems need end-to-end ownership.</p>
+                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                  10+ years across sales, GTM, and data. Led AI-enabled GTM ops since 2022. Faster launches with clear accountability.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="space-y-3">
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Selected outcomes</div>
-          <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
-            <li>Generated $8M+ in qualified pipeline leading the enterprise team at Benchling.</li>
-            <li>Drove ~40% pipeline growth with AWS channel enablement at CloudZero.</li>
-            <li>Ranked top 10% at DataRobot, producing ~$350K/month pipeline.</li>
-            <li>Delivered $200K+ pipeline and ~$75K average monthly ARR at Smartsheet.</li>
-          </ul>
-        </div>
-
-        <div class="space-y-3">
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Selected roles</div>
+        <!-- Selected Roles -->
+        <div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Selected roles</div>
           <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
             <li>2022 to Present - Revenue Systems Architect (Freelance) - AI-enabled GTM ops and automation.</li>
             <li>2021 to 2022 - Benchling - Global Lead, Enterprise Development.</li>
@@ -69,8 +86,9 @@ import CommandButton from '../components/CommandButton.astro';
           </ul>
         </div>
 
-        <div class="space-y-3">
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide">Systems delivered</div>
+        <!-- Systems Delivered -->
+        <div>
+          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Systems delivered</div>
           <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
             <li>Lead routing and enrichment automations in Salesforce and HubSpot.</li>
             <li>Data models in Snowflake and dbt for pipeline and attribution.</li>

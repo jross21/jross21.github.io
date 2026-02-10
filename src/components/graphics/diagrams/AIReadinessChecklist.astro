@@ -1,0 +1,238 @@
+---
+/**
+ * AIReadinessChecklist.astro
+ *
+ * Visual checklist showing AI readiness criteria.
+ * Used in "Why Your AI Initiative Won't Deliver" essay.
+ */
+interface ChecklistItem {
+  label: string;
+  metric: string;
+  target: string;
+  status: 'pass' | 'warning' | 'fail';
+}
+
+interface Props {
+  items?: ChecklistItem[];
+  class?: string;
+}
+
+const defaultItems: ChecklistItem[] = [
+  { label: 'Duplicate Rate', metric: 'Leads/Contacts', target: '<5%', status: 'pass' },
+  { label: 'Field Consistency', metric: 'Critical fields valid', target: '>80%', status: 'warning' },
+  { label: 'Identity Resolution', metric: 'Lead-to-Account match', target: '>90%', status: 'pass' },
+  { label: 'Contact Completeness', metric: 'Email + Phone + Title', target: '>70%', status: 'warning' },
+  { label: 'Event Instrumentation', metric: 'Actions logged', target: 'Key sources', status: 'fail' },
+];
+
+const { items = defaultItems, class: className = '' } = Astro.props;
+
+const statusConfig = {
+  pass: { icon: '✓', color: 'var(--color-terminal-green)', label: 'Ready' },
+  warning: { icon: '!', color: 'var(--color-terminal-yellow)', label: 'Review' },
+  fail: { icon: '✗', color: 'var(--color-error)', label: 'Fix First' },
+};
+---
+
+<div class:list={['ai-readiness-checklist', className]}>
+  <div class="checklist-header">
+    <h4 class="checklist-title">AI Readiness Diagnostic</h4>
+    <p class="checklist-subtitle">Measure before you build</p>
+  </div>
+
+  <div class="checklist-items">
+    {items.map((item) => {
+      const config = statusConfig[item.status];
+      return (
+        <div class="checklist-item" style={`--status-color: ${config.color}`}>
+          <div class="checklist-item__status">
+            <span class="status-icon">{config.icon}</span>
+          </div>
+          <div class="checklist-item__content">
+            <div class="checklist-item__label">{item.label}</div>
+            <div class="checklist-item__metric">{item.metric}</div>
+          </div>
+          <div class="checklist-item__target">
+            <span class="target-value">{item.target}</span>
+            <span class="target-label">{config.label}</span>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="checklist-footer">
+    <div class="footer-legend">
+      <span class="legend-item" style="--dot-color: var(--color-terminal-green)">
+        <span class="legend-dot"></span> Ready
+      </span>
+      <span class="legend-item" style="--dot-color: var(--color-terminal-yellow)">
+        <span class="legend-dot"></span> Needs Work
+      </span>
+      <span class="legend-item" style="--dot-color: var(--color-error)">
+        <span class="legend-dot"></span> Blocker
+      </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ai-readiness-checklist {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--color-bg-subtle);
+    font-family: var(--font-sans);
+  }
+
+  .checklist-header {
+    padding: 1rem 1.25rem;
+    background-color: var(--color-bg-elevated);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .checklist-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .checklist-subtitle {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0.25rem 0 0 0;
+  }
+
+  .checklist-items {
+    padding: 0.5rem 0;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .checklist-item:last-child {
+    border-bottom: none;
+  }
+
+  .checklist-item__status {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--status-color);
+    flex-shrink: 0;
+  }
+
+  .status-icon {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--status-color);
+  }
+
+  .checklist-item__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .checklist-item__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .checklist-item__metric {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.125rem;
+  }
+
+  .checklist-item__target {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .target-value {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--status-color);
+  }
+
+  .target-label {
+    display: block;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-dim);
+    margin-top: 0.125rem;
+  }
+
+  .checklist-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-bg-elevated);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dot-color);
+  }
+
+  /* Light mode */
+  :global(html.light) .ai-readiness-checklist {
+    background-color: var(--color-bg-elevated);
+  }
+
+  :global(html.light) .checklist-header,
+  :global(html.light) .checklist-footer {
+    background-color: var(--color-bg-subtle);
+  }
+
+  :global(html.light) .checklist-item__status {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .checklist-item {
+      padding: 0.625rem 1rem;
+    }
+
+    .checklist-item__label {
+      font-size: 0.8125rem;
+    }
+
+    .footer-legend {
+      gap: 1rem;
+    }
+  }
+</style>

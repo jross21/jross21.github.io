@@ -6,6 +6,12 @@ import AuthorCard from '../../components/AuthorCard.astro';
 import DownloadSection from '../../components/DownloadSection.astro';
 import RelatedItems from '../../components/RelatedItems.astro';
 import GitStats from '../../components/GitStats.astro';
+import ReadingProgress from '../../components/ReadingProgress.astro';
+import ArticleNav from '../../components/ArticleNav.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import TieredRoutingDiagram from '../../components/graphics/diagrams/TieredRoutingDiagram.astro';
+import DataFlowDiagram from '../../components/graphics/diagrams/DataFlowDiagram.astro';
+import BeforeAfterComparison from '../../components/graphics/diagrams/BeforeAfterComparison.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -20,8 +26,16 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 const summary = entry.data.summary;
 
-// Get all projects for related items
+// Get all projects for related items + prev/next navigation
 const allWork = await getCollection('work');
+const currentIndex = allWork.findIndex(p => p.slug === entry.slug);
+const prev = currentIndex > 0
+  ? { title: allWork[currentIndex - 1].data.title, slug: allWork[currentIndex - 1].slug }
+  : undefined;
+const next = currentIndex < allWork.length - 1
+  ? { title: allWork[currentIndex + 1].data.title, slug: allWork[currentIndex + 1].slug }
+  : undefined;
+
 const relatedProjects = allWork
   .filter(p => p.slug !== entry.slug)
   .slice(0, 3)
@@ -31,7 +45,17 @@ const stats = entry.data.stats;
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
-  <article class="py-8">
+  <ReadingProgress section="projects" />
+
+  <article class="py-8" data-section="projects">
+    <!-- Breadcrumb -->
+    <div class="mb-6">
+      <Breadcrumb items={[
+        { label: 'projects', href: '/projects' },
+        { label: entry.slug }
+      ]} />
+    </div>
+
     <!-- Two-column layout -->
     <div class="lg:grid lg:grid-cols-[1fr_280px] lg:gap-8">
       <!-- Main content column -->
@@ -76,6 +100,31 @@ const stats = entry.data.stats;
           </TerminalPanel>
         )}
 
+        <!-- Case Study Diagrams -->
+        {entry.slug === 'ai-routing-sla' && (
+          <TerminalPanel title="System Architecture" class="mb-6">
+            <TieredRoutingDiagram autoPercent={40} assistedPercent={45} humanPercent={15} />
+          </TerminalPanel>
+        )}
+
+        {entry.slug === 'self-serve-analytics' && (
+          <TerminalPanel title="Data Architecture" class="mb-6">
+            <DataFlowDiagram sources={['CRM', 'Marketing', 'Product', 'Finance']} />
+          </TerminalPanel>
+        )}
+
+        {entry.slug === 'data-governance-automation' && (
+          <TerminalPanel title="Impact" class="mb-6">
+            <BeforeAfterComparison
+              metrics={[
+                { label: 'Required Fields Complete', before: '64%', after: '92%', improvement: '+28%' },
+                { label: 'Duplicate Rate', before: 'High', after: 'Low', improvement: '-78%' },
+                { label: 'Lead Source Onboarding', before: '2 weeks', after: '4 days', improvement: '-70%' },
+              ]}
+            />
+          </TerminalPanel>
+        )}
+
         <!-- Table of Contents as File Explorer (mobile) -->
         {headings.length > 0 && (
           <div class="lg:hidden mb-6">
@@ -100,6 +149,9 @@ const stats = entry.data.stats;
           prose-th:text-[var(--color-text)]">
           <Content />
         </div>
+
+        <!-- Prev/Next Navigation -->
+        <ArticleNav prev={prev} next={next} basePath="/projects" />
       </div>
 
       <!-- Sidebar -->

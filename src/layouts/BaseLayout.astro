@@ -1,8 +1,10 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 import TerminalHeader from '../components/TerminalHeader.astro';
 import TerminalFooter from '../components/TerminalFooter.astro';
 import TerminalMobileNav from '../components/TerminalMobileNav.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
 
 interface Props {
   title?: string;
@@ -34,12 +36,15 @@ const pageTitle = title === 'Julian Ross' ? title : `${title} | Julian Ross`;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/og-image.png" />
+    <meta property="og:image" content="/images/og-image.svg" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+
+    <!-- View Transitions -->
+    <ViewTransitions />
 
     <!-- Theme script - dark by default, add 'light' class for light mode -->
     <script is:inline>
@@ -73,5 +78,6 @@ const pageTitle = title === 'Julian Ross' ? title : `${title} | Julian Ross`;
       <TerminalFooter />
     </div>
     <TerminalMobileNav />
+    <ScrollToTop />
   </body>
 </html>

@@ -1,0 +1,38 @@
+---
+/**
+ * Breadcrumb.astro
+ *
+ * Terminal-style breadcrumb: ~/ideas/article-slug
+ * Uses existing breadcrumb CSS from global.css.
+ */
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <span class="breadcrumb__segment breadcrumb__segment--home">
+    <a href="/" class="breadcrumb__segment hover:no-underline">~</a>
+  </span>
+  {items.map((item, i) => (
+    <>
+      <span class="breadcrumb__separator">/</span>
+      {item.href ? (
+        <a href={item.href} class="breadcrumb__segment hover:no-underline">
+          {item.label}
+        </a>
+      ) : (
+        <span class="breadcrumb__segment breadcrumb__segment--current">
+          {item.label}
+        </span>
+      )}
+    </>
+  ))}
+</nav>

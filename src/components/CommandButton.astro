@@ -7,7 +7,7 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
   class?: string;
   type?: 'button' | 'submit';
-  section?: 'projects' | 'writing' | 'about' | 'contact';
+  section?: 'projects' | 'writing' | 'about' | 'contact' | 'services';
 }
 
 const {
@@ -68,27 +68,34 @@ const Element = href ? 'a' : 'button';
   .cmd-button--section-projects.cmd-button--active {
     color: var(--color-section-projects);
     border-color: var(--color-section-projects);
-    background-color: rgba(235, 203, 139, 0.05); /* nord13 - yellow */
+    background-color: var(--color-section-projects-dim);
   }
 
   .cmd-button--section-writing:hover,
   .cmd-button--section-writing.cmd-button--active {
     color: var(--color-section-writing);
     border-color: var(--color-section-writing);
-    background-color: rgba(180, 142, 173, 0.05); /* nord15 - purple */
+    background-color: var(--color-section-writing-dim);
   }
 
   .cmd-button--section-about:hover,
   .cmd-button--section-about.cmd-button--active {
     color: var(--color-section-about);
     border-color: var(--color-section-about);
-    background-color: rgba(143, 188, 187, 0.05); /* nord7 - teal */
+    background-color: var(--color-section-about-dim);
   }
 
   .cmd-button--section-contact:hover,
   .cmd-button--section-contact.cmd-button--active {
     color: var(--color-section-contact);
     border-color: var(--color-section-contact);
-    background-color: rgba(136, 192, 208, 0.05); /* nord8 - cyan */
+    background-color: var(--color-section-contact-dim);
+  }
+
+  .cmd-button--section-services:hover,
+  .cmd-button--section-services.cmd-button--active {
+    color: var(--color-section-services);
+    border-color: var(--color-section-services);
+    background-color: var(--color-section-services-dim);
   }
 </style>

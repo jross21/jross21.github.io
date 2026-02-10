@@ -4,20 +4,28 @@ interface Props {
   description: string;
   slug: string;
   category?: string;
+  readTime?: number;
 }
 
-const { title, description, slug, category } = Astro.props;
+const { title, description, slug, category, readTime } = Astro.props;
 ---
 
 <a
   href={`/ideas/${slug}`}
   class="post-card block hover:no-underline group transition-all duration-200"
 >
-  {category && (
-    <div class="post-card__category">
-      {category}
-    </div>
-  )}
+  <div class="post-card__meta">
+    {category && (
+      <span class="post-card__category">
+        {category}
+      </span>
+    )}
+    {readTime && (
+      <span class="post-card__readtime">
+        {readTime} min read
+      </span>
+    )}
+  </div>
   <h3 class="post-card__title">
     {title}
   </h3>
@@ -46,12 +54,23 @@ const { title, description, slug, category } = Astro.props;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
+  .post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
   .post-card__category {
     font-size: 0.6875rem;
     color: var(--color-text-dim);
-    margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+
+  .post-card__readtime {
+    font-size: 0.6875rem;
+    color: var(--color-text-dim);
   }
 
   .post-card__title {

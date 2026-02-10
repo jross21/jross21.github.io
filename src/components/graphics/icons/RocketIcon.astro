@@ -1,0 +1,62 @@
+---
+/**
+ * RocketIcon - Rocket icon for growth/launch/velocity
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 20, class: className = '' } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={['icon', className]}
+  aria-hidden="true"
+>
+  <!-- Rocket body -->
+  <path
+    d="M12 2C12 2 8 6 8 12C8 14.5 9 16.5 10.5 18L13.5 18C15 16.5 16 14.5 16 12C16 6 12 2 12 2Z"
+    fill="currentColor"
+    opacity="0.9"
+  />
+  <!-- Rocket tip -->
+  <path
+    d="M12 2L10 6H14L12 2Z"
+    fill="currentColor"
+  />
+  <!-- Left fin -->
+  <path
+    d="M8 14L5 17L8 16V14Z"
+    fill="currentColor"
+    opacity="0.7"
+  />
+  <!-- Right fin -->
+  <path
+    d="M16 14L19 17L16 16V14Z"
+    fill="currentColor"
+    opacity="0.7"
+  />
+  <!-- Exhaust flames -->
+  <path
+    d="M10.5 18L12 22L13.5 18"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    opacity="0.6"
+  />
+  <!-- Window -->
+  <circle cx="12" cy="10" r="2" fill="var(--color-bg-subtle)"/>
+</svg>
+
+<style>
+  .icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+</style>

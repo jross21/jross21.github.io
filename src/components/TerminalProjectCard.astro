@@ -13,25 +13,51 @@ const { title, description, slug, date } = Astro.props;
   href={`/projects/${slug}`}
   class="project-card block py-4 border-b border-[var(--color-border)] hover:no-underline group last:border-b-0 transition-all duration-200"
 >
-  <h3 class="project-card__title text-[var(--color-text)] transition-colors text-base font-semibold leading-snug mb-2">
-    {title}
-  </h3>
-  <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-    {description}
-  </p>
-  {date && (
-    <div class="text-xs text-[var(--color-text-dim)] mt-2">
-      {date}
+  <div class="flex items-start justify-between gap-3">
+    <div>
+      <h3 class="project-card__title text-[var(--color-text)] transition-colors text-base font-semibold leading-snug mb-2">
+        {title}
+      </h3>
+      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+        {description}
+      </p>
+      {date && (
+        <div class="text-xs text-[var(--color-text-dim)] mt-2">
+          {date}
+        </div>
+      )}
     </div>
-  )}
+    <span class="project-card__arrow text-[var(--color-text-dim)] transition-all duration-200 mt-1 flex-shrink-0">
+      &rarr;
+    </span>
+  </div>
 </a>
 
 <style>
+  .project-card {
+    border-left: 3px solid transparent;
+    padding-left: 1rem;
+    transition: border-color 0.2s ease, transform 0.2s ease, padding-left 0.2s ease;
+  }
+
   .project-card:hover {
     border-color: var(--color-section-projects);
+    border-bottom-color: var(--color-section-projects);
+    transform: translateX(4px);
   }
 
   .project-card:hover .project-card__title {
+    color: var(--color-section-projects);
+  }
+
+  .project-card__arrow {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+
+  .project-card:hover .project-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
     color: var(--color-section-projects);
   }
 </style>

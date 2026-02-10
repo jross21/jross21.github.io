@@ -1,0 +1,102 @@
+---
+/**
+ * ArticleNav.astro
+ *
+ * Prev/Next navigation between articles.
+ * Two-column layout at bottom of article pages.
+ */
+interface NavItem {
+  title: string;
+  slug: string;
+}
+
+interface Props {
+  prev?: NavItem;
+  next?: NavItem;
+  basePath: string;
+}
+
+const { prev, next, basePath } = Astro.props;
+---
+
+{(prev || next) && (
+  <nav class="article-nav" aria-label="Article navigation">
+    <div class="article-nav__grid">
+      {prev ? (
+        <a href={`${basePath}/${prev.slug}`} class="article-nav__link article-nav__link--prev">
+          <span class="article-nav__direction">&larr; Previous</span>
+          <span class="article-nav__title">{prev.title}</span>
+        </a>
+      ) : (
+        <div></div>
+      )}
+      {next ? (
+        <a href={`${basePath}/${next.slug}`} class="article-nav__link article-nav__link--next">
+          <span class="article-nav__direction">Next &rarr;</span>
+          <span class="article-nav__title">{next.title}</span>
+        </a>
+      ) : (
+        <div></div>
+      )}
+    </div>
+  </nav>
+)}
+
+<style>
+  .article-nav {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-nav__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .article-nav__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .article-nav__link:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .article-nav__link--next {
+    text-align: right;
+  }
+
+  .article-nav__direction {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .article-nav__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  .article-nav__link:hover .article-nav__title {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 640px) {
+    .article-nav__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

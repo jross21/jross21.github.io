@@ -1,31 +1,46 @@
 ---
+/**
+ * AuthorCard - Profile card with avatar, name, title, and optional CTA
+ */
+import AvatarPortrait from './graphics/AvatarPortrait.astro';
+
 interface Props {
   showCta?: boolean;
+  showAvatar?: boolean;
 }
 
-const { showCta = true } = Astro.props;
+const { showCta = true, showAvatar = true } = Astro.props;
 ---
 
-<div class="terminal-panel">
-  <div class="terminal-panel__body space-y-3">
-    <div>
-      <p class="text-base font-semibold text-[var(--color-text)]">Julian Ross</p>
-      <p class="text-sm text-[var(--color-text-muted)]">Revenue Systems Architect</p>
+<div class="terminal-panel author-card">
+  <div class="terminal-panel__body">
+    <div class="author-card__content">
+      {showAvatar && (
+        <div class="author-card__avatar">
+          <AvatarPortrait size={64} />
+        </div>
+      )}
+      <div class="author-card__info">
+        <p class="text-base font-semibold text-[var(--color-text)]">Julian Ross</p>
+        <p class="text-sm text-[var(--color-text-muted)]">Revenue Systems Architect</p>
+      </div>
     </div>
-    <div class="text-sm text-[var(--color-text-muted)]">
+
+    <div class="text-sm text-[var(--color-text-muted)] mt-3">
       Focus areas: agentic workflows, GTM automation, data architecture.
     </div>
+
     <a
       href="https://www.linkedin.com/in/julianross21/"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
+      class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors inline-block mt-2"
     >
       LinkedIn profile
     </a>
 
     {showCta && (
-      <div class="pt-3 border-t border-[var(--color-border)]">
+      <div class="pt-3 mt-3 border-t border-[var(--color-border)]">
         <a
           href="/contact"
           class="cmd-button cmd-button--primary w-full justify-center"
@@ -36,3 +51,21 @@ const { showCta = true } = Astro.props;
     )}
   </div>
 </div>
+
+<style>
+  .author-card__content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-card__avatar {
+    flex-shrink: 0;
+  }
+
+  .author-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+</style>

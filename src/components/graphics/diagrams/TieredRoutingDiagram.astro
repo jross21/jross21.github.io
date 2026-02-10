@@ -1,0 +1,128 @@
+---
+/**
+ * TieredRoutingDiagram.astro
+ *
+ * Simple horizontal stacked bars showing lead routing distribution:
+ * Auto-Routed | AI-Assisted | Human Required
+ */
+interface Props {
+  autoPercent?: number;
+  assistedPercent?: number;
+  humanPercent?: number;
+  class?: string;
+}
+
+const {
+  autoPercent = 40,
+  assistedPercent = 45,
+  humanPercent = 15,
+  class: className = ''
+} = Astro.props;
+---
+
+<div class:list={['tiered-routing-diagram', className]}>
+  <svg
+    viewBox="0 0 500 120"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="tiered-routing-diagram__svg"
+    role="img"
+    aria-labelledby="tiered-routing-title"
+  >
+    <title id="tiered-routing-title">Tiered Lead Routing Distribution</title>
+
+    <!-- Bar 1: Auto-Routed (green) -->
+    <g class="tier tier--auto">
+      <rect x="0" y="0" width={autoPercent * 5} height="32" rx="4" class="tier-bar tier-bar--auto"/>
+      <text x={(autoPercent * 5) / 2} y="21" text-anchor="middle" class="tier-label">Auto-Routed</text>
+      <text x={(autoPercent * 5) + 10} y="21" class="tier-percent tier-percent--auto">{autoPercent}%</text>
+    </g>
+
+    <!-- Bar 2: AI-Assisted (cyan) -->
+    <g class="tier tier--assisted">
+      <rect x="0" y="44" width={assistedPercent * 5} height="32" rx="4" class="tier-bar tier-bar--assisted"/>
+      <text x={(assistedPercent * 5) / 2} y="65" text-anchor="middle" class="tier-label">AI-Assisted</text>
+      <text x={(assistedPercent * 5) + 10} y="65" class="tier-percent tier-percent--assisted">{assistedPercent}%</text>
+    </g>
+
+    <!-- Bar 3: Human Required (yellow) -->
+    <g class="tier tier--human">
+      <rect x="0" y="88" width={humanPercent * 5} height="32" rx="4" class="tier-bar tier-bar--human"/>
+      <text x={(humanPercent * 5) / 2} y="109" text-anchor="middle" class="tier-label tier-label--dark">Human</text>
+      <text x={(humanPercent * 5) + 10} y="109" class="tier-percent tier-percent--human">{humanPercent}%</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .tiered-routing-diagram {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .tiered-routing-diagram__svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .tier-bar {
+    stroke-width: 0;
+  }
+
+  .tier-bar--auto {
+    fill: var(--color-terminal-green);
+  }
+
+  .tier-bar--assisted {
+    fill: var(--color-accent);
+  }
+
+  .tier-bar--human {
+    fill: var(--color-terminal-yellow);
+  }
+
+  .tier-label {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--color-bg);
+  }
+
+  .tier-label--dark {
+    fill: var(--color-bg);
+  }
+
+  .tier-percent {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .tier-percent--auto {
+    fill: var(--color-terminal-green);
+  }
+
+  .tier-percent--assisted {
+    fill: var(--color-accent);
+  }
+
+  .tier-percent--human {
+    fill: var(--color-terminal-yellow);
+  }
+
+  /* Light mode - use dark text on colored bars for contrast */
+  :global(html.light) .tier-label {
+    fill: #2E3440; /* Polar Night - ensures legibility on light bars */
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .tier-label {
+      font-size: 11px;
+    }
+    .tier-percent {
+      font-size: 12px;
+    }
+  }
+</style>

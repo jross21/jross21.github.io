@@ -1,0 +1,194 @@
+---
+/**
+ * AnimatedStat.astro
+ *
+ * Animated statistic display with count-up animation on scroll.
+ * Uses Intersection Observer for scroll-triggered animation.
+ * Respects prefers-reduced-motion.
+ */
+interface Props {
+  value: string;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+  class?: string;
+}
+
+const { value, label, prefix = '', suffix = '', class: className = '' } = Astro.props;
+
+// Extract numeric part for animation
+const numericMatch = value.match(/[\d.]+/);
+const numericValue = numericMatch ? parseFloat(numericMatch[0]) : null;
+const hasDecimals = numericValue !== null && value.includes('.');
+---
+
+<div
+  class:list={['animated-stat', className]}
+  data-value={numericValue}
+  data-prefix={prefix}
+  data-suffix={suffix}
+  data-decimals={hasDecimals ? '1' : '0'}
+  data-original={value}
+>
+  <p class="animated-stat__value">
+    <span class="animated-stat__number">{value}</span>
+  </p>
+  <p class="animated-stat__label">{label}</p>
+
+  <!-- Optional progress bar indicator -->
+  <div class="animated-stat__progress">
+    <div class="animated-stat__progress-bar"></div>
+  </div>
+</div>
+
+<style>
+  .animated-stat {
+    text-align: center;
+  }
+
+  .animated-stat__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 768px) {
+    .animated-stat__value {
+      font-size: 2.5rem;
+    }
+  }
+
+  .animated-stat__label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .animated-stat__progress {
+    margin-top: 0.75rem;
+    height: 3px;
+    background-color: var(--color-border);
+    border-radius: 2px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .animated-stat.is-animated .animated-stat__progress {
+    opacity: 1;
+  }
+
+  .animated-stat__progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+    transition: width 1s ease-out;
+  }
+
+  .animated-stat.is-animated .animated-stat__progress-bar {
+    width: 100%;
+  }
+
+  /* Reduced motion: skip animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animated-stat__progress-bar {
+      transition: none;
+      width: 100%;
+    }
+
+    .animated-stat__progress {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  // Count-up animation function
+  function animateValue(
+    element: HTMLElement,
+    start: number,
+    end: number,
+    duration: number,
+    prefix: string,
+    suffix: string,
+    decimals: number
+  ) {
+    const startTime = performance.now();
+
+    function update(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function (ease-out-cubic)
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = start + (end - start) * easeOut;
+
+      const formatted = decimals > 0
+        ? current.toFixed(decimals)
+        : Math.round(current).toString();
+
+      element.textContent = prefix + formatted + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // Initialize all animated stats
+  function initAnimatedStats() {
+    const stats = document.querySelectorAll('.animated-stat');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const stat = entry.target as HTMLElement;
+
+            // Skip if already animated
+            if (stat.classList.contains('is-animated')) return;
+
+            stat.classList.add('is-animated');
+
+            // Skip count animation if reduced motion is preferred
+            if (prefersReducedMotion) return;
+
+            const valueEl = stat.querySelector('.animated-stat__number') as HTMLElement;
+            if (!valueEl) return;
+
+            const numericValue = parseFloat(stat.dataset.value || '0');
+            const prefix = stat.dataset.prefix || '';
+            const suffix = stat.dataset.suffix || '';
+            const decimals = parseInt(stat.dataset.decimals || '0', 10);
+
+            if (!isNaN(numericValue) && numericValue > 0) {
+              animateValue(valueEl, 0, numericValue, 1500, prefix, suffix, decimals);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    stats.forEach((stat) => observer.observe(stat));
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimatedStats);
+  } else {
+    initAnimatedStats();
+  }
+
+  // Re-run on Astro page transitions
+  document.addEventListener('astro:page-load', initAnimatedStats);
+</script>

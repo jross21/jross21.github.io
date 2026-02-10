@@ -1,0 +1,229 @@
+---
+/**
+ * BeforeAfterComparison.astro
+ *
+ * Reusable before/after comparison diagram showing transformation.
+ * Can be used for any case study that shows improvement metrics.
+ */
+interface Metric {
+  label: string;
+  before: string;
+  after: string;
+  improvement?: string;
+}
+
+interface Props {
+  beforeTitle?: string;
+  afterTitle?: string;
+  metrics: Metric[];
+  class?: string;
+}
+
+const {
+  beforeTitle = 'Before',
+  afterTitle = 'After',
+  metrics,
+  class: className = ''
+} = Astro.props;
+---
+
+<div class:list={['before-after-comparison', className]}>
+  <div class="comparison-header">
+    <div class="comparison-header__side comparison-header__side--before">
+      <span class="comparison-header__icon">✗</span>
+      <span class="comparison-header__title">{beforeTitle}</span>
+    </div>
+    <div class="comparison-header__arrow">→</div>
+    <div class="comparison-header__side comparison-header__side--after">
+      <span class="comparison-header__icon">✓</span>
+      <span class="comparison-header__title">{afterTitle}</span>
+    </div>
+  </div>
+
+  <div class="comparison-metrics">
+    {metrics.map((metric) => (
+      <div class="metric-row">
+        <div class="metric-label">{metric.label}</div>
+        <div class="metric-values">
+          <div class="metric-value metric-value--before">
+            <span class="metric-value__number">{metric.before}</span>
+          </div>
+          <div class="metric-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="arrow-svg">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="metric-value metric-value--after">
+            <span class="metric-value__number">{metric.after}</span>
+            {metric.improvement && (
+              <span class="metric-value__improvement">{metric.improvement}</span>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .before-after-comparison {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--color-bg-subtle);
+  }
+
+  .comparison-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-bg-elevated);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .comparison-header__side {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .comparison-header__icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .comparison-header__side--before .comparison-header__icon {
+    background-color: rgba(191, 97, 106, 0.2);
+    color: var(--color-error);
+  }
+
+  .comparison-header__side--after .comparison-header__icon {
+    background-color: rgba(163, 190, 140, 0.2);
+    color: var(--color-terminal-green);
+  }
+
+  .comparison-header__title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .comparison-header__arrow {
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .comparison-metrics {
+    padding: 1rem 1.5rem;
+  }
+
+  .metric-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .metric-row:last-child {
+    border-bottom: none;
+  }
+
+  .metric-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .metric-values {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .metric-value {
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .metric-value__number {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .metric-value--before .metric-value__number {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .metric-value--after .metric-value__number {
+    color: var(--color-accent);
+  }
+
+  .metric-value__improvement {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-terminal-green);
+    background-color: rgba(163, 190, 140, 0.15);
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .metric-arrow {
+    color: var(--color-accent);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .arrow-svg {
+    display: block;
+  }
+
+  /* Light mode */
+  :global(html.light) .before-after-comparison {
+    background-color: var(--color-bg-elevated);
+  }
+
+  :global(html.light) .comparison-header {
+    background-color: var(--color-bg-subtle);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .comparison-header {
+      padding: 0.75rem 1rem;
+    }
+
+    .comparison-metrics {
+      padding: 0.75rem 1rem;
+    }
+
+    .metric-value__number {
+      font-size: 1rem;
+    }
+
+    .metric-value__improvement {
+      font-size: 0.625rem;
+    }
+  }
+</style>
