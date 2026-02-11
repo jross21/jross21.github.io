@@ -5,7 +5,7 @@ import FileExplorer from '../../components/FileExplorer.astro';
 import AuthorCard from '../../components/AuthorCard.astro';
 import DownloadSection from '../../components/DownloadSection.astro';
 import RelatedItems from '../../components/RelatedItems.astro';
-import GitStats from '../../components/GitStats.astro';
+import AnimatedStat from '../../components/AnimatedStat.astro';
 import ReadingProgress from '../../components/ReadingProgress.astro';
 import ArticleNav from '../../components/ArticleNav.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
@@ -72,29 +72,35 @@ const stats = entry.data.stats;
             <p class="text-[var(--color-text-muted)] leading-relaxed">
               {entry.data.description}
             </p>
-
-            {stats && stats.length > 0 && (
-              <div class="pt-2 border-t border-[var(--color-border)]">
-                <GitStats stats={stats} />
-              </div>
-            )}
           </div>
         </TerminalPanel>
 
+        <!-- Prominent Stats Grid -->
+        {stats && stats.length > 0 && (
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+            {stats.map((stat) => (
+              <AnimatedStat
+                value={stat.value}
+                label={stat.label}
+              />
+            ))}
+          </div>
+        )}
+
         {summary && (
-          <TerminalPanel title="Transformation" class="mb-6">
+          <TerminalPanel title="Situation / Action / Result" class="mb-6">
             <dl class="space-y-4 text-sm text-[var(--color-text-muted)]">
               <div>
-                <dt class="text-[var(--color-text)]">Outcome</dt>
-                <dd>{summary.outcome}</dd>
-              </div>
-              <div>
-                <dt class="text-[var(--color-text)]">Context</dt>
+                <dt class="text-[var(--color-text)] font-medium">Situation</dt>
                 <dd>{summary.context}</dd>
               </div>
               <div>
-                <dt class="text-[var(--color-text)]">Change</dt>
+                <dt class="text-[var(--color-text)] font-medium">Action</dt>
                 <dd>{summary.change}</dd>
+              </div>
+              <div>
+                <dt class="text-[var(--color-text)] font-medium">Result</dt>
+                <dd>{summary.outcome}</dd>
               </div>
             </dl>
           </TerminalPanel>
@@ -120,6 +126,42 @@ const stats = entry.data.stats;
                 { label: 'Required Fields Complete', before: '64%', after: '92%', improvement: '+28%' },
                 { label: 'Duplicate Rate', before: 'High', after: 'Low', improvement: '-78%' },
                 { label: 'Lead Source Onboarding', before: '2 weeks', after: '4 days', improvement: '-70%' },
+              ]}
+            />
+          </TerminalPanel>
+        )}
+
+        {entry.slug === 'agentic-workflow-revops' && (
+          <TerminalPanel title="Impact" class="mb-6">
+            <BeforeAfterComparison
+              metrics={[
+                { label: 'SDR Qualification Time', before: '45 min', after: '18 min', improvement: '-60%' },
+                { label: 'MQL-to-SQL Conversion', before: '18%', after: '24%', improvement: '+34%' },
+                { label: 'Response Time', before: '8 hrs', after: '< 1 hr', improvement: '-87%' },
+              ]}
+            />
+          </TerminalPanel>
+        )}
+
+        {entry.slug === 'forecast-integrity-cadence' && (
+          <TerminalPanel title="Impact" class="mb-6">
+            <BeforeAfterComparison
+              metrics={[
+                { label: 'Forecast Accuracy', before: '~60%', after: '84%', improvement: '+24%' },
+                { label: 'Stage Aging', before: 'High', after: 'Controlled', improvement: '-35%' },
+                { label: 'Reporting Latency', before: '3–5 days', after: '<24 hrs', improvement: '-80%' },
+              ]}
+            />
+          </TerminalPanel>
+        )}
+
+        {entry.slug === 'scaling-revenue-stack' && (
+          <TerminalPanel title="Impact" class="mb-6">
+            <BeforeAfterComparison
+              metrics={[
+                { label: 'Revenue Tools', before: '11', after: '4', improvement: '-64%' },
+                { label: 'Operational Overhead', before: 'High', after: 'Manageable', improvement: '-40%' },
+                { label: 'Hidden Automations', before: '12 unknown', after: '0', improvement: 'Resolved' },
               ]}
             />
           </TerminalPanel>

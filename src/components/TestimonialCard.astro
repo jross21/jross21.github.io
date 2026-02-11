@@ -1,0 +1,43 @@
+---
+/**
+ * TestimonialCard.astro
+ *
+ * Displays a colleague testimonial quote with attribution.
+ * Uses blockquote semantics for accessibility.
+ */
+interface Props {
+  quote: string;
+  name: string;
+  title: string;
+  company?: string;
+  class?: string;
+}
+
+const { quote, name, title, company, class: className = '' } = Astro.props;
+---
+
+<div class:list={['terminal-panel', className]}>
+  <div class="terminal-panel__body">
+    <blockquote class="testimonial-quote">
+      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed italic">
+        "{quote}"
+      </p>
+      <footer class="mt-3 text-xs">
+        <span class="text-[var(--color-text)] font-medium">{name}</span>
+        {company ? (
+          <span class="text-[var(--color-text-dim)]"> — {title}, {company}</span>
+        ) : (
+          <span class="text-[var(--color-text-dim)]"> — {title}</span>
+        )}
+      </footer>
+    </blockquote>
+  </div>
+</div>
+
+<style>
+  .testimonial-quote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1rem;
+    margin: 0;
+  }
+</style>

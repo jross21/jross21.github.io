@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CommandButton from '../components/CommandButton.astro';
+import ResumeTimeline from '../components/ResumeTimeline.astro';
+
+const experienceEntries = [
+  {
+    dateRange: '2022 – Present',
+    company: 'Independent',
+    title: 'Revenue Systems Architect',
+    bullets: [
+      'Designed and deployed AI-enabled GTM workflows — lead qualification, enrichment, routing — with validation, monitoring, and human checkpoints.',
+      'Built data infrastructure (Snowflake, dbt, Fivetran) powering pipeline reporting and attribution.',
+      'Led CRM architecture projects across Salesforce and HubSpot for growth-stage SaaS companies.',
+      'Produced $8M+ qualified pipeline; drove ~40% pipeline growth and $350K/mo pipeline produced.',
+    ],
+  },
+  {
+    dateRange: '2021 – 2022',
+    company: 'Benchling',
+    title: 'Global Lead, Enterprise Development',
+    bullets: [
+      'Stood up and managed global enterprise SDR function targeting life sciences accounts.',
+      'Developed outbound playbooks and qualification frameworks for $100K+ ACV deals.',
+      'Collaborated with marketing ops on lead scoring, routing, and attribution.',
+    ],
+  },
+  {
+    dateRange: '2020 – 2021',
+    company: 'CloudZero',
+    title: 'Cloud Cost Solutions Enablement',
+    bullets: [
+      'Enabled sales team on cloud cost optimization positioning and competitive differentiation.',
+      'Built demo environments and ROI models for enterprise prospects.',
+    ],
+  },
+  {
+    dateRange: '2019 – 2020',
+    company: 'DataRobot',
+    title: 'AI Solutions Specialist',
+    bullets: [
+      'Technical pre-sales for enterprise AI/ML platform across financial services and insurance verticals.',
+      'Scoped and delivered proof-of-concept projects demonstrating predictive analytics ROI.',
+    ],
+  },
+  {
+    dateRange: '2018 – 2019',
+    company: 'Smartsheet',
+    title: 'Sales Development',
+    bullets: [
+      'Top-performing SDR driving outbound pipeline for mid-market accounts.',
+      'Developed prospecting sequences and qualification methodologies adopted team-wide.',
+    ],
+  },
+  {
+    dateRange: 'Earlier',
+    company: 'UMass Amherst',
+    title: 'Software Support & Network Engineering',
+    bullets: [
+      'Enterprise software support and campus network infrastructure.',
+    ],
+  },
+];
+
+const keyProjects = [
+  {
+    title: 'AI-Assisted Lead Routing + SLA Enforcement',
+    metrics: '45m first response, +25% MQL-to-SQL, 40% auto-routed',
+    slug: 'ai-routing-sla',
+  },
+  {
+    title: 'Forecast Integrity + Operating Cadence',
+    metrics: '84% forecast accuracy, -35% stage aging, <24h reporting latency',
+    slug: 'forecast-integrity-cadence',
+  },
+  {
+    title: 'CRM Data Quality + Automated Governance',
+    metrics: '92% field completion, -78% duplicates, 4-day source onboarding',
+    slug: 'data-governance-automation',
+  },
+  {
+    title: 'Self-Serve Revenue Analytics',
+    metrics: '80% reduction in ad-hoc reporting requests',
+    slug: 'self-serve-analytics',
+  },
+];
+---
+
+<BaseLayout title="Resume" description="Julian Ross — Revenue Operations leader with 10+ years across GTM, data infrastructure, and AI-native automation.">
+  <article class="py-8 resume-page" data-section="about">
+    <!-- Header -->
+    <div class="mb-10">
+      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-2">
+        Julian Ross
+      </h1>
+      <p class="text-lg text-[var(--color-text-muted)] mb-4">
+        Revenue Operations & GTM Systems
+      </p>
+
+      <!-- Contact row -->
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[var(--color-text-muted)] mb-4">
+        <a href="mailto:jross21@gmail.com" class="hover:text-[var(--color-accent)]">jross21@gmail.com</a>
+        <span class="text-[var(--color-text-dim)]">|</span>
+        <a href="https://www.linkedin.com/in/julianross21/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)]">LinkedIn</a>
+        <span class="text-[var(--color-text-dim)]">|</span>
+        <a href="https://github.com/jross21" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)]">GitHub</a>
+      </div>
+
+      <CommandButton
+        href="/julian-ross-resume.pdf"
+        command="Download PDF"
+        primary={true}
+        section="about"
+        class="print-hidden"
+      />
+    </div>
+
+    <!-- Summary -->
+    <section class="mb-10">
+      <h2 class="resume-section-heading">Summary</h2>
+      <p class="text-[var(--color-text-muted)] leading-relaxed max-w-2xl">
+        Revenue Operations leader with 10+ years building the data infrastructure, automation, and AI workflows that make revenue teams predictable. I started in sales, learned what breaks when data is bad, then spent the next decade fixing the infrastructure underneath. From CRM architecture to AI-native automation — the through-line is building systems that teams trust and use.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section class="mb-10">
+      <h2 class="resume-section-heading">Experience</h2>
+      <ResumeTimeline entries={experienceEntries} />
+    </section>
+
+    <!-- Key Projects -->
+    <section class="mb-10">
+      <h2 class="resume-section-heading">Key Projects</h2>
+      <div class="space-y-4">
+        {keyProjects.map((project) => (
+          <div class="pl-4 border-l-2 border-[var(--color-border)]">
+            <a href={`/projects/${project.slug}`} class="text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-accent)] print-link">
+              {project.title}
+            </a>
+            <p class="text-xs text-[var(--color-text-muted)] mt-0.5">{project.metrics}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills & Tools -->
+    <section class="mb-10">
+      <h2 class="resume-section-heading">Skills & Tools</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div>
+          <p class="text-[var(--color-text)] font-semibold text-sm mb-2">CRM & Sales Ops</p>
+          <div class="flex flex-wrap gap-2">
+            {['Salesforce', 'HubSpot', 'Outreach', 'Salesloft', 'Gong', 'Clari'].map(tool => (
+              <span class="tool-chip">{tool}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Data & Analytics</p>
+          <div class="flex flex-wrap gap-2">
+            {['Snowflake', 'dbt', 'Looker', 'Tableau', 'Power BI', 'Fivetran'].map(tool => (
+              <span class="tool-chip">{tool}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Automation & AI</p>
+          <div class="flex flex-wrap gap-2">
+            {['Python', 'SQL', 'Zapier', 'Workato', 'Census', 'Claude / GPT'].map(tool => (
+              <span class="tool-chip">{tool}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2 class="resume-section-heading">Education</h2>
+      <p class="text-[var(--color-text)]">University of Massachusetts Amherst</p>
+      <p class="text-sm text-[var(--color-text-muted)]">Information Technology</p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .resume-section-heading {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-section-about);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Print styles */
+  @media print {
+    .resume-page {
+      padding: 0;
+    }
+
+    .resume-section-heading {
+      color: #4C566A;
+      border-bottom-color: #D8DEE9;
+    }
+
+    .print-hidden {
+      display: none !important;
+    }
+
+    .print-link::after {
+      content: ' (' attr(href) ')';
+      font-size: 0.625rem;
+      color: #4C566A;
+      font-weight: 400;
+    }
+  }
+</style>

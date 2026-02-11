@@ -1,6 +1,4 @@
-/* Font imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* Fonts loaded via <link> in BaseLayout.astro for performance */
 
 @import "tailwindcss";
 
@@ -537,6 +535,12 @@ html.light .shiki span {
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: border-color 0.2s ease;
+}
+
+a .terminal-panel:hover,
+a.terminal-panel:hover {
+  border-color: var(--color-border-hover);
 }
 
 html.light .terminal-panel {
@@ -612,6 +616,10 @@ html.light .terminal-panel__header {
   background-color: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
   color: #2E3440;
+}
+
+.cmd-button:active {
+  transform: scale(0.97);
 }
 
 /* Status indicator dot */
@@ -1002,4 +1010,61 @@ html.light .terminal-panel__header {
 
 .reading-progress--projects {
   background-color: var(--color-section-projects);
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  /* Hide non-content elements */
+  header,
+  footer,
+  nav,
+  .mobile-nav-item,
+  .scroll-to-top,
+  .reading-progress,
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* Reset backgrounds for print */
+  html, body {
+    background: white !important;
+    color: #2E3440 !important;
+    font-size: 11pt;
+  }
+
+  /* Prevent awkward page breaks */
+  .timeline-entry,
+  .terminal-panel,
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* Page margins */
+  @page {
+    margin: 1.5cm 2cm;
+  }
+
+  /* Show URLs after links */
+  a[href^="http"]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.75em;
+    color: #4C566A;
+  }
+
+  /* Reset terminal panels for print */
+  .terminal-panel {
+    background: white !important;
+    border-color: #D8DEE9 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .tool-chip {
+    background: #F0F0F0 !important;
+    border-color: #D8DEE9 !important;
+    color: #2E3440 !important;
+  }
 }

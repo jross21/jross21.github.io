@@ -5,26 +5,33 @@ import CommandButton from '../components/CommandButton.astro';
 ---
 
 <BaseLayout title="Contact" description="Get in touch — email, LinkedIn, or download my resume.">
-  <article class="py-8">
+  <article class="py-8" data-section="contact">
     <!-- Header -->
     <div class="mb-8">
       <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">
         Contact
       </h1>
 
-      <p class="text-[var(--color-text-muted)] max-w-lg">
-        Interested in connecting about RevOps, Sales Ops, or Marketing Ops roles? I'd love to hear from you.
+      <p class="text-[var(--color-text)] max-w-lg leading-relaxed">
+        I'm actively looking for my next RevOps role and happy to chat about how I can help your team. I typically respond within a day.
       </p>
     </div>
 
     <div class="max-w-xl space-y-6">
+
+      <!-- What I'm looking for -->
+      <TerminalPanel title="What I'm looking for">
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          A RevOps or Sales/Marketing Ops role where I can own the full stack — CRM architecture, data pipelines, automation, and AI workflows. I'm at my best when I can bridge the gap between revenue leadership and technical execution, building systems that teams actually trust and use.
+        </p>
+      </TerminalPanel>
 
       <!-- Resume -->
       <TerminalPanel title="Resume">
         <div class="flex items-center justify-between">
           <p class="text-sm text-[var(--color-text-muted)]">Full career history and skills</p>
           <CommandButton
-            href="/julian-ross-resume.pdf"
+            href="/resume"
             command="View resume"
             primary={true}
             section="about"
