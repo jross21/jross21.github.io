@@ -2,7 +2,7 @@
 /**
  * TerminalFooter.astro
  *
- * Redesigned footer with mini-sitemap, availability badge, and scheduling link.
+ * Footer with mini-sitemap and availability badge.
  */
 import AvailabilityBadge from './AvailabilityBadge.astro';
 
@@ -18,13 +18,13 @@ const sitemapColumns = [
     title: 'Work',
     links: [
       { href: '/projects', label: 'Projects' },
-      { href: '/expertise', label: 'Expertise' },
+      { href: '/ideas', label: 'Ideas' },
     ],
   },
   {
-    title: 'Writing',
+    title: 'Info',
     links: [
-      { href: '/ideas', label: 'Ideas' },
+      { href: '/resume', label: 'Resume' },
       { href: '/about', label: 'About' },
     ],
   },
@@ -34,7 +34,6 @@ const sitemapColumns = [
       { href: '/contact', label: 'Contact' },
       { href: 'https://www.linkedin.com/in/julianross21/', label: 'LinkedIn', external: true },
       { href: 'https://github.com/jross21', label: 'GitHub', external: true },
-      { href: '/resume', label: 'Resume' },
     ],
   },
 ];

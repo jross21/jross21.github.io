@@ -11,10 +11,11 @@ interface Props {
   label: string;
   prefix?: string;
   suffix?: string;
+  sublabel?: string;
   class?: string;
 }
 
-const { value, label, prefix = '', suffix = '', class: className = '' } = Astro.props;
+const { value, label, prefix = '', suffix = '', sublabel, class: className = '' } = Astro.props;
 
 // Extract numeric part for animation
 const numericMatch = value.match(/[\d.]+/);
@@ -34,6 +35,7 @@ const hasDecimals = numericValue !== null && value.includes('.');
     <span class="animated-stat__number">{value}</span>
   </p>
   <p class="animated-stat__label">{label}</p>
+  {sublabel && <p class="animated-stat__sublabel">{sublabel}</p>}
 
   <!-- Optional progress bar indicator -->
   <div class="animated-stat__progress">
@@ -64,6 +66,12 @@ const hasDecimals = numericValue !== null && value.includes('.');
     font-size: 0.875rem;
     color: var(--color-text-muted);
     margin-top: 0.5rem;
+  }
+
+  .animated-stat__sublabel {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    margin-top: 0.25rem;
   }
 
   .animated-stat__progress {

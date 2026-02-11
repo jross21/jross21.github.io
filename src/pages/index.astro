@@ -1,15 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TerminalPanel from '../components/TerminalPanel.astro';
 import TerminalProjectCard from '../components/TerminalProjectCard.astro';
 import TerminalPostCard from '../components/TerminalPostCard.astro';
 import CommandButton from '../components/CommandButton.astro';
-import HeroSystemDiagram from '../components/graphics/HeroSystemDiagram.astro';
 import AnimatedStat from '../components/AnimatedStat.astro';
-import LogoBar from '../components/LogoBar.astro';
-import AvailabilityBadge from '../components/AvailabilityBadge.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
-import TestimonialCard from '../components/TestimonialCard.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work');
@@ -30,157 +25,86 @@ const featuredEssays = curatedWritingSlugs
 <BaseLayout
   fullWidth={true}
   title="Julian Ross"
-  description="Revenue Operations leader with 10+ years across GTM, data infrastructure, and AI-native automation."
+  description="Revenue Operations leader — I build the data infrastructure, automation, and AI workflows that make revenue teams predictable."
 >
-  <!-- 1. Hero -->
-  <section class="section-immersive pt-12 md:pt-20">
-    <div class="section-immersive-content">
+  <!-- 1. Hero with gradient mesh -->
+  <section class="section-immersive pt-12 md:pt-20 relative overflow-hidden">
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="section-immersive-content relative z-10">
       <ScrollReveal>
         <div class="max-w-3xl">
-          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-6 leading-tight">
-            I build the systems that make revenue teams predictable.
+          <h1 class="text-4xl md:text-5xl lg:text-7xl text-[var(--color-text)] mb-6 leading-[1.05]">
+            I build the systems that make revenue teams <span class="text-[var(--color-accent)]">predictable</span>.
           </h1>
 
-          <div class="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-2xl mb-4">
-            10+ years across data infrastructure, automation, and AI workflows — from CRM architecture to executive reporting.
-          </div>
-
-          <div class="mb-8">
-            <AvailabilityBadge />
-          </div>
+          <p class="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-2xl mb-8">
+            From SDR to data engineer to AI-native RevOps — I've worked every layer of the GTM stack and I build the infrastructure that makes the rest of it work.
+          </p>
 
           <div class="flex flex-wrap gap-3">
             <CommandButton
-              href="/resume"
-              command="View resume"
+              href="/projects"
+              command="See my work"
               size="lg"
               primary={true}
-              section="about"
+              section="projects"
             />
             <CommandButton
-              href="https://www.linkedin.com/in/julianross21/"
-              command="LinkedIn"
+              href="/resume"
+              command="Resume"
               size="lg"
-              section="contact"
+              section="about"
             />
           </div>
-        </div>
-      </ScrollReveal>
-
-      <!-- System Diagram -->
-      <ScrollReveal delay={150}>
-        <div class="mt-12 md:mt-16">
-          <HeroSystemDiagram />
         </div>
       </ScrollReveal>
     </div>
   </section>
 
-  <!-- 2. Results + Stats -->
+  <!-- 2. Impact Stats -->
   <section class="section-immersive section-alt">
     <div class="section-immersive-content">
       <ScrollReveal>
-        <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
-          Impact
-        </h2>
+        <div class="section-label mb-6">Impact</div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 stagger-grid">
           <AnimatedStat
             value="8"
             prefix="$"
             suffix="M+"
-            label="Qualified pipeline led"
+            label="Pipeline"
+            sublabel="across 3 engagements"
           />
           <AnimatedStat
             value="40"
             prefix="~"
             suffix="%"
             label="Pipeline growth"
+            sublabel="quarter-over-quarter"
           />
           <AnimatedStat
             value="350"
             prefix="$"
             suffix="K/mo"
             label="Pipeline produced"
+            sublabel="from automated workflows"
           />
         </div>
       </ScrollReveal>
     </div>
   </section>
 
-  <!-- 3. What I Bring -->
-  <section class="section-immersive">
-    <div class="section-immersive-content">
-      <ScrollReveal>
-        <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
-          What I <span class="text-[var(--color-section-about)]">Bring</span>
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Full-stack RevOps ownership.</p>
-              <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                CRM architecture, data modeling, pipeline reporting, and automation — not just strategy decks, but production systems with monitoring.
-              </p>
-            </div>
-          </div>
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Data engineering depth.</p>
-              <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                Snowflake, dbt, Fivetran, reverse ETL. I build the reporting infrastructure, not just the dashboards on top.
-              </p>
-            </div>
-          </div>
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text)] font-semibold text-sm mb-2">AI workflows in production.</p>
-              <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                Building AI-enabled GTM ops since 2022 — lead qualification, enrichment, routing — with validation, monitoring, and human checkpoints.
-              </p>
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-    </div>
-  </section>
-
-  <!-- 4. Testimonials -->
-  <section class="section-immersive section-alt">
-    <div class="section-immersive-content">
-      <ScrollReveal>
-        <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
-          What colleagues <span class="text-[var(--color-section-about)]">say</span>
-        </h2>
-
-        <div class="grid md:grid-cols-2 gap-4">
-          <!-- TODO: Replace with actual testimonial quotes from colleagues -->
-          <TestimonialCard
-            quote="Julian rebuilt our entire CRM and data infrastructure in weeks. The team finally trusts the numbers — that changed everything about how we run pipeline reviews."
-            name="Former VP Sales"
-            title="Series B SaaS"
-          />
-          <TestimonialCard
-            quote="Most ops people either understand the strategy or the systems. Julian does both. He'd scope the project, build it, and have monitoring in place before we finished writing the requirements doc."
-            name="Former Head of Marketing"
-            title="Growth-Stage Tech"
-          />
-        </div>
-      </ScrollReveal>
-    </div>
-  </section>
-
-  <!-- 5. Featured Projects -->
+  <!-- 3. Featured Projects -->
   {featuredProjects.length > 0 && (
     <section class="section-immersive">
       <div class="section-immersive-content">
         <ScrollReveal>
-          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
+          <div class="section-label mb-2">Work</div>
+          <h2 class="text-2xl md:text-3xl text-[var(--color-text)] mb-8">
             Featured <span class="text-[var(--color-section-projects)]">Projects</span>
           </h2>
 
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4 md:pl-6 border-l border-[var(--color-border)]">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-grid">
             {featuredProjects.map((project) => (
               <TerminalProjectCard
                 title={project.data.title}
@@ -199,62 +123,17 @@ const featuredEssays = curatedWritingSlugs
     </section>
   )}
 
-  <!-- 6. Core Skills & Tools -->
-  <section class="section-immersive section-alt">
-    <div class="section-immersive-content">
-      <ScrollReveal>
-        <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8">
-          Skills &amp; Tools
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text)] font-semibold text-sm mb-3">CRM &amp; Sales Ops</p>
-              <div class="flex flex-wrap gap-2">
-                {['Salesforce', 'HubSpot', 'Outreach', 'Salesloft', 'Gong', 'Clari'].map(tool => (
-                  <span class="tool-chip">{tool}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text)] font-semibold text-sm mb-3">Data &amp; Analytics</p>
-              <div class="flex flex-wrap gap-2">
-                {['Snowflake', 'dbt', 'Looker', 'Tableau', 'Power BI', 'Fivetran'].map(tool => (
-                  <span class="tool-chip">{tool}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text)] font-semibold text-sm mb-3">Automation &amp; AI</p>
-              <div class="flex flex-wrap gap-2">
-                {['Python', 'SQL', 'Zapier', 'Workato', 'Census', 'Claude / GPT'].map(tool => (
-                  <span class="tool-chip">{tool}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-    </div>
-  </section>
-
-  <!-- 7. Selected Writing -->
+  <!-- 4. Selected Writing -->
   {featuredEssays.length > 0 && (
-    <section class="section-immersive">
+    <section class="section-immersive section-alt">
       <div class="section-immersive-content">
         <ScrollReveal>
-          <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-6">
+          <div class="section-label mb-2">Ideas</div>
+          <h2 class="text-2xl md:text-3xl text-[var(--color-text)] mb-6">
             Selected <span class="text-[var(--color-section-writing)]">Writing</span>
           </h2>
 
-          <div class="grid md:grid-cols-3 gap-4">
+          <div class="grid md:grid-cols-3 gap-6 stagger-grid">
             {featuredEssays.map((post) => (
               <TerminalPostCard
                 title={post.data.title}
@@ -273,26 +152,24 @@ const featuredEssays = curatedWritingSlugs
     </section>
   )}
 
-  <!-- 8. LogoBar + Final CTA -->
-  <section class="section-immersive section-alt">
+  <!-- 5. CTA -->
+  <section class="section-immersive">
     <div class="section-immersive-content">
       <ScrollReveal>
-        <LogoBar />
-
-        <div class="mt-12 text-center">
-          <h2 class="text-2xl font-bold text-[var(--color-text)] mb-4">
-            Looking for a <span class="text-[var(--color-section-contact)]">RevOps leader</span>?
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl text-[var(--color-text)] mb-4">
+            Let's talk.
           </h2>
-          <p class="text-[var(--color-text-muted)] mb-2 max-w-lg mx-auto">
-            I'm seeking a full-time RevOps or Sales/Marketing Ops role where I can own the full stack — CRM architecture, data pipelines, automation, and AI workflows.
+          <p class="text-lg text-[var(--color-text-muted)] mb-2 leading-relaxed">
+            I'm looking for a RevOps or GTM Engineering role where I can own infrastructure end-to-end. If that sounds useful, reach out.
           </p>
           <p class="text-[var(--color-text-muted)] mb-6">
-            <a href="mailto:jross21@gmail.com" class="text-[var(--color-accent)] hover:underline">jross21@gmail.com</a>
+            <span class="text-[var(--color-text)]">jross21@gmail.com</span>
           </p>
-          <div class="flex flex-wrap gap-3 justify-center">
+          <div class="flex flex-wrap gap-3">
             <CommandButton
               href="/resume"
-              command="See my resume"
+              command="Resume"
               primary={true}
               section="about"
             />

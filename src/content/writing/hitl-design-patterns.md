@@ -85,7 +85,7 @@ Plan for failure. It will happen.
 
 ## Why HITL Accelerates Adoption
 
-Counter-intuitive finding: giving users a "reject" button makes them use the system more.
+Giving users a "reject" button makes them use the system more.
 
 When AI acts autonomously, users disengage. They don't trust it, so they ignore it or work around it. When AI recommends and users approve, they stay engaged. They learn the AI's patterns. They calibrate their trust. They actually use what you built.
 

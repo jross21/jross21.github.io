@@ -3,10 +3,9 @@ const pathname = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: 'Home', section: null, icon: 'home' },
-  { href: '/projects', label: 'Projects', section: 'projects' as const, icon: 'folder' },
+  { href: '/projects', label: 'Work', section: 'projects' as const, icon: 'folder' },
   { href: '/ideas', label: 'Ideas', section: 'ideas' as const, icon: 'lightbulb' },
   { href: '/resume', label: 'Resume', section: 'about' as const, icon: 'document' },
-  { href: '/about', label: 'About', section: 'about' as const, icon: 'user' },
   { href: '/contact', label: 'Contact', section: 'contact' as const, icon: 'mail' },
 ];
 
@@ -50,15 +49,6 @@ function getActiveColor(section: string | null): string {
               <path d="M9 18h6"/>
               <path d="M10 22h4"/>
               <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
-            </>
-          )}
-          {item.icon === 'wrench' && (
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-          )}
-          {item.icon === 'user' && (
-            <>
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
             </>
           )}
           {item.icon === 'document' && (
@@ -117,9 +107,5 @@ function getActiveColor(section: string | null): string {
 
   .mobile-nav-item--contact:hover {
     color: var(--color-section-contact);
-  }
-
-  .mobile-nav-item--services:hover {
-    color: var(--color-section-services);
   }
 </style>

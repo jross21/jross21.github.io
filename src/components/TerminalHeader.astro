@@ -5,9 +5,8 @@ import CommandButton from './CommandButton.astro';
 const pathname = Astro.url.pathname;
 
 const navItems = [
-  { href: '/projects', label: 'Projects', section: 'projects' as const },
+  { href: '/projects', label: 'Work', section: 'projects' as const },
   { href: '/ideas', label: 'Ideas', section: 'ideas' as const },
-  { href: '/expertise', label: 'Expertise', section: 'services' as const },
   { href: '/resume', label: 'Resume', section: 'about' as const },
   { href: '/about', label: 'About', section: 'about' as const },
   { href: '/contact', label: 'Contact', section: 'contact' as const },
@@ -22,7 +21,7 @@ function isActive(href: string) {
 <header class="hidden md:block sticky top-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]" style="view-transition-name: site-header;">
   <div class="max-w-[1200px] mx-auto px-6 py-3">
     <nav class="flex items-center justify-between" aria-label="Main navigation">
-      <!-- Logo with cursor -->
+      <!-- Logo -->
       <a
         href="/"
         class="text-[var(--color-text)] font-semibold hover:no-underline hover:text-[var(--color-accent)] transition-colors"

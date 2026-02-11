@@ -3,20 +3,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dark mode (DEFAULT) - Nord arctic palette */
-  --color-bg: #2E3440;           /* nord0 - Polar Night */
-  --color-bg-subtle: #3B4252;    /* nord1 - Elevated surfaces */
-  --color-bg-elevated: #434C5E;  /* nord2 - Subtle backgrounds */
+  /* Dark mode (DEFAULT) - Warm dark palette */
+  --color-bg: #1a1a2e;             /* Deep charcoal base */
+  --color-bg-subtle: #222240;      /* Elevated surfaces */
+  --color-bg-elevated: #2a2a4a;    /* Cards, panels */
 
-  --color-text: #ECEFF4;         /* nord6 - Snow Storm primary */
-  --color-text-muted: #D8DEE9;   /* nord4 - Snow Storm muted */
-  --color-text-dim: #4C566A;     /* nord3 - Polar Night dim */
-  --color-label: #A3BE8C;        /* nord14 - Aurora green for category labels */
+  --color-text: #e8e6e3;           /* Warm white */
+  --color-text-muted: #b0aead;     /* Warm gray */
+  --color-text-dim: #5a5878;       /* Muted purple-gray */
+  --color-label: #0ea5e9;          /* Electric blue for labels */
 
-  /* Primary accent - Frost cyan (CTAs, links) */
-  --color-accent: #88C0D0;       /* nord8 - Cyan */
-  --color-accent-hover: #8FBCBB; /* nord7 - Teal */
-  --color-accent-dim: #5E81AC;   /* nord10 - Deep blue */
+  /* Primary accent - Electric blue (CTAs, links) */
+  --color-accent: #0ea5e9;         /* Electric blue */
+  --color-accent-hover: #38bdf8;   /* Lighter blue hover */
+  --color-accent-dim: #0369a1;     /* Deep blue */
 
   /* One accent color */
   --color-highlight: var(--color-accent);
@@ -24,35 +24,30 @@
   --color-highlight-dim: var(--color-accent-dim);
   --color-secondary: var(--color-accent);
 
-  /* Section colors - Nord Aurora palette */
-  --color-section-projects: #EBCB8B;        /* nord13 - Aurora yellow */
-  --color-section-projects-hover: #D4B06A;  /* Deeper yellow */
-  --color-section-projects-dim: rgba(235, 203, 139, 0.15);
-  --color-section-writing: #B48EAD;         /* nord15 - Aurora purple */
-  --color-section-writing-hover: #9B6F94;   /* Deeper purple */
-  --color-section-writing-dim: rgba(180, 142, 173, 0.15);
-  --color-section-ideas: #B48EAD;           /* nord15 - Aurora purple (same as writing) */
-  --color-section-ideas-hover: #9B6F94;
-  --color-section-ideas-dim: rgba(180, 142, 173, 0.15);
-  --color-section-about: #A3BE8C;           /* nord14 - Aurora green */
-  --color-section-about-hover: #8FAA78;     /* Deeper green */
-  --color-section-about-dim: rgba(163, 190, 140, 0.15);
-  --color-section-contact: #D08770;         /* nord12 - Aurora orange */
-  --color-section-contact-hover: #B97060;   /* Deeper orange */
-  --color-section-contact-dim: rgba(208, 135, 112, 0.15);
-  --color-section-services: #88C0D0;        /* nord8 - Frost cyan */
-  --color-section-services-hover: #7EB0BF;
-  --color-section-services-dim: rgba(136, 192, 208, 0.15);
-  --color-warning: #EBCB8B;                 /* nord13 - Aurora yellow */
-  --color-error: #BF616A;        /* nord11 - Aurora red */
+  /* Section colors - Saturated palette */
+  --color-section-projects: #f59e0b;          /* Warm amber */
+  --color-section-projects-hover: #d97706;
+  --color-section-projects-dim: rgba(245, 158, 11, 0.15);
+  --color-section-writing: #c084fc;           /* Vivid purple */
+  --color-section-writing-hover: #a855f7;
+  --color-section-writing-dim: rgba(192, 132, 252, 0.15);
+  --color-section-ideas: #c084fc;             /* Same as writing */
+  --color-section-ideas-hover: #a855f7;
+  --color-section-ideas-dim: rgba(192, 132, 252, 0.15);
+  --color-section-about: #34d399;             /* Vivid emerald */
+  --color-section-about-hover: #10b981;
+  --color-section-about-dim: rgba(52, 211, 153, 0.15);
+  --color-section-contact: #fb923c;           /* Vivid orange */
+  --color-section-contact-hover: #f97316;
+  --color-section-contact-dim: rgba(251, 146, 60, 0.15);
+  --color-section-services: #0ea5e9;          /* Electric blue */
+  --color-section-services-hover: #38bdf8;
+  --color-section-services-dim: rgba(14, 165, 233, 0.15);
+  --color-warning: #f59e0b;                   /* Amber */
+  --color-error: #ef4444;                     /* Red */
 
-  /* Terminal traffic lights - preserved macOS standard */
-  --color-terminal-red: #ff5f56;
-  --color-terminal-yellow: #ffbd2e;
-  --color-terminal-green: #27c93f;
-
-  --color-border: #3B4252;       /* nord1 */
-  --color-border-hover: #4C566A; /* nord3 */
+  --color-border: #2a2a4a;
+  --color-border-hover: #3d3d66;
 
   /* Typography */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -62,62 +57,58 @@
 /* Base styles - dark by default */
 html {
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  background-image:
-    radial-gradient(ellipse at 0% 0%, rgba(180, 142, 173, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(136, 192, 208, 0.03) 0%, transparent 50%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+  background-attachment: fixed;
   color: var(--color-text);
-  line-height: 1.7;
+  line-height: 1.75;
   scroll-behavior: smooth;
 }
 
+/* Light mode override - Warm off-white */
 html.light {
-  background-image:
-    radial-gradient(ellipse at 0% 0%, rgba(155, 111, 148, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(94, 129, 172, 0.04) 0%, transparent 50%);
-}
-
-/* Light mode override - Nord arctic palette */
-html.light {
-  --color-bg: #ECEFF4;           /* nord6 - Snow Storm */
-  --color-bg-subtle: #E5E9F0;    /* nord5 */
-  --color-bg-elevated: #FFFFFF;  /* Keep white for cards */
-  --color-text: #2E3440;         /* nord0 - Polar Night */
-  --color-text-muted: #4C566A;   /* nord3 */
-  --color-text-dim: #81A1C1;     /* nord9 - Blue accent */
-  --color-label: #5E81AC;        /* nord10 - Deep blue for light mode labels */
-  --color-accent: #5E81AC;       /* nord10 - Deep blue */
-  --color-accent-hover: #81A1C1; /* nord9 - Blue */
-  --color-accent-dim: #D8DEE9;   /* nord4 */
-  /* One accent color */
+  --color-bg: #fafaf9;             /* Warm off-white */
+  --color-bg-subtle: #f0efed;      /* Warm light gray */
+  --color-bg-elevated: #ffffff;    /* White for cards */
+  --color-text: #1a1a2e;          /* Deep charcoal */
+  --color-text-muted: #52525b;     /* Zinc-600 */
+  --color-text-dim: #a1a1aa;       /* Zinc-400 */
+  --color-label: #0369a1;          /* Deep blue for labels */
+  --color-accent: #0284c7;         /* Sky-600 */
+  --color-accent-hover: #0ea5e9;   /* Sky-500 */
+  --color-accent-dim: #e0f2fe;     /* Sky-100 */
   --color-highlight: var(--color-accent);
   --color-highlight-hover: var(--color-accent-hover);
   --color-highlight-dim: var(--color-accent-dim);
   --color-secondary: var(--color-accent);
   --color-warning: var(--color-accent);
-  --color-error: #BF616A;        /* nord11 - Aurora red */
-  --color-border: #D8DEE9;       /* nord4 */
-  --color-border-hover: #81A1C1; /* nord9 */
+  --color-error: #ef4444;
+  --color-border: #e4e4e7;
+  --color-border-hover: #a1a1aa;
 
-  /* Section colors - deeper shades for light mode contrast */
-  --color-section-projects: #C9A84C;        /* Deeper yellow for light bg */
-  --color-section-projects-hover: #B8943A;
-  --color-section-projects-dim: rgba(201, 168, 76, 0.12);
-  --color-section-writing: #9B6F94;         /* Deeper purple */
-  --color-section-writing-hover: #86607F;
-  --color-section-writing-dim: rgba(155, 111, 148, 0.12);
-  --color-section-ideas: #9B6F94;
-  --color-section-ideas-hover: #86607F;
-  --color-section-ideas-dim: rgba(155, 111, 148, 0.12);
-  --color-section-about: #7B9A65;           /* Deeper green */
-  --color-section-about-hover: #6B8755;
-  --color-section-about-dim: rgba(123, 154, 101, 0.12);
-  --color-section-contact: #B97060;         /* Deeper orange */
-  --color-section-contact-hover: #A46050;
-  --color-section-contact-dim: rgba(185, 112, 96, 0.12);
-  --color-section-services: #5E81AC;        /* Deeper frost */
-  --color-section-services-hover: #4C6D96;
-  --color-section-services-dim: rgba(94, 129, 172, 0.12);
+  /* Section colors - deeper for light mode */
+  --color-section-projects: #d97706;
+  --color-section-projects-hover: #b45309;
+  --color-section-projects-dim: rgba(217, 119, 6, 0.1);
+  --color-section-writing: #9333ea;
+  --color-section-writing-hover: #7c3aed;
+  --color-section-writing-dim: rgba(147, 51, 234, 0.1);
+  --color-section-ideas: #9333ea;
+  --color-section-ideas-hover: #7c3aed;
+  --color-section-ideas-dim: rgba(147, 51, 234, 0.1);
+  --color-section-about: #059669;
+  --color-section-about-hover: #047857;
+  --color-section-about-dim: rgba(5, 150, 105, 0.1);
+  --color-section-contact: #ea580c;
+  --color-section-contact-hover: #c2410c;
+  --color-section-contact-dim: rgba(234, 88, 12, 0.1);
+  --color-section-services: #0284c7;
+  --color-section-services-hover: #0369a1;
+  --color-section-services-dim: rgba(2, 132, 199, 0.1);
+}
+
+html.light {
+  background: linear-gradient(135deg, #fafaf9 0%, #f5f5f4 50%, #fafaf9 100%);
+  background-attachment: fixed;
 }
 
 body {
@@ -126,12 +117,26 @@ body {
   min-height: 100vh;
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
+/* Headings - Strong hierarchy */
+h1 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+h3, h4, h5, h6 {
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 /* Links - clean, minimal */
@@ -172,13 +177,25 @@ code:not(pre code) {
 /* Selection */
 ::selection {
   background-color: var(--color-accent);
-  color: #2E3440;
+  color: #1a1a2e;
 }
 
 /* Focus styles */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+}
+
+/* ============================================
+   SECTION LABELS - Small caps
+   ============================================ */
+
+.section-label {
+  font-variant: all-small-caps;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-label);
 }
 
 /* ============================================
@@ -223,6 +240,14 @@ code:not(pre code) {
   100% { background-position: 200% center; }
 }
 
+/* Animated gradient mesh for hero */
+@keyframes meshShift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(2%, -1%) scale(1.02); }
+  50% { transform: translate(-1%, 2%) scale(0.98); }
+  75% { transform: translate(1%, -2%) scale(1.01); }
+}
+
 .animate-in {
   opacity: 1;
   animation: none;
@@ -232,6 +257,14 @@ code:not(pre code) {
 .animate-delay-2 { animation-delay: 0.15s; }
 .animate-delay-3 { animation-delay: 0.2s; }
 .animate-delay-4 { animation-delay: 0.25s; }
+
+/* Grid stagger for cards/stats */
+.stagger-grid > :nth-child(1) { animation-delay: 0ms; }
+.stagger-grid > :nth-child(2) { animation-delay: 80ms; }
+.stagger-grid > :nth-child(3) { animation-delay: 160ms; }
+.stagger-grid > :nth-child(4) { animation-delay: 240ms; }
+.stagger-grid > :nth-child(5) { animation-delay: 320ms; }
+.stagger-grid > :nth-child(6) { animation-delay: 400ms; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -246,20 +279,32 @@ code:not(pre code) {
 }
 
 /* ============================================
-   CARD STYLES - borders only, no shadows
+   CARD STYLES - Clean, modern
    ============================================ */
 
 .card {
   border: 1px solid var(--color-border);
-  background-color: rgba(46, 52, 64, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  background-color: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 0.75rem;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card:hover {
   border-color: var(--color-border-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+html.light .card {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Project card - left accent border variant */
+.card-accent-left {
+  border-left: 4px solid var(--color-section-projects);
+  border-radius: 0 0.75rem 0.75rem 0;
 }
 
 /* ============================================
@@ -320,6 +365,7 @@ blockquote p {
 
 .prose h2 {
   font-size: 1.5rem;
+  font-weight: 700;
   margin-top: 3rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
@@ -329,6 +375,7 @@ blockquote p {
 
 .prose h3 {
   font-size: 1.125rem;
+  font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   color: var(--color-text);
@@ -446,9 +493,9 @@ blockquote p {
 
 .card-simple--bordered {
   border: 1px solid var(--color-border);
-  background-color: rgba(46, 52, 64, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(26, 26, 46, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 html.light .card-simple--bordered {
@@ -474,68 +521,59 @@ html.light .shiki span {
 }
 
 /* ============================================
-   TERMINAL DESIGN SYSTEM
+   PANEL DESIGN SYSTEM (replaces terminal panels)
    ============================================ */
 
-/* Terminal color utilities */
-.terminal-prompt { color: var(--color-terminal-green); }
-.terminal-path { color: var(--color-secondary); }
-.terminal-comment { color: var(--color-text-dim); }
-.terminal-command { color: var(--color-accent); }
-.terminal-output { color: var(--color-text-muted); }
-
-/* Blinking cursor animation */
-@keyframes terminal-blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.terminal-cursor {
-  display: inline-block;
-  width: 0.5em;
-  height: 1.1em;
-  background-color: var(--color-accent);
-  animation: terminal-blink 1s step-end infinite;
-  vertical-align: text-bottom;
-  margin-left: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .terminal-cursor {
-    animation: none;
-    opacity: 1;
-  }
-}
-
-/* Traffic light dots */
-.traffic-lights {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.traffic-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.traffic-dot--red { background-color: var(--color-terminal-red); }
-.traffic-dot--yellow { background-color: var(--color-terminal-yellow); }
-.traffic-dot--green { background-color: var(--color-terminal-green); }
-
-/* Terminal panel base styles */
-.terminal-panel {
-  background-color: rgba(46, 52, 64, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.panel {
+  background-color: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.15s ease;
+}
+
+a .panel:hover,
+a.panel:hover {
+  border-color: var(--color-border-hover);
+}
+
+html.light .panel {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-border);
+  gap: 0.5rem;
+}
+
+.panel__title {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  font-weight: 600;
+  flex: 1;
+  text-align: left;
+}
+
+.panel__body {
+  padding: 1.25rem;
+}
+
+/* Keep backward compat with terminal-panel class */
+.terminal-panel {
+  background-color: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
 }
 
 a .terminal-panel:hover,
@@ -545,8 +583,6 @@ a.terminal-panel:hover {
 
 html.light .terminal-panel {
   background-color: rgba(255, 255, 255, 0.9);
-  border-top: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .terminal-panel__header {
@@ -596,26 +632,26 @@ html.light .terminal-panel__header {
 .cmd-button:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  background-color: rgba(136, 192, 208, 0.05);
+  background-color: rgba(14, 165, 233, 0.05);
   text-decoration: none;
 }
 
 .cmd-button--active {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  background-color: rgba(136, 192, 208, 0.1);
+  background-color: rgba(14, 165, 233, 0.1);
 }
 
 .cmd-button--primary {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
-  color: #2E3440;
+  color: #1a1a2e;
 }
 
 .cmd-button--primary:hover {
   background-color: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
-  color: #2E3440;
+  color: #1a1a2e;
 }
 
 .cmd-button:active {
@@ -639,12 +675,12 @@ html.light .terminal-panel__header {
 }
 
 .status-dot--active .status-dot__circle {
-  background-color: var(--color-terminal-green);
-  box-shadow: 0 0 8px var(--color-terminal-green);
+  background-color: #34d399;
+  box-shadow: 0 0 8px #34d399;
 }
 
 .status-dot--warning .status-dot__circle {
-  background-color: var(--color-terminal-yellow);
+  background-color: #f59e0b;
 }
 
 .status-dot--inactive .status-dot__circle {
@@ -682,9 +718,10 @@ html.light .terminal-panel__header {
 
 /* Related items */
 .related-title {
-  text-transform: uppercase;
-  font-size: 0.7rem;
+  font-variant: all-small-caps;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
+  font-weight: 600;
   color: var(--color-highlight);
   margin-bottom: 0.75rem;
 }
@@ -728,9 +765,10 @@ html.light .terminal-panel__header {
 }
 
 .toc__title {
-  text-transform: uppercase;
-  font-size: 0.7rem;
+  font-variant: all-small-caps;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
+  font-weight: 600;
   color: var(--color-highlight);
   margin-bottom: 0.75rem;
 }
@@ -794,11 +832,11 @@ html.light .terminal-panel__header {
 }
 
 .callout--tip {
-  border-left-color: var(--color-terminal-green);
+  border-left-color: #34d399;
 }
 
 .callout--warning {
-  border-left-color: var(--color-terminal-yellow);
+  border-left-color: #f59e0b;
 }
 
 .callout--note {
@@ -943,29 +981,29 @@ html.light .terminal-panel__header {
    ============================================ */
 
 [data-section="projects"] ::selection {
-  background-color: rgba(235, 203, 139, 0.4);
-  color: #2E3440;
+  background-color: rgba(245, 158, 11, 0.4);
+  color: #1a1a2e;
 }
 
 [data-section="writing"] ::selection,
 [data-section="ideas"] ::selection {
-  background-color: rgba(180, 142, 173, 0.4);
-  color: #2E3440;
+  background-color: rgba(192, 132, 252, 0.4);
+  color: #1a1a2e;
 }
 
 [data-section="about"] ::selection {
-  background-color: rgba(163, 190, 140, 0.4);
-  color: #2E3440;
+  background-color: rgba(52, 211, 153, 0.4);
+  color: #1a1a2e;
 }
 
 [data-section="contact"] ::selection {
-  background-color: rgba(208, 135, 112, 0.4);
-  color: #2E3440;
+  background-color: rgba(251, 146, 60, 0.4);
+  color: #1a1a2e;
 }
 
 [data-section="services"] ::selection {
-  background-color: rgba(136, 192, 208, 0.4);
-  color: #2E3440;
+  background-color: rgba(14, 165, 233, 0.4);
+  color: #1a1a2e;
 }
 
 /* ============================================
@@ -1013,6 +1051,59 @@ html.light .terminal-panel__header {
 }
 
 /* ============================================
+   HERO GRADIENT MESH
+   ============================================ */
+
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-mesh::before,
+.hero-mesh::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: meshShift 20s ease-in-out infinite;
+}
+
+.hero-mesh::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #0ea5e9 0%, transparent 70%);
+  top: -20%;
+  right: -10%;
+}
+
+.hero-mesh::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #c084fc 0%, transparent 70%);
+  bottom: -20%;
+  left: -10%;
+  animation-delay: -10s;
+}
+
+html.light .hero-mesh::before {
+  opacity: 0.08;
+}
+
+html.light .hero-mesh::after {
+  opacity: 0.06;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh::before,
+  .hero-mesh::after {
+    animation: none;
+  }
+}
+
+/* ============================================
    PRINT STYLES
    ============================================ */
 
@@ -1031,13 +1122,13 @@ html.light .terminal-panel__header {
   /* Reset backgrounds for print */
   html, body {
     background: white !important;
-    color: #2E3440 !important;
+    color: #1a1a2e !important;
     font-size: 11pt;
   }
 
   /* Prevent awkward page breaks */
-  .timeline-entry,
   .terminal-panel,
+  .panel,
   section {
     page-break-inside: avoid;
   }
@@ -1051,20 +1142,21 @@ html.light .terminal-panel__header {
   a[href^="http"]::after {
     content: ' (' attr(href) ')';
     font-size: 0.75em;
-    color: #4C566A;
+    color: #52525b;
   }
 
-  /* Reset terminal panels for print */
-  .terminal-panel {
+  /* Reset panels for print */
+  .terminal-panel,
+  .panel {
     background: white !important;
-    border-color: #D8DEE9 !important;
+    border-color: #e4e4e7 !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
   }
 
   .tool-chip {
     background: #F0F0F0 !important;
-    border-color: #D8DEE9 !important;
-    color: #2E3440 !important;
+    border-color: #e4e4e7 !important;
+    color: #1a1a2e !important;
   }
 }

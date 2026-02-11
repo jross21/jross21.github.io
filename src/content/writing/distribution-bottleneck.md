@@ -9,67 +9,51 @@ coreClaims:
   - "Your competitive advantage is no longer your product—it's your pipeline."
 ---
 
-Your product team is shipping faster than ever. Features that took quarters now take weeks. AI coding tools have collapsed development timelines—[over 40% of code now includes AI assistance](https://survey.stackoverflow.co/2025/ai), and studies show [20-30% productivity gains](https://arxiv.org/abs/2302.06590) across the board.
+Your engineering team is shipping faster than ever. Features that took quarters now take weeks. AI coding tools have collapsed development timelines, and the productivity gains are real.
 
-
-## The Constraint Has Moved
-
-Previously, the bottleneck was product engineering. Now it's go-to-market distribution. And most teams haven't adjusted.
+But here's what I keep seeing: pipeline isn't growing at the same rate. Feature launches happen, the product gets better, and conversion rates barely move. The math has changed, and most GTM teams haven't caught up.
 
 ## Build Velocity ≠ Revenue Velocity
 
-Companies are shipping features faster than every before but pipeline is growing at 1x. Feature launches that move no meaningful needle on conversion rates or deal velocity.
+I worked with a Series B company last year that had shipped more features in six months than the prior two years combined. Their product was genuinely better. Their pipeline was flat.
 
-The math has flipped the yesterday's paradigm on its head: if everyone can build faster, building faster isn't a competitive advantage anymore. Your AI-accelerated product roadmap just got you to parity, not ahead.
+The problem wasn't the product. The problem was that three competitors had shipped the same features in the same window. When everyone can build faster, building faster isn't a competitive advantage anymore. Your AI-accelerated product roadmap gets you to parity, not ahead.
+
+This is the new constraint hierarchy:
+
+**Old world:** Engineering → Product → GTM. Bottleneck at engineering. Competitive advantage: *can we build it?*
+
+**New world:** Engineering → Product → GTM. Bottleneck at GTM. Competitive advantage: *can we sell it before everyone else builds it too?*
 
 ## The Attention Collapse
 
-The average buying committee has grown from 5 people to 11 over the past decade ([Gartner](https://www.gartner.com/en/sales/insights/b2b-buying-journey)). Sales cycles have grown significantly longer—some estimates put the increase at 25% over the past five years.
+Buying committees have grown from 5 to 11 people over the past decade. Sales cycles are longer. But the brutal part: most buyers have a shortlist before they start researching, and the vast majority buy from that initial list.
 
-But here's the brutal part: 80% of buyers have a shortlist before they start researching, and 90% of them buy from that initial list ([Bain & Co.](https://hbr.org/2022/09/what-b2bs-need-to-know-about-their-buyers)). If you're not in consideration before evaluation begins, you've already lost.
+If you're not in consideration before evaluation begins, you've already lost. More products exist than ever. Customer attention hasn't scaled to match.
 
-More products exist than ever. Customer attention hasn't scaled to match. The winners aren't the ones who build the best product—they're the ones who reach the buyer first.
+I've seen this play out in competitive deals. Despite better products and more features, win rates get harder because every competitor has the same features. The differentiation window shrank from years to months.
 
-## ICP Saturation
+## What This Means for RevOps
 
-When everyone can build "good enough" quickly, product differentiation windows shrink to nothing. Your unique feature becomes table stakes in months, not years.
+RevOps teams feeling this should recognize what changed: the constraint moved from "can we build it" to "can we reach the right buyer first." Four implications:
 
-RevOps teams are seeing this in win rates. Despite better products and more features, competitive deals are getting harder. [Nearly 90% of global business buyers reported their purchase process stalled in 2023](https://www.forrester.com/press-newsroom/2023-forrester-b2b-buyers-journey/) due to budget constraints and decision complexity. [79% of CFOs now hold final decision-making power](https://www.gartner.com/en/digital-markets/insights/5-key-insights-about-the-software-buying-team) in software purchases.
+**Speed-to-ICP matters more than speed-to-ship.** First to reach the right buyer wins. Your product roadmap means nothing if prospects choose their shortlist before you show up. I'd measure time-to-first-contact for new features — most teams can't answer that question.
 
-The product isn't the differentiator anymore. Getting to the right buyer first is.
+**Channels are strategic assets.** Distribution relationships are the new moat. Partner ecosystems, content platforms, sales networks — these can't be replicated in a sprint. Treat them like infrastructure, not afterthoughts.
 
-## Distribution Is the New Moat
+**Sales execution is the differentiator.** When products converge on feature parity, how you sell separates you. The quality of your discovery, your demo, your deal execution — this is where deals get won and lost.
 
-The constraint hierarchy has flipped:
+**Data infrastructure for GTM.** The same rigor companies applied to product development should go to distribution. Who are your ICPs? How do you reach them? What's your time-to-first-contact? Build dashboards tracking feature → positioning → outreach → pipeline → revenue.
 
-**Old world:** Engineering → Product → GTM. Bottleneck at Engineering. Competitive advantage: can we build it?
+## What I'd Do Monday Morning
 
-**New world:** Engineering → Product → GTM. Bottleneck at GTM. Competitive advantage: can we sell it before everyone else builds it?
+If I were running RevOps at a company feeling this squeeze:
 
-Four implications:
+- **Audit where budget flows.** Most companies are still overweighted on build versus distribute. If the constraint moved, spending should follow.
+- **Measure time-to-ICP.** How fast can a new feature reach an ideal buyer? If you can't measure it, you can't improve it.
+- **Validate distribution before building.** Feed channel and audience data back to product. The question isn't "can we build this?" — it's "can we sell this to people we can actually reach?"
+- **Map every path to your ICP.** Partner relationships, content distribution, sales enablement infrastructure — optimize ruthlessly. These aren't operational details; they're competitive advantages.
 
-Speed-to-ICP > Speed-to-Ship. First to reach the right buyer wins. Your product roadmap means nothing if prospects choose their shortlist before you show up.
+The question isn't "can we build it?" anymore — everyone can. The question is "can we sell it before everyone else builds it too?"
 
-**Channels as Assets.** Distribution relationships are the new moat. Partner ecosystems, content platforms, sales networks—these are strategic advantages that can't be replicated in a sprint.
-
-**Sales Execution as Differentiator.** When products converge on feature parity, how you sell becomes what separates you. The quality of your discovery, your demo, your deal execution—this is where deals are won and lost.
-
-**Data Infrastructure for GTM.** The same rigor companies applied to product development should now go to distribution. Who are your ICPs? How do you reach them? What's your time-to-first-contact? Most companies can't answer these questions with precision.
-
-## Rewiring for Speed-to-ICP
-
-RevOps teams that recognize this shift need to rewire how they operate.
-
-Rebalance Investment. Look at where budget flows. Most companies are still overweighted on build versus distribute. Advocate for GTM tooling, channel development, and sales headcount. The constraint moved; spending should follow.
-
-Build Distribution Before Products. Validate that you can reach ICPs before building features for them. RevOps should feed channel and audience data back to product teams. The question isn't "can we build this?"—it's "can we sell this to people we can actually reach?"
-
-Measure Time-to-ICP. New metric: how fast can a new feature or product reach an ideal buyer? Build dashboards tracking feature → positioning → outreach → pipeline → revenue. If you can't measure it, you can't improve it.
-
-Treat Channel Access as Strategic. Partner relationships, content distribution networks, sales enablement infrastructure—map every path to your ICP and optimize ruthlessly. These aren't operational details; they're competitive advantages.
-
-## Your Competitive Advantage Is Your Pipeline
-
-The question isn't "can we build it?" anymore—everyone can. The question is "can we sell it before everyone else builds it too?"
-
-Companies that win in this environment will be distribution-first, not product-first. Your competitive advantage is no longer your product. It's your pipeline.
+Companies that win in this environment will be distribution-first, not product-first.

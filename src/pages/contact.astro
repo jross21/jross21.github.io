@@ -1,90 +1,65 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TerminalPanel from '../components/TerminalPanel.astro';
 import CommandButton from '../components/CommandButton.astro';
 ---
 
 <BaseLayout title="Contact" description="Get in touch — email, LinkedIn, or download my resume.">
   <article class="py-8" data-section="contact">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4">
+    <div class="max-w-lg">
+      <h1 class="text-2xl md:text-3xl text-[var(--color-text)] mb-4">
         Contact
       </h1>
 
-      <p class="text-[var(--color-text)] max-w-lg leading-relaxed">
-        I'm actively looking for my next RevOps role and happy to chat about how I can help your team. I typically respond within a day.
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-8">
+        Best way to reach me is email. I read everything and reply within a day.
       </p>
-    </div>
 
-    <div class="max-w-xl space-y-6">
+      <!-- Email prominent -->
+      <div class="mb-8">
+        <a
+          href="mailto:jross21@gmail.com"
+          class="text-xl text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors font-semibold"
+        >
+          jross21@gmail.com
+        </a>
+      </div>
 
-      <!-- What I'm looking for -->
-      <TerminalPanel title="What I'm looking for">
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-          A RevOps or Sales/Marketing Ops role where I can own the full stack — CRM architecture, data pipelines, automation, and AI workflows. I'm at my best when I can bridge the gap between revenue leadership and technical execution, building systems that teams actually trust and use.
-        </p>
-      </TerminalPanel>
+      <!-- Links -->
+      <div class="space-y-4 mb-8">
+        <a
+          href="https://www.linkedin.com/in/julianross21/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between py-3 border-b border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
+        >
+          <div>
+            <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">LinkedIn</div>
+            <div class="text-xs text-[var(--color-text-dim)]">linkedin.com/in/julianross21</div>
+          </div>
+          <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
+        </a>
 
-      <!-- Resume -->
-      <TerminalPanel title="Resume">
-        <div class="flex items-center justify-between">
-          <p class="text-sm text-[var(--color-text-muted)]">Full career history and skills</p>
-          <CommandButton
-            href="/resume"
-            command="View resume"
-            primary={true}
-            section="about"
-          />
-        </div>
-      </TerminalPanel>
+        <a
+          href="https://github.com/jross21"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between py-3 border-b border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
+        >
+          <div>
+            <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">GitHub</div>
+            <div class="text-xs text-[var(--color-text-dim)]">github.com/jross21</div>
+          </div>
+          <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
+        </a>
+      </div>
 
-      <!-- Direct Contact -->
-      <TerminalPanel title="Get in touch">
-        <div class="space-y-4">
-          <a
-            href="mailto:jross21@gmail.com"
-            class="flex items-center justify-between py-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
-          >
-            <div>
-              <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">Email</div>
-              <div class="text-xs text-[var(--color-text-dim)]">jross21@gmail.com</div>
-            </div>
-            <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
-          </a>
-
-          <div class="border-t border-[var(--color-border)]"></div>
-
-          <a
-            href="https://www.linkedin.com/in/julianross21/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-between py-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
-          >
-            <div>
-              <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">LinkedIn</div>
-              <div class="text-xs text-[var(--color-text-dim)]">linkedin.com/in/julianross21</div>
-            </div>
-            <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
-          </a>
-
-          <div class="border-t border-[var(--color-border)]"></div>
-
-          <a
-            href="https://github.com/jross21"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-between py-2 text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors hover:no-underline group"
-          >
-            <div>
-              <div class="text-sm font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">GitHub</div>
-              <div class="text-xs text-[var(--color-text-dim)]">github.com/jross21</div>
-            </div>
-            <span class="text-xs text-[var(--color-text-dim)]">&rarr;</span>
-          </a>
-        </div>
-      </TerminalPanel>
-
+      <!-- Resume CTA -->
+      <CommandButton
+        href="/resume"
+        command="View resume"
+        primary={true}
+        section="about"
+      />
     </div>
   </article>
 </BaseLayout>

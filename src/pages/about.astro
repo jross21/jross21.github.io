@@ -2,15 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TerminalPanel from '../components/TerminalPanel.astro';
 import CommandButton from '../components/CommandButton.astro';
-import AnimatedStat from '../components/AnimatedStat.astro';
 import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
 ---
 
-<BaseLayout title="About" description="Revenue Operations leader with 10+ years across sales, GTM, data engineering, and AI-native automation.">
+<BaseLayout title="About" description="From SDR to data engineer to AI-native RevOps — the career story behind the systems thinking.">
   <article class="py-8" data-section="about">
     <!-- Header -->
     <div class="mb-10">
-      <h1 class="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-6">
+      <h1 class="text-2xl md:text-3xl text-[var(--color-text)] mb-6">
         About
       </h1>
     </div>
@@ -19,97 +18,56 @@ import AvatarPortrait from '../components/graphics/AvatarPortrait.astro';
       <!-- Main content -->
       <div class="space-y-10 max-w-2xl">
 
-        <!-- Opening Narrative -->
+        <!-- Opening Narrative - thesis first, not chronological -->
         <div class="flex items-start gap-6">
           <div class="flex-shrink-0 hidden sm:block">
             <AvatarPortrait size={96} />
           </div>
           <div>
             <p class="text-lg text-[var(--color-text)] leading-relaxed">
-              I started in sales, learned what breaks when data is bad, then spent the next decade fixing the infrastructure underneath. From SDR to data engineering to AI-native RevOps — the through-line is the same: build systems that give revenue teams reliable data and predictable automation so they can focus on selling, not debugging.
+              Most RevOps people come from either strategy or engineering. I came through the sales floor, which means I've seen what breaks from every angle — the rep who can't trust the CRM data, the manager whose forecast is fiction, and the VP who can't explain why pipeline stalled.
             </p>
           </div>
         </div>
 
-        <!-- Key Outcomes -->
+        <!-- Career narrative - why each transition matters -->
         <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Selected outcomes</div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <AnimatedStat value="8" prefix="$" suffix="M+" label="Qualified pipeline" />
-            <AnimatedStat value="40" prefix="~" suffix="%" label="Pipeline growth" />
-            <AnimatedStat value="350" prefix="$" suffix="K/mo" label="Pipeline produced" />
-            <AnimatedStat value="200" prefix="$" suffix="K+" label="Additional pipeline" />
+          <div class="section-label mb-4">The path</div>
+
+          <div class="space-y-6 text-[var(--color-text-muted)] leading-relaxed">
+            <p>
+              I started as an SDR at Smartsheet, where I learned what bad data costs a rep — hours lost to wrong contacts, stale accounts, and routing logic that sent enterprise leads to the SMB queue. I developed prospecting sequences that got adopted team-wide, but the real education was watching how broken ops infrastructure makes good sellers worse.
+            </p>
+
+            <p>
+              At DataRobot I moved into technical pre-sales for enterprise AI, then to CloudZero for cloud cost enablement, then to Benchling where I built the enterprise SDR function from scratch — developing qualification frameworks for $100K+ ACV deals and working closely with marketing ops on lead scoring and attribution.
+            </p>
+
+            <p>
+              Each role showed me the same pattern: revenue teams don't fail because of strategy. They fail because the infrastructure underneath the strategy can't support it. So I decided to fix the infrastructure instead of complaining about it.
+            </p>
+
+            <p>
+              Since 2022, I've been building that infrastructure as an independent consultant — CRM architecture, data pipelines in Snowflake and dbt, AI-enabled lead qualification and routing, executive reporting layers. When LLMs arrived, I'd already been automating RevOps workflows for three years. The AI layer was a natural extension, not a pivot.
+            </p>
           </div>
         </div>
 
-        <!-- What I'm Looking For -->
+        <!-- What drives the work -->
         <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">What I'm looking for</div>
-          <div class="terminal-panel">
-            <div class="terminal-panel__body">
-              <p class="text-[var(--color-text-muted)] leading-relaxed">
-                A RevOps or Sales/Marketing Ops role where I can own the full stack — CRM architecture, data pipelines, automation, and AI workflows. I'm at my best when I can bridge the gap between revenue leadership and technical execution, building systems that teams actually trust and use.
-              </p>
-            </div>
+          <div class="section-label mb-4">What I think about</div>
+
+          <div class="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
+            <p>
+              The question that keeps coming up in every engagement: why do smart revenue teams make decisions with data they don't trust? Usually it's because the data infrastructure was built for yesterday's org chart, the automation layer grew organically until nobody understood it, and the reporting reflects what's easy to measure rather than what matters.
+            </p>
+            <p>
+              I think the best RevOps work is systems thinking applied to revenue — understanding how CRM architecture, data quality, automation logic, and reporting all connect, and building infrastructure that stays reliable as the team scales.
+            </p>
           </div>
         </div>
 
-        <!-- Strengths as Cards -->
-        <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">What I bring</div>
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div class="terminal-panel">
-              <div class="terminal-panel__body">
-                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Full-stack RevOps ownership.</p>
-                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                  CRM architecture, data modeling, pipeline reporting, and automation — not just strategy decks, but production systems with monitoring.
-                </p>
-              </div>
-            </div>
-            <div class="terminal-panel">
-              <div class="terminal-panel__body">
-                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">Data engineering depth.</p>
-                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                  Snowflake, dbt, Fivetran, reverse ETL. I build the reporting infrastructure, not just the dashboards on top.
-                </p>
-              </div>
-            </div>
-            <div class="terminal-panel">
-              <div class="terminal-panel__body">
-                <p class="text-[var(--color-text)] font-semibold text-sm mb-2">AI workflows in production.</p>
-                <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-                  Building AI-enabled GTM ops since 2022 — lead qualification, enrichment, routing — with validation, monitoring, and human checkpoints.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Career History -->
-        <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Career history</div>
-          <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
-            <li>2022 to Present - Revenue Systems Architect (Independent) - AI-enabled GTM ops, automation, and data infrastructure.</li>
-            <li>2021 to 2022 - Benchling - Global Lead, Enterprise Development.</li>
-            <li>2020 to 2021 - CloudZero - Cloud Cost Solutions Enablement.</li>
-            <li>2019 to 2020 - DataRobot - AI Solutions Specialist.</li>
-            <li>2018 to 2019 - Smartsheet - Sales Development.</li>
-            <li>Earlier: UMass Amherst - Software Support and Network Engineering.</li>
-          </ul>
-        </div>
-
-        <!-- Systems Delivered -->
-        <div>
-          <div class="text-sm text-[var(--color-label)] uppercase tracking-wide mb-4">Systems I've built</div>
-          <ul class="list-disc pl-5 space-y-2 text-[var(--color-text-muted)]">
-            <li>Lead routing and enrichment automations in Salesforce and HubSpot.</li>
-            <li>Data models in Snowflake and dbt for pipeline and attribution.</li>
-            <li>Executive reporting layers in Looker, Tableau, and Power BI.</li>
-            <li>AI workflows with validation, monitoring, and human checkpoints.</li>
-          </ul>
-        </div>
-
-        <!-- Resume + Links -->
+        <!-- Links -->
         <div class="pt-6 border-t border-[var(--color-border)]">
           <div class="flex flex-wrap gap-4 items-center">
             <CommandButton
