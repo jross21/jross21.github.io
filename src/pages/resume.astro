@@ -9,10 +9,10 @@ const experienceEntries = [
     company: 'Independent',
     title: 'Revenue Systems Architect',
     bullets: [
-      'Designed and deployed AI-enabled GTM workflows — lead qualification, enrichment, routing — reducing SDR qualification time by 60% while improving MQL-to-SQL conversion by 34%.',
-      'Built data infrastructure (Snowflake, dbt, Fivetran) that let sales leadership see why deals stall at specific stages — forecast accuracy went from 67% to 84%.',
-      'Led CRM architecture projects across Salesforce and HubSpot, consolidating 11 revenue tools to 4 and cutting operational overhead 40%.',
-      'Produced $8M+ qualified pipeline; drove ~40% pipeline growth and $350K/mo pipeline from automated workflows.',
+      'Built LLM-based lead qualification pipeline (Python, Claude/GPT) with tiered routing — auto, assisted, and human-required — integrated via Workato. Cut SDR qualification time 60%; lifted MQL-to-SQL conversion 34%.',
+      'Designed ELT pipeline (Fivetran ingestion → Snowflake → dbt transformation layer) with stage-exit validation models and coverage-ratio tracking. Forecast accuracy improved from 67% to 84%.',
+      'Rebuilt CRM data model across Salesforce and HubSpot — custom objects, validation rules, deduplication workflows, and integration mapping. Consolidated 11 revenue tools to 4; cut operational overhead 40%.',
+      'Automated enrichment-to-routing pipeline (Workato orchestration, Census reverse ETL, LLM-based scoring) that produced $8M+ qualified pipeline and $350K/mo sustained throughput.',
     ],
   },
   {
@@ -63,28 +63,28 @@ const experienceEntries = [
 const keyProjects = [
   {
     title: 'AI-Assisted Lead Routing + SLA Enforcement',
-    metrics: '45m first response, +25% MQL-to-SQL, 40% auto-routed',
+    metrics: 'Python + Claude/GPT, Workato orchestration · 45m first response, +25% MQL-to-SQL',
     slug: 'ai-routing-sla',
   },
   {
     title: 'Forecast Integrity + Operating Cadence',
-    metrics: '84% forecast accuracy, -35% stage aging, <24h reporting latency',
+    metrics: 'Snowflake + dbt semantic layer, BI dashboards · 84% forecast accuracy, <24h latency',
     slug: 'forecast-integrity-cadence',
   },
   {
     title: 'CRM Data Quality + Automated Governance',
-    metrics: '92% field completion, -78% duplicates, 4-day source onboarding',
+    metrics: 'Salesforce + HubSpot data model, validation + dedup workflows · 92% field completion, -78% dupes',
     slug: 'data-governance-automation',
   },
   {
     title: 'Self-Serve Revenue Analytics',
-    metrics: '80% reduction in ad-hoc reporting requests',
+    metrics: 'dbt semantic layer, self-serve BI · 80% reduction in ad-hoc requests',
     slug: 'self-serve-analytics',
   },
 ];
 ---
 
-<BaseLayout title="Resume" description="Julian Ross — Revenue Operations leader with 10+ years across GTM, data infrastructure, and AI-native automation.">
+<BaseLayout title="Resume" description="Julian Ross — GTM engineer: ELT pipelines (Snowflake, dbt), workflow automation (Workato, Python), and LLM-based RevOps.">
   <article class="py-8 resume-page" data-section="about">
     <!-- Header -->
     <div class="mb-10">
@@ -117,7 +117,7 @@ const keyProjects = [
     <section class="mb-10">
       <h2 class="resume-section-heading">Summary</h2>
       <p class="text-[var(--color-text-muted)] leading-relaxed max-w-2xl">
-        Revenue Operations leader with 10+ years building the data infrastructure, automation, and AI workflows that make revenue teams predictable. From SDR to data engineer to AI-native RevOps — the through-line is building systems that teams trust and use. I'm at my best when I can bridge the gap between revenue leadership and technical execution.
+        Revenue Operations engineer with 10+ years building ELT pipelines (Snowflake, dbt, Fivetran), GTM automation (Workato, Python, Census), and LLM-based scoring and routing workflows. I work the full loop: data modeling, CRM architecture, workflow automation, and the reporting layer that proves it works. Strongest when I own the technical stack end-to-end and ship systems that revenue teams actually adopt.
       </p>
     </section>
 
